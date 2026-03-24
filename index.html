@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruchitva Kitchen | Healthy Millet Dosa & Idli Delivery in Hyderabad</title>
+<meta name="description" content="Order healthy millet dosa & idli online in Hyderabad. Ruchitva Kitchen serves 100% millet-based, gluten-free, high-protein breakfast in Alwal, Secunderabad, Bolarum. Diet-friendly & diabetic-safe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- ============================================================
+     RUCHITVA KITCHEN — WORDPRESS CUSTOM HTML BLOCK
+     Paste this ENTIRE content into a Custom HTML block in WordPress
+     ============================================================ -->
+
+<!-- Google Fonts -->
+<!-- SEO Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Restaurant", "LocalBusiness"],
+  "name": "Ruchitva Kitchen",
+  "alternateName": "Ruchitva Millet Kitchen",
+  "description": "Hyderabad's healthy millet breakfast cloud kitchen. Serving fresh millet dosa, idli and South Indian breakfast — gluten-free, high-protein, diabetic-friendly and 100% maida-free.",
+  "url": "https://ruchitvakitchen.com",
+  "telephone": "+919392564542",
+  "priceRange": "₹69 - ₹149",
+  "servesCuisine": ["South Indian", "Millet Food", "Healthy Food", "Breakfast"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Alwal, Bolarum, Vivekananda Colony",
+    "addressLocality": "Secunderabad",
+    "addressRegion": "Telangana",
+    "postalCode": "500010",
+    "addressCountry": "IN"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 17.4850, "longitude": 78.5080 },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Wednesday","Thursday","Friday","Saturday","Sunday","Monday"],
+    "opens": "07:00", "closes": "20:00"
+  }],
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.5", "reviewCount": "500", "bestRating": "5" },
+  "sameAs": [
+    "https://www.facebook.com/Ruchitvakitchen/",
+    "https://www.youtube.com/@Ruchitva_Kitchen",
+    "https://www.swiggy.com/city/hyderabad/ruchitva-cloud-kitchen-bolarum-vivekananda-colony-rest1270430"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is millet dosa healthier than regular dosa?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Millet batter has 3-5x more fibre, higher iron, magnesium and plant protein compared to polished rice batter. It has a lower glycemic index making it ideal for weight management and blood sugar control." } },
+    { "@type": "Question", "name": "Does Ruchitva Kitchen deliver in Hyderabad?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We deliver across Alwal, Bolarum, Secunderabad, Malkajgiri, Trimulgherry, Yapral, Sainikpuri, Bowenpally, Kompally, ECIL and surrounding Hyderabad areas via Swiggy and WhatsApp." } },
+    { "@type": "Question", "name": "Is Ruchitva Kitchen food good for diabetics?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Millets have a low glycemic index and release glucose slowly, preventing blood sugar spikes. Our millet dosas and idlis are excellent for people managing Type 2 diabetes or PCOS." } },
+    { "@type": "Question", "name": "Is the food gluten free?", "acceptedAnswer": { "@type": "Answer", "text": "Millets are naturally gluten-tolerant grains with no wheat gluten. Our batter contains no wheat, no maida and no refined flour — safe for people with gluten sensitivity." } }
+  ]
+}
+</script>
+
+<!-- ALL CSS STYLES -->
+<style>
+#rk-wrap *, #rk-wrap *::before, #rk-wrap *::after { margin: 0; padding: 0; box-sizing: border-box; }
+#rk-wrap {
+  --saffron: #E8640A;
+  --saffron-light: #FF8C3A;
+  --saffron-pale: #FFF3EB;
+  --green: #2D6A4F;
+  --green-light: #40916C;
+  --green-pale: #D8F3DC;
+  --cream: #FFFDF8;
+  --dark: #1A1207;
+  --muted: #6B5744;
+  --border: #EDE0D4;
+  --white: #FFFFFF;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+#rk-wrap a { text-decoration: none; }
+
+/* LOGO IMAGE */
+#rk-wrap .rk-logo-img {
+  height: 44px; width: auto; max-width: 140px;
+  object-fit: contain;
+}
+
+/* OFFER BANNER */
+#rk-wrap .rk-offer-bar {
+  background: linear-gradient(90deg, #E8640A, #ff8c3a, #E8640A);
+  background-size: 200% auto;
+  animation: rk-offer-shine 3s linear infinite;
+  color: white; text-align: center; padding: 10px 16px;
+  font-size: 14px; font-weight: 700; letter-spacing: .02em;
+  display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+}
+@keyframes rk-offer-shine { 0%{background-position:0%} 100%{background-position:200%} }
+#rk-wrap .rk-offer-bar a { color: white; text-decoration: underline; }
+#rk-wrap .rk-offer-pill {
+  background: rgba(255,255,255,.2); border-radius: 50px;
+  padding: 3px 12px; font-size: 12px; font-weight: 700;
+  border: 1px solid rgba(255,255,255,.4);
+}
+
+/* HERO SLIDESHOW */
+#rk-wrap .rk-hero {
+  min-height: 90vh; display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; padding: 60px 5% 40px; gap: 40px;
+  position: relative; overflow: hidden;
+  background: var(--cream);
+}
+#rk-wrap .rk-slideshow {
+  position: relative; width: 100%; border-radius: 24px; overflow: hidden;
+  box-shadow: 0 30px 80px rgba(232,100,10,.2);
+  aspect-ratio: 4/3;
+}
+#rk-wrap .rk-slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity .8s ease;
+}
+#rk-wrap .rk-slide.active { opacity: 1; }
+#rk-wrap .rk-slide img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+#rk-wrap .rk-slide-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.7));
+  color: white; padding: 24px 20px 16px;
+  font-size: 15px; font-weight: 700;
+}
+#rk-wrap .rk-slide-price {
+  display: inline-block; background: var(--saffron);
+  color: white; padding: 3px 10px; border-radius: 50px;
+  font-size: 13px; font-weight: 700; margin-top: 4px;
+}
+#rk-wrap .rk-slide-dots {
+  position: absolute; bottom: 12px; right: 16px;
+  display: flex; gap: 6px; z-index: 2;
+}
+#rk-wrap .rk-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,.5); cursor: pointer;
+  transition: background .2s, transform .2s;
+  border: none;
+}
+#rk-wrap .rk-dot.active { background: white; transform: scale(1.3); }
+
+/* BANNER */
+#rk-wrap .rk-banner {
+  background: var(--green); color: white;
+  text-align: center; padding: 10px;
+  font-size: 13px; font-weight: 600;
+}
+#rk-wrap .rk-banner a { color: #B7E4C7; text-decoration: underline; }
+
+/* NAV */
+#rk-wrap .rk-nav {
+  position: sticky; top: 0; z-index: 999;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5%;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px;
+  box-shadow: 0 2px 16px rgba(232,100,10,.07);
+}
+#rk-wrap .rk-logo { display: flex; align-items: center; gap: 10px; }
+#rk-wrap .rk-logo-icon {
+  width: 42px; height: 42px; background: var(--saffron);
+  border-radius: 12px; display: flex; align-items: center;
+  justify-content: center; font-size: 22px;
+}
+#rk-wrap .rk-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+#rk-wrap .rk-logo-text span:first-child {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 900; color: var(--dark);
+}
+#rk-wrap .rk-logo-text span:last-child {
+  font-size: 10px; font-weight: 500; color: var(--saffron);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+#rk-wrap .rk-nav-links { display: flex; align-items: center; gap: 24px; }
+#rk-wrap .rk-nav-links a { color: var(--muted); font-size: 14px; font-weight: 500; transition: color .2s; }
+#rk-wrap .rk-nav-links a:hover { color: var(--saffron); }
+#rk-wrap .rk-cart-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--saffron); color: white; border: none; cursor: pointer;
+  padding: 9px 18px; border-radius: 50px;
+  font-size: 14px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+  transition: background .2s, transform .15s;
+}
+#rk-wrap .rk-cart-btn:hover { background: var(--saffron-light); transform: scale(1.03); }
+#rk-wrap .rk-cart-badge {
+  background: white; color: var(--saffron); border-radius: 50%;
+  width: 20px; height: 20px; display: flex; align-items: center;
+  justify-content: center; font-size: 11px; font-weight: 700;
+}
+
+/* HERO */
+#rk-wrap .rk-hero {
+  min-height: 88vh; display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; padding: 60px 5% 40px; gap: 40px;
+  position: relative; overflow: hidden;
+}
+#rk-wrap .rk-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 65% 50%, #FFF3EB 0%, transparent 70%);
+  pointer-events: none;
+}
+#rk-wrap .rk-hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--green-pale); color: var(--green);
+  font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 50px; margin-bottom: 20px;
+}
+#rk-wrap .rk-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 60px); font-weight: 900;
+  line-height: 1.1; color: var(--dark); margin-bottom: 20px;
+}
+#rk-wrap .rk-hero h1 em { font-style: normal; color: var(--saffron); }
+#rk-wrap .rk-hero-desc {
+  font-size: 17px; line-height: 1.7; color: var(--muted);
+  max-width: 480px; margin-bottom: 36px;
+}
+#rk-wrap .rk-hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+#rk-wrap .rk-btn-primary {
+  background: var(--saffron); color: white; border: none; cursor: pointer;
+  padding: 14px 28px; border-radius: 50px; font-size: 16px; font-weight: 600;
+  font-family: 'DM Sans', sans-serif; display: inline-flex; align-items: center; gap: 8px;
+  transition: background .2s, transform .15s, box-shadow .2s;
+  box-shadow: 0 6px 20px rgba(232,100,10,.25);
+}
+#rk-wrap .rk-btn-primary:hover { background: var(--saffron-light); transform: translateY(-2px); }
+#rk-wrap .rk-btn-outline {
+  background: transparent; color: var(--dark); border: 2px solid var(--border);
+  padding: 13px 26px; border-radius: 50px; font-size: 15px; font-weight: 600;
+  font-family: 'DM Sans', sans-serif; display: inline-flex; align-items: center; gap: 8px;
+  transition: border-color .2s, color .2s; cursor: pointer;
+}
+#rk-wrap .rk-btn-outline:hover { border-color: var(--saffron); color: var(--saffron); }
+#rk-wrap .rk-hero-stats {
+  display: flex; gap: 32px; margin-top: 48px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+#rk-wrap .rk-stat { display: flex; flex-direction: column; }
+#rk-wrap .rk-stat strong { font-size: 24px; font-weight: 700; color: var(--dark); }
+#rk-wrap .rk-stat span { font-size: 12px; color: var(--muted); margin-top: 2px; }
+#rk-wrap .rk-hero-visual { display: flex; align-items: center; justify-content: center; position: relative; }
+#rk-wrap .rk-hero-plate {
+  width: min(420px, 100%); aspect-ratio: 1; border-radius: 50%;
+  background: linear-gradient(135deg, #FFF3EB 0%, #FFE8D0 100%);
+  display: flex; align-items: center; justify-content: center; font-size: 160px;
+  position: relative; box-shadow: 0 30px 80px rgba(232,100,10,.15);
+}
+#rk-wrap .rk-float {
+  position: absolute; background: white; border-radius: 16px; padding: 10px 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.1); font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+  animation: rk-float 3s ease-in-out infinite;
+}
+#rk-wrap .rk-float.f1 { top: 12%; right: -5%; animation-delay: 0s; }
+#rk-wrap .rk-float.f2 { bottom: 18%; left: -5%; animation-delay: 1.5s; }
+@keyframes rk-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* TICKER */
+#rk-wrap .rk-ticker {
+  background: var(--saffron); color: white; padding: 12px 0;
+  overflow: hidden; white-space: nowrap;
+}
+#rk-wrap .rk-ticker-track {
+  display: inline-flex; gap: 48px;
+  animation: rk-ticker 22s linear infinite;
+}
+#rk-wrap .rk-ticker-item { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+#rk-wrap .rk-ticker-dot { opacity: .6; }
+@keyframes rk-ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* SECTIONS */
+#rk-wrap .rk-section { padding: 80px 5%; }
+#rk-wrap .rk-section-hd { text-align: center; margin-bottom: 52px; }
+#rk-wrap .rk-tag {
+  display: inline-block; font-size: 12px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--saffron); margin-bottom: 12px;
+}
+#rk-wrap .rk-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 42px); font-weight: 900;
+  color: var(--dark); line-height: 1.2;
+}
+#rk-wrap .rk-sub {
+  font-size: 16px; color: var(--muted);
+  max-width: 500px; margin: 12px auto 0; line-height: 1.6;
+}
+
+/* CATEGORY TABS */
+#rk-wrap .rk-cat-tabs {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  justify-content: center; margin-bottom: 44px;
+}
+#rk-wrap .rk-cat-tab {
+  padding: 9px 20px; border-radius: 50px; border: 1.5px solid var(--border);
+  background: white; color: var(--muted); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all .2s; font-family: 'DM Sans', sans-serif;
+}
+#rk-wrap .rk-cat-tab.active, #rk-wrap .rk-cat-tab:hover {
+  background: var(--saffron); color: white; border-color: var(--saffron);
+}
+
+/* MENU GRID */
+#rk-wrap .rk-menu-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px;
+}
+#rk-wrap .rk-card {
+  background: white; border-radius: 20px; overflow: hidden;
+  border: 1px solid var(--border); transition: transform .25s, box-shadow .25s; position: relative;
+}
+#rk-wrap .rk-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,.1); }
+#rk-wrap .rk-card-img {
+  height: 200px; background: linear-gradient(135deg, #FFF3EB, #FFE8D0);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 80px; position: relative; overflow: hidden;
+}
+#rk-wrap .rk-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .4s ease;
+}
+#rk-wrap .rk-card:hover .rk-card-img img { transform: scale(1.06); }
+#rk-wrap .rk-veg-dot {
+  position: absolute; top: 12px; left: 12px; width: 22px; height: 22px;
+  border: 2px solid; border-radius: 4px; display: flex; align-items: center; justify-content: center;
+}
+#rk-wrap .rk-veg-dot.veg { border-color: #2D6A4F; }
+#rk-wrap .rk-veg-dot.veg::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #2D6A4F; }
+#rk-wrap .rk-veg-dot.nonveg { border-color: #C0392B; }
+#rk-wrap .rk-veg-dot.nonveg::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #C0392B; }
+#rk-wrap .rk-best-tag {
+  position: absolute; top: 12px; right: 12px; background: var(--saffron); color: white;
+  font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 50px;
+}
+#rk-wrap .rk-card-body { padding: 18px; }
+#rk-wrap .rk-card-name { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+#rk-wrap .rk-card-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
+#rk-wrap .rk-macros { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+#rk-wrap .rk-macro {
+  background: var(--saffron-pale); color: var(--saffron);
+  font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 50px;
+}
+#rk-wrap .rk-macro.g { background: var(--green-pale); color: var(--green); }
+#rk-wrap .rk-card-ft {
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--border); padding-top: 14px;
+}
+#rk-wrap .rk-price { font-size: 20px; font-weight: 800; color: var(--dark); }
+#rk-wrap .rk-price span { font-size: 14px; font-weight: 400; color: var(--muted); }
+#rk-wrap .rk-add-btn {
+  background: var(--saffron-pale); color: var(--saffron); border: 1.5px solid var(--saffron);
+  padding: 7px 18px; border-radius: 50px; font-size: 13px; font-weight: 700;
+  cursor: pointer; transition: all .2s; font-family: 'DM Sans', sans-serif;
+}
+#rk-wrap .rk-add-btn:hover { background: var(--saffron); color: white; }
+#rk-wrap .rk-qty {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--saffron); border-radius: 50px; padding: 4px 12px;
+}
+#rk-wrap .rk-qty-btn {
+  background: none; border: none; color: white; font-size: 18px; cursor: pointer;
+  font-weight: 700; width: 22px; height: 22px; display: flex; align-items: center;
+  justify-content: center; border-radius: 50%; transition: background .15s; font-family: 'DM Sans', sans-serif;
+}
+#rk-wrap .rk-qty-btn:hover { background: rgba(255,255,255,.2); }
+#rk-wrap .rk-qty-n { color: white; font-size: 14px; font-weight: 700; min-width: 16px; text-align: center; }
+
+/* WHY US */
+#rk-wrap .rk-why {
+  background: var(--dark); padding: 80px 5%; border-radius: 32px; margin: 0 3% 80px;
+}
+#rk-wrap .rk-why .rk-tag { color: var(--saffron-light); }
+#rk-wrap .rk-why .rk-title { color: white; }
+#rk-wrap .rk-why .rk-sub { color: rgba(255,255,255,.5); }
+#rk-wrap .rk-why-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px; margin-top: 48px;
+}
+#rk-wrap .rk-why-card {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px; padding: 28px; transition: background .2s;
+}
+#rk-wrap .rk-why-card:hover { background: rgba(255,255,255,.07); }
+#rk-wrap .rk-why-icon { font-size: 36px; margin-bottom: 16px; }
+#rk-wrap .rk-why-title { color: white; font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+#rk-wrap .rk-why-desc { color: rgba(255,255,255,.5); font-size: 13px; line-height: 1.6; }
+
+/* HOW IT WORKS */
+#rk-wrap .rk-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+#rk-wrap .rk-step { text-align: center; padding: 32px 20px; position: relative; }
+#rk-wrap .rk-step:not(:last-child)::after {
+  content: '→'; position: absolute; right: -12px; top: 38px;
+  color: var(--saffron); font-size: 20px;
+}
+#rk-wrap .rk-step-num {
+  width: 56px; height: 56px; margin: 0 auto 16px; background: var(--saffron-pale);
+  color: var(--saffron); border-radius: 16px; display: flex; align-items: center;
+  justify-content: center; font-size: 28px;
+}
+#rk-wrap .rk-step h4 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+#rk-wrap .rk-step p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+/* REVIEWS */
+#rk-wrap .rk-reviews-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;
+}
+#rk-wrap .rk-review {
+  background: white; border: 1px solid var(--border); border-radius: 16px;
+  padding: 24px; transition: transform .2s;
+}
+#rk-wrap .rk-review:hover { transform: translateY(-4px); }
+#rk-wrap .rk-stars { color: #F59E0B; font-size: 15px; margin-bottom: 12px; }
+#rk-wrap .rk-review-txt { font-size: 14px; line-height: 1.7; color: var(--muted); margin-bottom: 16px; }
+#rk-wrap .rk-reviewer { display: flex; align-items: center; gap: 12px; }
+#rk-wrap .rk-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--saffron-pale); color: var(--saffron);
+  display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;
+}
+#rk-wrap .rk-rev-name { font-size: 14px; font-weight: 700; }
+#rk-wrap .rk-rev-sub { font-size: 12px; color: var(--muted); }
+
+/* AREAS */
+#rk-wrap .rk-areas { padding: 48px 5%; text-align: center; background: var(--green-pale); }
+#rk-wrap .rk-areas h3 { font-size: 20px; font-weight: 700; color: var(--green); margin-bottom: 8px; }
+#rk-wrap .rk-areas p { font-size: 14px; color: var(--green-light); margin-bottom: 20px; }
+#rk-wrap .rk-area-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+#rk-wrap .rk-area-pill {
+  background: white; color: var(--green); font-size: 13px; font-weight: 600;
+  padding: 7px 16px; border-radius: 50px; border: 1.5px solid var(--green-light);
+}
+
+/* KEYWORD CLOUD */
+#rk-wrap .rk-kw-cloud {
+  display: flex; flex-wrap: wrap; gap: 8px; padding: 28px 5%;
+  background: var(--saffron-pale); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+#rk-wrap .rk-kw {
+  background: white; color: var(--muted); font-size: 12px; font-weight: 500;
+  padding: 5px 12px; border-radius: 50px; border: 1px solid var(--border);
+}
+#rk-wrap .rk-kw.p { background: var(--saffron); color: white; border-color: var(--saffron); font-weight: 600; }
+#rk-wrap .rk-kw.s { background: var(--green-pale); color: var(--green); border-color: var(--green-pale); }
+
+/* SEO SECTION */
+#rk-wrap .rk-seo { padding: 72px 5%; background: var(--white); }
+#rk-wrap .rk-seo-intro {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-bottom: 56px;
+}
+#rk-wrap .rk-seo-intro h2 {
+  font-family: 'Playfair Display', serif; font-size: clamp(22px, 3vw, 34px); font-weight: 900;
+  color: var(--dark); line-height: 1.25; margin-bottom: 16px;
+}
+#rk-wrap .rk-seo-intro h2 em { font-style: normal; color: var(--saffron); }
+#rk-wrap .rk-seo-intro p { font-size: 15px; line-height: 1.85; color: var(--muted); margin-bottom: 12px; }
+#rk-wrap .rk-seo-intro p strong { color: var(--dark); font-weight: 600; }
+#rk-wrap .rk-seo-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+#rk-wrap .rk-seo-col h3 {
+  font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 10px;
+  padding-bottom: 8px; border-bottom: 2px solid var(--saffron-pale);
+}
+#rk-wrap .rk-seo-col p { font-size: 13px; line-height: 1.85; color: var(--muted); }
+
+/* FAQ */
+#rk-wrap .rk-faq { padding: 72px 5%; background: var(--cream); }
+#rk-wrap .rk-faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 960px; margin: 0 auto; }
+#rk-wrap .rk-faq-item {
+  background: white; border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+}
+#rk-wrap .rk-faq-q {
+  padding: 18px 20px; font-size: 14px; font-weight: 700; color: var(--dark); cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px; user-select: none;
+}
+#rk-wrap .rk-faq-q:hover { color: var(--saffron); }
+#rk-wrap .rk-faq-arr { font-size: 12px; color: var(--saffron); transition: transform .2s; flex-shrink: 0; }
+#rk-wrap .rk-faq-item.open .rk-faq-arr { transform: rotate(180deg); }
+#rk-wrap .rk-faq-a {
+  max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .3s;
+  font-size: 13px; line-height: 1.8; color: var(--muted); padding: 0 20px;
+}
+#rk-wrap .rk-faq-item.open .rk-faq-a { max-height: 260px; padding: 0 20px 18px; }
+
+/* CART DRAWER */
+#rk-wrap .rk-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 9998;
+  opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+#rk-wrap .rk-overlay.open { opacity: 1; pointer-events: all; }
+#rk-wrap .rk-drawer {
+  position: fixed; right: -420px; top: 0; bottom: 0; width: 380px; max-width: 100vw;
+  background: white; z-index: 9999; transition: right .3s ease;
+  display: flex; flex-direction: column; box-shadow: -10px 0 40px rgba(0,0,0,.15);
+}
+#rk-wrap .rk-drawer.open { right: 0; }
+#rk-wrap .rk-drawer-hd {
+  padding: 24px 20px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+#rk-wrap .rk-drawer-hd h3 { font-size: 18px; font-weight: 700; }
+#rk-wrap .rk-drawer-close {
+  width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border);
+  background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+#rk-wrap .rk-drawer-items { flex: 1; overflow-y: auto; padding: 16px 20px; }
+#rk-wrap .rk-cart-empty { text-align: center; padding: 60px 20px; color: var(--muted); }
+#rk-wrap .rk-cart-empty-icon { font-size: 64px; margin-bottom: 16px; }
+#rk-wrap .rk-cart-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+#rk-wrap .rk-ci-icon { font-size: 36px; }
+#rk-wrap .rk-ci-info { flex: 1; }
+#rk-wrap .rk-ci-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+#rk-wrap .rk-ci-price { font-size: 13px; color: var(--saffron); font-weight: 700; }
+#rk-wrap .rk-drawer-ft { padding: 16px 20px; border-top: 1px solid var(--border); }
+#rk-wrap .rk-cart-total { display: flex; justify-content: space-between; font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+#rk-wrap .rk-checkout-btn {
+  width: 100%; background: var(--saffron); color: white; border: none;
+  padding: 15px; border-radius: 12px; font-size: 16px; font-weight: 700;
+  cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .2s;
+}
+#rk-wrap .rk-checkout-btn:hover { background: var(--saffron-light); }
+
+/* FOOTER */
+#rk-wrap .rk-footer { background: var(--dark); color: rgba(255,255,255,.7); padding: 64px 5% 32px; }
+#rk-wrap .rk-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+#rk-wrap .rk-footer-brand p { font-size: 13px; line-height: 1.7; max-width: 280px; margin: 12px 0 20px; }
+#rk-wrap .rk-socials { display: flex; gap: 12px; }
+#rk-wrap .rk-social {
+  width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.08);
+  display: flex; align-items: center; justify-content: center; font-size: 16px; transition: background .2s;
+}
+#rk-wrap .rk-social:hover { background: var(--saffron); }
+#rk-wrap .rk-footer-col h4 { color: white; font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+#rk-wrap .rk-footer-col a {
+  display: block; color: rgba(255,255,255,.5); font-size: 13px; margin-bottom: 10px; transition: color .2s;
+}
+#rk-wrap .rk-footer-col a:hover { color: var(--saffron-light); }
+#rk-wrap .rk-footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.08); padding-top: 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13px; flex-wrap: wrap; gap: 8px;
+}
+#rk-wrap .rk-footer-bottom a { color: var(--saffron-light); }
+
+/* TOAST */
+#rk-toast {
+  position: fixed; bottom: 32px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--dark, #1A1207); color: white;
+  padding: 12px 24px; border-radius: 50px; font-size: 14px; font-weight: 600;
+  z-index: 10000; white-space: nowrap; transition: transform .3s ease; pointer-events: none;
+  font-family: 'DM Sans', sans-serif;
+}
+#rk-toast.show { transform: translateX(-50%) translateY(0); }
+
+/* UPI PAYMENT MODAL */
+#rk-upi-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.6);
+  z-index: 10000; display: none; align-items: center; justify-content: center;
+  padding: 16px;
+}
+#rk-upi-overlay.open { display: flex; }
+#rk-upi-modal {
+  background: white; border-radius: 24px; width: 100%; max-width: 460px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.3); overflow: hidden;
+  animation: rk-modal-in .3s ease;
+}
+@keyframes rk-modal-in { from{transform:translateY(40px);opacity:0} to{transform:translateY(0);opacity:1} }
+#rk-upi-modal .rk-upi-header {
+  background: linear-gradient(135deg, #E8640A, #ff8c3a);
+  color: white; padding: 20px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+#rk-upi-modal .rk-upi-header h3 { font-size: 18px; font-weight: 700; }
+#rk-upi-modal .rk-upi-close {
+  background: rgba(255,255,255,.2); border: none; color: white;
+  width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+  font-size: 16px; display: flex; align-items: center; justify-content: center;
+}
+#rk-upi-modal .rk-upi-body { padding: 24px; }
+#rk-upi-modal .rk-upi-order-summary {
+  background: #FFF3EB; border-radius: 12px; padding: 16px;
+  margin-bottom: 20px; font-size: 13px; color: #6B5744;
+}
+#rk-upi-modal .rk-upi-order-summary strong { color: #1A1207; font-size: 15px; }
+#rk-upi-modal .rk-upi-amount {
+  font-size: 28px; font-weight: 900; color: #E8640A;
+  margin-top: 4px;
+}
+#rk-upi-modal .rk-upi-items { font-size: 12px; margin-top: 6px; line-height: 1.6; }
+#rk-upi-modal .rk-upi-methods { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+#rk-upi-modal .rk-upi-qr-box {
+  border: 2px dashed #EDE0D4; border-radius: 16px; padding: 20px;
+  text-align: center;
+}
+#rk-upi-modal .rk-upi-qr-box img { width: 180px; height: 180px; border-radius: 8px; margin: 0 auto 12px; display: block; }
+#rk-upi-modal .rk-upi-qr-label { font-size: 13px; color: #6B5744; margin-bottom: 8px; }
+#rk-upi-modal .rk-upi-id-box {
+  border: 2px solid #EDE0D4; border-radius: 12px; padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+#rk-upi-modal .rk-upi-id { font-size: 16px; font-weight: 700; color: #1A1207; letter-spacing: .02em; }
+#rk-upi-modal .rk-copy-btn {
+  background: #FFF3EB; color: #E8640A; border: 1.5px solid #E8640A;
+  padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 700;
+  cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap;
+  transition: background .2s;
+}
+#rk-upi-modal .rk-copy-btn:hover { background: #E8640A; color: white; }
+#rk-upi-modal .rk-upi-apps {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 20px;
+}
+#rk-upi-modal .rk-upi-app {
+  background: #f8f8f8; border: 1px solid #EDE0D4; border-radius: 10px;
+  padding: 10px 6px; text-align: center; cursor: pointer; text-decoration: none;
+  transition: background .2s, border-color .2s;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+#rk-upi-modal .rk-upi-app:hover { background: #FFF3EB; border-color: #E8640A; }
+#rk-upi-modal .rk-upi-app span:first-child { font-size: 22px; }
+#rk-upi-modal .rk-upi-app span:last-child { font-size: 10px; font-weight: 600; color: #6B5744; }
+#rk-upi-modal .rk-paid-btn {
+  width: 100%; background: #2D6A4F; color: white; border: none;
+  padding: 15px; border-radius: 12px; font-size: 16px; font-weight: 700;
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
+  transition: background .2s; margin-top: 4px;
+}
+#rk-upi-modal .rk-paid-btn:hover { background: #40916C; }
+#rk-upi-modal .rk-upi-note {
+  font-size: 11px; color: #6B5744; text-align: center; margin-top: 10px; line-height: 1.6;
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+  #rk-wrap .rk-nav-links { display: none; }
+  #rk-wrap .rk-hero { grid-template-columns: 1fr; text-align: center; min-height: auto; padding-top: 40px; }
+  #rk-wrap .rk-hero-desc { margin: 0 auto 36px; }
+  #rk-wrap .rk-hero-ctas { justify-content: center; }
+  #rk-wrap .rk-hero-stats { justify-content: center; }
+  #rk-wrap .rk-slideshow { max-width: 480px; margin: 0 auto; }
+  #rk-wrap .rk-steps { grid-template-columns: 1fr 1fr; }
+  #rk-wrap .rk-step:not(:last-child)::after { display: none; }
+  #rk-wrap .rk-footer-grid { grid-template-columns: 1fr 1fr; }
+  #rk-wrap .rk-seo-intro { grid-template-columns: 1fr; gap: 32px; }
+  #rk-wrap .rk-seo-cols { grid-template-columns: 1fr; }
+  #rk-wrap .rk-faq-grid { grid-template-columns: 1fr; }
+  #rk-review-offer > div { grid-template-columns: 1fr !important; }
+  #rk-social > div:nth-child(2) { grid-template-columns: 1fr !important; }
+  #rk-wa-btn { bottom: 16px; right: 16px; }
+  #rk-wa-popup { width: 280px; }
+}
+</style>
+
+<!-- ============================================================ MAIN HTML -->
+<div id="rk-wrap">
+
+<!-- ============================================================
+  ✏️  EASY EDIT GUIDE — Change anything below marked with EDIT
+  ============================================================
+
+  🖼️  TO CHANGE LOGO:
+      Find: src="https://i.ibb.co/3YMnMCr1/image.jpg"
+      Replace the URL with your new logo image URL
+
+  🎯  TO CHANGE OFFER BANNER TEXT:
+      Find the rk-offer-bar section below and edit the text
+
+  🍽️  TO CHANGE MENU ITEMS / PRICES / PHOTOS:
+      Find the MENU ITEMS section in the JavaScript below
+      Each item has: name, img (photo URL), price, desc
+
+  🖼️  TO CHANGE SLIDESHOW PHOTOS:
+      Find SLIDESHOW IMAGES section below
+      Replace the img src URLs with your new photo URLs
+
+  ============================================================ -->
+
+<!-- Offer Bar — EDIT TEXT HERE -->
+<div class="rk-offer-bar" id="rk-offer">
+  🎉 <span>Buy 2 Dosas get Chutney FREE!</span>
+  <span class="rk-offer-pill">Use code: RUCHITVA10</span>
+  <a href="https://wa.me/919392564542?text=I want to claim the offer RUCHITVA10" target="_blank">Claim Now →</a>
+</div>
+
+<!-- Nav -->
+<nav class="rk-nav">
+  <a href="#" class="rk-logo">
+    <img class="rk-logo-img" src="https://drive.google.com/uc?export=view&id=16AugwNGI2KgmCRLgaB1_kEhiAVp9Cdmy" alt="Ruchitva Kitchen" style="height:72px;width:72px;border-radius:50%;border:2px solid #E8640A;object-fit:cover;">
+  </a>
+  <div class="rk-nav-links">
+    <a href="#rk-menu">Menu</a>
+    <a href="#rk-why">Why Us</a>
+    <a href="#rk-how">How It Works</a>
+    <a href="#rk-reviews">Reviews</a>
+    <a href="#rk-review-offer">Free Breakfast 🎁</a>
+    <a href="tel:+919392564542">📞 +91 93925 64542</a>
+  </div>
+  <button class="rk-cart-btn" onclick="rkToggleCart()">
+    🛒 Cart
+    <div class="rk-cart-badge" id="rkCartBadge">0</div>
+  </button>
+</nav>
+
+<!-- Hero — Dark warm style -->
+<section class="rk-hero" style="background:linear-gradient(135deg,#2C1A0E 0%,#4A2800 40%,#7A3E00 100%);color:white;min-height:90vh;">
+  <div style="position:relative;z-index:1;">
+    <!-- Location badge -->
+    <div class="rk-hero-badge" style="background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);">
+      <img src="https://drive.google.com/uc?export=view&id=16AugwNGI2KgmCRLgaB1_kEhiAVp9Cdmy" style="width:22px;height:22px;border-radius:50%;object-fit:cover;" onerror="this.style.display='none'">
+      <span style="font-size:12px;letter-spacing:.08em;">RUCHITVA KITCHEN · HYDERABAD</span>
+    </div>
+
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(40px,5.5vw,68px);font-weight:900;line-height:1.05;color:white;margin-bottom:16px;margin-top:16px;">
+      Breakfast That<br><em style="font-style:normal;color:#E8C96A;">Loves You Back.</em>
+    </h1>
+    <p style="font-size:17px;line-height:1.7;color:rgba(255,255,255,.75);max-width:460px;margin-bottom:28px;">
+      Hyderabad's favourite millet breakfast cloud kitchen —<br>fresh, healthy, and delivered hot every morning.
+    </p>
+
+    <!-- Feature badges -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;">
+      <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:white;padding:7px 14px;border-radius:50px;font-size:13px;font-weight:600;backdrop-filter:blur(4px);">⭐ NO SUGAR</span>
+      <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:white;padding:7px 14px;border-radius:50px;font-size:13px;font-weight:600;backdrop-filter:blur(4px);">🚫 NO MAIDA</span>
+      <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:white;padding:7px 14px;border-radius:50px;font-size:13px;font-weight:600;backdrop-filter:blur(4px);">🌾 100% MILLETS</span>
+    </div>
+
+    <!-- Rating row -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:28px;color:rgba(255,255,255,.85);font-size:14px;">
+      <span style="color:#F59E0B;font-size:18px;">★★★★★</span>
+      <span><strong>4.5 rated</strong> on Swiggy · <strong>500+</strong> happy customers</span>
+    </div>
+
+    <!-- CTAs -->
+    <div class="rk-hero-ctas">
+      <a href="https://www.swiggy.com/city/hyderabad/ruchitva-cloud-kitchen-bolarum-vivekananda-colony-rest1270430" target="_blank" style="background:#E8640A;color:white;padding:14px 26px;border-radius:50px;font-size:15px;font-weight:700;display:inline-flex;align-items:center;gap:8px;text-decoration:none;box-shadow:0 6px 20px rgba(232,100,10,.4);transition:transform .2s;">🔥 Order on Swiggy</a>
+      <a href="https://wa.me/919392564542?text=Hello Ruchitva Kitchen, I want to place an order!" target="_blank" style="background:#25D366;color:white;padding:14px 26px;border-radius:50px;font-size:15px;font-weight:700;display:inline-flex;align-items:center;gap:8px;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,.4);transition:transform .2s;">💬 WhatsApp Order</a>
+    </div>
+  </div>
+
+  <!-- SLIDESHOW -->
+  <div class="rk-slideshow" id="rkSlideshow" style="border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);">
+    
+                <div class="rk-slide active">
+      <img src="https://i.ibb.co/DDF7hPv9/image.jpg" alt="Millet Chicken Dosa">
+      <div class="rk-slide-caption">Millet Chicken Dosa<div><span class="rk-slide-price">₹149</span></div></div>
+    </div>
+    <div class="rk-slide">
+      <img src="https://i.ibb.co/VW1T0hx3/image.jpg" alt="Millet Egg Dosa">
+      <div class="rk-slide-caption">Millet Egg Dosa<div><span class="rk-slide-price">₹89</span></div></div>
+    </div>
+    <div class="rk-slide">
+      <img src="https://i.ibb.co/DfxWtq65/image.jpg" alt="Millet Idly">
+      <div class="rk-slide-caption">Millet Idly<div><span class="rk-slide-price">₹79</span></div></div>
+    </div>
+    <div class="rk-slide">
+      <img src="https://i.ibb.co/YFcqMd7P/image.jpg" alt="Millet Onion Dosa">
+      <div class="rk-slide-caption">Millet Onion Dosa<div><span class="rk-slide-price">₹79</span></div></div>
+    </div>
+    <div class="rk-slide">
+      <img src="https://i.ibb.co/Lhpdyy3z/image.jpg" alt="Combo Meal">
+      <div class="rk-slide-caption">Combo Meal — Dosa + Idly<div><span class="rk-slide-price">₹149</span></div></div>
+    </div>
+    <div class="rk-slide-dots" id="rkDots"></div>
+  </div>
+</section>
+
+<!-- Ticker -->
+<div class="rk-ticker">
+  <div class="rk-ticker-track">
+    <span class="rk-ticker-item">🌾 100% Millet Batter</span><span class="rk-ticker-dot">·</span>
+    <span class="rk-ticker-item">🚀 Hot &amp; Fresh Delivery</span><span class="rk-ticker-dot">·</span>
+    <span class="rk-ticker-item">💪 High Protein Breakfast</span><span class="rk-ticker-dot">·</span>
+    <span class="rk-ticker-item">🌿 No Maida, No Compromise</span><span class="rk-ticker-dot">·</span>
+    <span class="rk-ticker-item">⭐ 4.5★ on Swiggy</span><span class="rk-ticker-dot">·</span>
+    <span class="rk-ticker-item">📍 Alwal, Secunderabad</span><span class="rk-ticker-dot">·</span>
+    <span class="rk-ticker-item">🕗 7am – 8pm (Closed Tue)</span><span class="rk-ticker-dot">·</span>
+    <span class="rk-ticker-item">🌾 100% Millet Batter</span><span class="rk-ticker-dot">·</span>
+    <span class="rk-ticker-item">🚀 Hot &amp; Fresh Delivery</span><span class="rk-ticker-dot">·</span>
+    <span class="rk-ticker-item">💪 High Protein Breakfast</span><span class="rk-ticker-dot">·</span>
+    <span class="rk-ticker-item">🌿 No Maida, No Compromise</span><span class="rk-ticker-dot">·</span>
+    <span class="rk-ticker-item">⭐ 4.5★ on Swiggy</span><span class="rk-ticker-dot">·</span>
+    <span class="rk-ticker-item">📍 Alwal, Secunderabad</span><span class="rk-ticker-dot">·</span>
+    <span class="rk-ticker-item">🕗 7am – 8pm (Closed Tue)</span><span class="rk-ticker-dot">·</span>
+  </div>
+</div>
+
+<!-- Menu -->
+<section class="rk-section" id="rk-menu">
+  <div class="rk-section-hd">
+    <div class="rk-tag">Our Menu</div>
+    <h2 class="rk-title">Fresh. Crispy. Nourishing.</h2>
+    <p class="rk-sub">Every dish is made with 100% millet batter — no maida, no shortcuts. Just honest, wholesome food.</p>
+  </div>
+  <div class="rk-cat-tabs">
+    <button class="rk-cat-tab active" onclick="rkFilter('all',this)">All Items</button>
+    <button class="rk-cat-tab" onclick="rkFilter('dosa',this)">🫓 Dosas</button>
+    <button class="rk-cat-tab" onclick="rkFilter('idli',this)">🫔 Idlis</button>
+    <button class="rk-cat-tab" onclick="rkFilter('veg',this)">🌿 Veg</button>
+    <button class="rk-cat-tab" onclick="rkFilter('nonveg',this)">🍗 Non-Veg</button>
+    <button class="rk-cat-tab" onclick="rkFilter('combo',this)">🎁 Combos</button>
+  </div>
+  <div class="rk-menu-grid" id="rkMenuGrid">
+    <!-- CARD 1 -->
+    <div class="rk-card" id="rkc-1">
+      <div class="rk-card-img" style="background:none;padding:0;position:relative;">
+        <img src="https://i.ibb.co/DDF7hPv9/image.jpg" alt="Millet Chicken Dosa" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="rk-veg-dot nonveg" style="position:absolute;top:12px;left:12px;z-index:2;"></div>
+        <div class="rk-best-tag" style="position:absolute;top:12px;right:12px;z-index:2;">Bestseller</div>
+      </div>
+      <div class="rk-card-body">
+        <div class="rk-card-name">Millet Chicken Dosa</div>
+        <div class="rk-card-desc">Juicy, spiced chicken keema over a crisp golden millet dosa. Hearty, filling & irresistibly flavourful.</div>
+        <div class="rk-macros">
+          <span class="rk-macro">🔥 548 kcal</span>
+          <span class="rk-macro g">💪 32g protein</span>
+          <span class="rk-macro">🍞 46g carbs</span>
+        </div>
+        <div class="rk-card-ft">
+          <div class="rk-price">₹149 <span>incl. taxes</span></div>
+          <div id="rkctrl-1"><button class="rk-add-btn" onclick="window._rkAdd(1)">+ Add</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 2 -->
+    <div class="rk-card" id="rkc-2">
+      <div class="rk-card-img" style="background:none;padding:0;position:relative;">
+        <img src="https://i.ibb.co/DfxWtq65/image.jpg" alt="Millet Gheekaram Idly" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="rk-veg-dot veg" style="position:absolute;top:12px;left:12px;z-index:2;"></div>
+        <div class="rk-best-tag" style="position:absolute;top:12px;right:12px;z-index:2;">Bestseller</div>
+      </div>
+      <div class="rk-card-body">
+        <div class="rk-card-name">Millet Gheekaram Idly</div>
+        <div class="rk-card-desc">Soft idlis tossed in aromatic ghee and spicy karam podi. A flavorful South Indian classic, millet style.</div>
+        <div class="rk-macros">
+          <span class="rk-macro">🔥 467 kcal</span>
+          <span class="rk-macro g">💪 23g protein</span>
+          <span class="rk-macro">🍞 71g carbs</span>
+        </div>
+        <div class="rk-card-ft">
+          <div class="rk-price">₹89 <span>incl. taxes</span></div>
+          <div id="rkctrl-2"><button class="rk-add-btn" onclick="window._rkAdd(2)">+ Add</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 3 -->
+    <div class="rk-card" id="rkc-3">
+      <div class="rk-card-img" style="background:none;padding:0;position:relative;">
+        <img src="https://i.ibb.co/VW1T0hx3/image.jpg" alt="Millet Egg Dosa" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="rk-veg-dot nonveg" style="position:absolute;top:12px;left:12px;z-index:2;"></div>
+      </div>
+      <div class="rk-card-body">
+        <div class="rk-card-name">Millet Egg Dosa</div>
+        <div class="rk-card-desc">Crispy millet dosa topped with freshly cooked egg. Protein-rich, light, and filling. Served with chutney & sambar.</div>
+        <div class="rk-macros">
+          <span class="rk-macro">🔥 380 kcal</span>
+          <span class="rk-macro g">💪 22g protein</span>
+          <span class="rk-macro">🍞 30g carbs</span>
+        </div>
+        <div class="rk-card-ft">
+          <div class="rk-price">₹89 <span>incl. taxes</span></div>
+          <div id="rkctrl-3"><button class="rk-add-btn" onclick="window._rkAdd(3)">+ Add</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 4 -->
+    <div class="rk-card" id="rkc-4">
+      <div class="rk-card-img" style="background:none;padding:0;position:relative;">
+        <img src="https://i.ibb.co/d0PDbQy2/image.jpg" alt="Millet Mini Idly" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="rk-veg-dot veg" style="position:absolute;top:12px;left:12px;z-index:2;"></div>
+      </div>
+      <div class="rk-card-body">
+        <div class="rk-card-name">Millet Mini Idly (Chitti Idly)</div>
+        <div class="rk-card-desc">Soft, fluffy chitti idlis tossed in aromatic ghee karam. Light, comforting and packed with traditional South Indian taste.</div>
+        <div class="rk-macros">
+          <span class="rk-macro">🔥 380 kcal</span>
+          <span class="rk-macro g">💪 22g protein</span>
+          <span class="rk-macro">🍞 30g carbs</span>
+        </div>
+        <div class="rk-card-ft">
+          <div class="rk-price">₹98 <span>incl. taxes</span></div>
+          <div id="rkctrl-4"><button class="rk-add-btn" onclick="window._rkAdd(4)">+ Add</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 5 -->
+    <div class="rk-card" id="rkc-5">
+      <div class="rk-card-img" style="background:none;padding:0;position:relative;">
+        <img src="https://i.ibb.co/3YMnMCr1/image.jpg" alt="Millet Plain Dosa" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="rk-veg-dot veg" style="position:absolute;top:12px;left:12px;z-index:2;"></div>
+      </div>
+      <div class="rk-card-body">
+        <div class="rk-card-name">Millet Plain Dosa</div>
+        <div class="rk-card-desc">Thin, golden, crispy millet dosa served with fresh coconut chutney and sambar. Simple perfection.</div>
+        <div class="rk-macros">
+          <span class="rk-macro">🔥 280 kcal</span>
+          <span class="rk-macro g">💪 9g protein</span>
+          <span class="rk-macro">🍞 42g carbs</span>
+        </div>
+        <div class="rk-card-ft">
+          <div class="rk-price">₹69 <span>incl. taxes</span></div>
+          <div id="rkctrl-5"><button class="rk-add-btn" onclick="window._rkAdd(5)">+ Add</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 6 -->
+    <div class="rk-card" id="rkc-6">
+      <div class="rk-card-img" style="background:none;padding:0;position:relative;">
+        <img src="https://i.ibb.co/YFcqMd7P/image.jpg" alt="Millet Onion Dosa" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="rk-veg-dot veg" style="position:absolute;top:12px;left:12px;z-index:2;"></div>
+      </div>
+      <div class="rk-card-body">
+        <div class="rk-card-name">Millet Onion Dosa</div>
+        <div class="rk-card-desc">Crispy millet dosa loaded with caramelized onions and green chillies. A spicy, crunchy delight.</div>
+        <div class="rk-macros">
+          <span class="rk-macro">🔥 310 kcal</span>
+          <span class="rk-macro g">💪 10g protein</span>
+          <span class="rk-macro">🍞 45g carbs</span>
+        </div>
+        <div class="rk-card-ft">
+          <div class="rk-price">₹79 <span>incl. taxes</span></div>
+          <div id="rkctrl-6"><button class="rk-add-btn" onclick="window._rkAdd(6)">+ Add</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 7 -->
+    <div class="rk-card" id="rkc-7">
+      <div class="rk-card-img" style="background:none;padding:0;position:relative;">
+        <img src="https://i.ibb.co/xSdn3Jm6/image.jpg" alt="Millet Beetroot Dosa" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="rk-veg-dot veg" style="position:absolute;top:12px;left:12px;z-index:2;"></div>
+      </div>
+      <div class="rk-card-body">
+        <div class="rk-card-name">Millet Beetroot Dosa</div>
+        <div class="rk-card-desc">Vibrant, crispy millet dosa with fresh beetroot — colourful, nutritious and absolutely delicious.</div>
+        <div class="rk-macros">
+          <span class="rk-macro">🔥 300 kcal</span>
+          <span class="rk-macro g">💪 10g protein</span>
+          <span class="rk-macro">🍞 44g carbs</span>
+        </div>
+        <div class="rk-card-ft">
+          <div class="rk-price">₹89 <span>incl. taxes</span></div>
+          <div id="rkctrl-7"><button class="rk-add-btn" onclick="window._rkAdd(7)">+ Add</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 8 -->
+    <div class="rk-card" id="rkc-8">
+      <div class="rk-card-img" style="background:none;padding:0;position:relative;">
+        <img src="https://i.ibb.co/DfxWtq65/image.jpg" alt="Millet Idly 4 pcs" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="rk-veg-dot veg" style="position:absolute;top:12px;left:12px;z-index:2;"></div>
+      </div>
+      <div class="rk-card-body">
+        <div class="rk-card-name">Millet Idly (4 pcs)</div>
+        <div class="rk-card-desc">Classic soft millet idlis served with 2 chutneys and piping hot sambar. The purest breakfast joy.</div>
+        <div class="rk-macros">
+          <span class="rk-macro">🔥 320 kcal</span>
+          <span class="rk-macro g">💪 12g protein</span>
+          <span class="rk-macro">🍞 60g carbs</span>
+        </div>
+        <div class="rk-card-ft">
+          <div class="rk-price">₹79 <span>incl. taxes</span></div>
+          <div id="rkctrl-8"><button class="rk-add-btn" onclick="window._rkAdd(8)">+ Add</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 9 -->
+    <div class="rk-card" id="rkc-9">
+      <div class="rk-card-img" style="background:none;padding:0;position:relative;">
+        <img src="https://i.ibb.co/YFcqMd7P/image.jpg" alt="Millet Paneer Dosa" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="rk-veg-dot veg" style="position:absolute;top:12px;left:12px;z-index:2;"></div>
+        <div class="rk-best-tag" style="position:absolute;top:12px;right:12px;z-index:2;">Bestseller</div>
+      </div>
+      <div class="rk-card-body">
+        <div class="rk-card-name">Millet Paneer Dosa</div>
+        <div class="rk-card-desc">Golden millet dosa stuffed with spiced, crumbled paneer filling. Rich in protein and bursting with flavour.</div>
+        <div class="rk-macros">
+          <span class="rk-macro">🔥 440 kcal</span>
+          <span class="rk-macro g">💪 18g protein</span>
+          <span class="rk-macro">🍞 44g carbs</span>
+        </div>
+        <div class="rk-card-ft">
+          <div class="rk-price">₹109 <span>incl. taxes</span></div>
+          <div id="rkctrl-9"><button class="rk-add-btn" onclick="window._rkAdd(9)">+ Add</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 10 -->
+    <div class="rk-card" id="rkc-10">
+      <div class="rk-card-img" style="background:none;padding:0;position:relative;">
+        <img src="https://i.ibb.co/xSdn3Jm6/image.jpg" alt="Millet Pesarattu" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="rk-veg-dot veg" style="position:absolute;top:12px;left:12px;z-index:2;"></div>
+      </div>
+      <div class="rk-card-body">
+        <div class="rk-card-name">Millet Pesarattu</div>
+        <div class="rk-card-desc">Crispy green moong millet dosa packed with plant protein. Served with ginger chutney.</div>
+        <div class="rk-macros">
+          <span class="rk-macro">🔥 290 kcal</span>
+          <span class="rk-macro g">💪 14g protein</span>
+          <span class="rk-macro">🍞 38g carbs</span>
+        </div>
+        <div class="rk-card-ft">
+          <div class="rk-price">₹79 <span>incl. taxes</span></div>
+          <div id="rkctrl-10"><button class="rk-add-btn" onclick="window._rkAdd(10)">+ Add</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 11 -->
+    <div class="rk-card" id="rkc-11">
+      <div class="rk-card-img" style="background:none;padding:0;position:relative;">
+        <img src="https://i.ibb.co/d0PDbQy2/image.jpg" alt="Millet Pongal" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="rk-veg-dot veg" style="position:absolute;top:12px;left:12px;z-index:2;"></div>
+      </div>
+      <div class="rk-card-body">
+        <div class="rk-card-name">Millet Pongal</div>
+        <div class="rk-card-desc">Creamy, comforting millet pongal with ghee, pepper and cumin. Served with sambar and chutney.</div>
+        <div class="rk-macros">
+          <span class="rk-macro">🔥 380 kcal</span>
+          <span class="rk-macro g">💪 13g protein</span>
+          <span class="rk-macro">🍞 58g carbs</span>
+        </div>
+        <div class="rk-card-ft">
+          <div class="rk-price">₹89 <span>incl. taxes</span></div>
+          <div id="rkctrl-11"><button class="rk-add-btn" onclick="window._rkAdd(11)">+ Add</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 12 -->
+    <div class="rk-card" id="rkc-12">
+      <div class="rk-card-img" style="background:none;padding:0;position:relative;">
+        <img src="https://i.ibb.co/Lhpdyy3z/image.jpg" alt="Combo Meal" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="rk-veg-dot veg" style="position:absolute;top:12px;left:12px;z-index:2;"></div>
+        <div class="rk-best-tag" style="position:absolute;top:12px;right:12px;z-index:2;">Bestseller</div>
+      </div>
+      <div class="rk-card-body">
+        <div class="rk-card-name">Combo Meal — Dosa + Idly</div>
+        <div class="rk-card-desc">Best of both worlds — 1 crispy millet dosa + 2 soft millet idlis with sambar and 2 chutneys.</div>
+        <div class="rk-macros">
+          <span class="rk-macro">🔥 700 kcal</span>
+          <span class="rk-macro g">💪 32g protein</span>
+          <span class="rk-macro">🍞 98g carbs</span>
+        </div>
+        <div class="rk-card-ft">
+          <div class="rk-price">₹149 <span>incl. taxes</span></div>
+          <div id="rkctrl-12"><button class="rk-add-btn" onclick="window._rkAdd(12)">+ Add</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Us -->
+<section class="rk-why rk-section" id="rk-why">
+  <div class="rk-section-hd">
+    <div class="rk-tag">Why Ruchitva</div>
+    <h2 class="rk-title">Food That Works<br>As Hard As You Do</h2>
+    <p class="rk-sub">We're not just another tiffin — we're a mission to make ancient millets irresistible.</p>
+  </div>
+  <div class="rk-why-grid">
+    <div class="rk-why-card"><div class="rk-why-icon">🌾</div><div class="rk-why-title">Pure Millet Batter</div><div class="rk-why-desc">Every dosa &amp; idli made from 100% millet batter — zero maida, zero compromise. Ancient grains, modern taste.</div></div>
+    <div class="rk-why-card"><div class="rk-why-icon">💪</div><div class="rk-why-title">High Protein</div><div class="rk-why-desc">Macro-tracked meals. From 22g protein in our Egg Dosa to 32g in our Chicken Dosa — your gains are covered.</div></div>
+    <div class="rk-why-card"><div class="rk-why-icon">🔥</div><div class="rk-why-title">Freshly Made</div><div class="rk-why-desc">No pre-made batter sitting overnight. Fresh every morning from 7am for maximum taste and nutrients.</div></div>
+    <div class="rk-why-card"><div class="rk-why-icon">⚡</div><div class="rk-why-title">Fast Delivery</div><div class="rk-why-desc">Cloud kitchen in Alwal, Secunderabad — optimized for Hyderabad delivery. Hot breakfast in 30 minutes.</div></div>
+    <div class="rk-why-card"><div class="rk-why-icon">💚</div><div class="rk-why-title">Gut Friendly</div><div class="rk-why-desc">Millets are naturally gluten-tolerant, high-fiber &amp; easier to digest than rice or wheat. Your gut will thank you.</div></div>
+    <div class="rk-why-card"><div class="rk-why-icon">📦</div><div class="rk-why-title">Monthly Pass</div><div class="rk-why-desc">Subscribe to a Monthly Pass and get your daily millet breakfast at a flat rate. Consistency and savings.</div></div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="rk-section" id="rk-how">
+  <div class="rk-section-hd">
+    <div class="rk-tag">How It Works</div>
+    <h2 class="rk-title">Order in 4 Simple Steps</h2>
+    <p class="rk-sub">From your phone to your plate in under 30 minutes.</p>
+  </div>
+  <div class="rk-steps">
+    <div class="rk-step"><div class="rk-step-num">🛒</div><h4>Browse Menu</h4><p>Pick your favourite millet dosas, idlis and combos from our menu above.</p></div>
+    <div class="rk-step"><div class="rk-step-num">📍</div><h4>Add Address</h4><p>We deliver across Alwal, Bolarum, Secunderabad &amp; surrounding areas.</p></div>
+    <div class="rk-step"><div class="rk-step-num">💳</div><h4>Pay Securely</h4><p>UPI, cards, or cash on delivery — all payment options available.</p></div>
+    <div class="rk-step"><div class="rk-step-num">🍽️</div><h4>Enjoy Fresh</h4><p>Your hot, freshly made millet breakfast arrives at your doorstep.</p></div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="rk-section" id="rk-reviews" style="background:var(--saffron-pale);border-radius:32px;margin:0 3%;">
+  <div class="rk-section-hd">
+    <div class="rk-tag">Customer Love</div>
+    <h2 class="rk-title">Real Reviews, Real Smiles</h2>
+    <p class="rk-sub">Trusted by breakfast lovers across Hyderabad.</p>
+  </div>
+  <div class="rk-reviews-grid">
+    <div class="rk-review"><div class="rk-stars">★★★★★</div><p class="rk-review-txt">"The Chicken Keema Dosa is absolutely incredible — crispy outside, juicy filling, and so much protein! Hyderabad finally has a healthy breakfast option that doesn't taste like cardboard."</p><div class="rk-reviewer"><div class="rk-avatar">A</div><div><div class="rk-rev-name">Aditya K.</div><div class="rk-rev-sub">⭐ Swiggy · Secunderabad</div></div></div></div>
+    <div class="rk-review"><div class="rk-stars">★★★★★</div><p class="rk-review-txt">"As a fitness enthusiast, I'm always looking for high-protein breakfast. The Millet Egg Dosa is now my go-to post-workout meal. 22g protein, crispy, and delivered hot. Love it!"</p><div class="rk-reviewer"><div class="rk-avatar">P</div><div><div class="rk-rev-name">Priya M.</div><div class="rk-rev-sub">⭐ Swiggy · Alwal</div></div></div></div>
+    <div class="rk-review"><div class="rk-stars">★★★★★</div><p class="rk-review-txt">"Ghee Karam Idli brought back childhood memories. Soft, fluffy idlis with the perfect ghee and spice. I love that it's made from millet — feels light but keeps me full till lunch!"</p><div class="rk-reviewer"><div class="rk-avatar">R</div><div><div class="rk-rev-name">Rohini S.</div><div class="rk-rev-sub">⭐ Swiggy · Bolarum</div></div></div></div>
+    <div class="rk-review"><div class="rk-stars">★★★★☆</div><p class="rk-review-txt">"Ordered the Monthly Pass — best decision! Fresh millet breakfast every morning without the hassle. 4 stars only because I wish they opened on Tuesdays!"</p><div class="rk-reviewer"><div class="rk-avatar">V</div><div><div class="rk-rev-name">Vivek T.</div><div class="rk-rev-sub">📦 Monthly Pass Customer</div></div></div></div>
+    <div class="rk-review"><div class="rk-stars">★★★★★</div><p class="rk-review-txt">"My kids love the Chitti Idly! They used to refuse healthy food but Ruchitva's mini idlis are so fun and tasty they ask every morning. Thank you for making millet delicious!"</p><div class="rk-reviewer"><div class="rk-avatar">S</div><div><div class="rk-rev-name">Swathi R.</div><div class="rk-rev-sub">⭐ Google Review</div></div></div></div>
+    <div class="rk-review"><div class="rk-stars">★★★★★</div><p class="rk-review-txt">"Delivery on time, packaging clean, dosa still crispy on arrival! The macros are clearly listed which I appreciate as a diabetic. Ruchitva is the best healthy food in Hyderabad."</p><div class="rk-reviewer"><div class="rk-avatar">K</div><div><div class="rk-rev-name">Krishna Rao</div><div class="rk-rev-sub">⭐ WhatsApp Review</div></div></div></div>
+  </div>
+</section>
+
+<!-- ===== SOCIAL TRUST SECTION ===== -->
+<section id="rk-social" style="padding:80px 5%;background:var(--white);">
+
+  <!-- Header -->
+  <div class="rk-section-hd">
+    <div class="rk-tag">Follow Us Online</div>
+    <h2 class="rk-title">See Us in Action —<br><span style="color:var(--saffron);">Real Kitchen, Real Food</span></h2>
+    <p class="rk-sub">Don't just take our word for it. Follow us on social media and see real food, real customers, and real stories every day.</p>
+  </div>
+
+  <!-- 3 Platform Cards -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:52px;">
+
+    <!-- Instagram Card -->
+    <div style="background:linear-gradient(135deg,#F9F5F0,white);border:1px solid var(--border);border-radius:24px;overflow:hidden;transition:transform .25s,box-shadow .25s;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px rgba(0,0,0,.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <!-- Platform header -->
+      <div style="background:linear-gradient(135deg,#F77737,#E1306C,#833AB4);padding:20px 22px;display:flex;align-items:center;gap:14px;">
+        <div style="width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+</svg>
+        </div>
+        <div>
+          <div style="color:white;font-weight:800;font-size:16px;">Instagram</div>
+          <div style="color:rgba(255,255,255,.8);font-size:12px;">@ruchitvakitchen</div>
+        </div>
+        <a href="https://www.instagram.com/ruchitvakitchen/" target="_blank" style="margin-left:auto;background:rgba(255,255,255,.2);color:white;padding:7px 14px;border-radius:50px;font-size:12px;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,.3);white-space:nowrap;">Follow →</a>
+      </div>
+      <!-- Photo grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:#ddd;">
+        <img src="https://i.ibb.co/DDF7hPv9/image.jpg" style="width:100%;aspect-ratio:1;object-fit:cover;" alt="">
+        <img src="https://i.ibb.co/DfxWtq65/image.jpg" style="width:100%;aspect-ratio:1;object-fit:cover;" alt="">
+        <img src="https://i.ibb.co/d0PDbQy2/image.jpg" style="width:100%;aspect-ratio:1;object-fit:cover;" alt="">
+        <img src="https://i.ibb.co/YFcqMd7P/image.jpg" style="width:100%;aspect-ratio:1;object-fit:cover;" alt="">
+        <img src="https://i.ibb.co/3YMnMCr1/image.jpg" style="width:100%;aspect-ratio:1;object-fit:cover;" alt="">
+        <img src="https://i.ibb.co/VW1T0hx3/image.jpg" style="width:100%;aspect-ratio:1;object-fit:cover;" alt="">
+      </div>
+      <div style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-size:13px;color:var(--muted);">📸 Daily food photos &amp; reels</div>
+        <a href="https://www.instagram.com/ruchitvakitchen/" target="_blank" style="color:#E1306C;font-size:13px;font-weight:700;text-decoration:none;">View All →</a>
+      </div>
+    </div>
+
+    <!-- Facebook Card -->
+    <div style="background:linear-gradient(135deg,#F0F4FF,white);border:1px solid var(--border);border-radius:24px;overflow:hidden;transition:transform .25s,box-shadow .25s;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px rgba(0,0,0,.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div style="background:linear-gradient(135deg,#1877F2,#0A5DC7);padding:20px 22px;display:flex;align-items:center;gap:14px;">
+        <div style="width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+</svg>
+        </div>
+        <div>
+          <div style="color:white;font-weight:800;font-size:16px;">Facebook</div>
+          <div style="color:rgba(255,255,255,.8);font-size:12px;">Ruchitva Kitchen</div>
+        </div>
+        <a href="https://www.facebook.com/Ruchitvakitchen/" target="_blank" style="margin-left:auto;background:rgba(255,255,255,.2);color:white;padding:7px 14px;border-radius:50px;font-size:12px;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,.3);white-space:nowrap;">Like →</a>
+      </div>
+      <!-- Facebook post mockups -->
+      <div style="padding:16px 18px;display:flex;flex-direction:column;gap:12px;">
+        <div style="background:#f8f9fa;border-radius:12px;padding:14px;border:1px solid #e4e6ea;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <img src="https://drive.google.com/uc?export=view&id=16AugwNGI2KgmCRLgaB1_kEhiAVp9Cdmy" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
+            <div><div style="font-size:13px;font-weight:700;color:#1a1a1a;">Ruchitva Kitchen</div><div style="font-size:11px;color:#8a8a8a;">Alwal, Hyderabad · ☀️ Morning</div></div>
+          </div>
+          <img src="https://i.ibb.co/DDF7hPv9/image.jpg" style="width:100%;border-radius:8px;aspect-ratio:16/9;object-fit:cover;margin-bottom:8px;">
+          <p style="font-size:12px;color:#333;line-height:1.5;">🌾 Fresh Millet Chicken Dosa ready! 32g protein, crispy golden crust. Order now on Swiggy or WhatsApp 🔥 #MilletDosa #HealthyBreakfast</p>
+          <div style="display:flex;gap:16px;margin-top:8px;padding-top:8px;border-top:1px solid #e4e6ea;">
+            <span style="font-size:11px;color:#8a8a8a;">👍 Like</span>
+            <span style="font-size:11px;color:#8a8a8a;">💬 Comment</span>
+            <span style="font-size:11px;color:#8a8a8a;">↗ Share</span>
+          </div>
+        </div>
+        <div style="background:#f8f9fa;border-radius:12px;padding:14px;border:1px solid #e4e6ea;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <img src="https://drive.google.com/uc?export=view&id=16AugwNGI2KgmCRLgaB1_kEhiAVp9Cdmy" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
+            <div><div style="font-size:13px;font-weight:700;color:#1a1a1a;">Ruchitva Kitchen</div><div style="font-size:11px;color:#8a8a8a;">Yesterday</div></div>
+          </div>
+          <p style="font-size:12px;color:#333;line-height:1.5;">💚 Did you know? Our millets are naturally gluten-free and have a low GI — perfect for diabetics &amp; weight watchers! Available Wed–Mon 7am–8pm 🌾</p>
+          <div style="display:flex;gap:16px;margin-top:8px;padding-top:8px;border-top:1px solid #e4e6ea;">
+            <span style="font-size:11px;color:#8a8a8a;">👍 Like</span>
+            <span style="font-size:11px;color:#8a8a8a;">💬 Comment</span>
+            <span style="font-size:11px;color:#8a8a8a;">↗ Share</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding:0 18px 16px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:13px;color:var(--muted);">📢 Offers, updates &amp; food photos</div>
+        <a href="https://www.facebook.com/Ruchitvakitchen/" target="_blank" style="color:#1877F2;font-size:13px;font-weight:700;text-decoration:none;">Visit Page →</a>
+      </div>
+    </div>
+
+    <!-- YouTube Card -->
+    <div style="background:linear-gradient(135deg,#FFF5F5,white);border:1px solid var(--border);border-radius:24px;overflow:hidden;transition:transform .25s,box-shadow .25s;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px rgba(0,0,0,.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div style="background:linear-gradient(135deg,#FF0000,#CC0000);padding:20px 22px;display:flex;align-items:center;gap:14px;">
+        <div style="width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+</svg>
+        </div>
+        <div>
+          <div style="color:white;font-weight:800;font-size:16px;">YouTube</div>
+          <div style="color:rgba(255,255,255,.8);font-size:12px;">@Ruchitva_Kitchen</div>
+        </div>
+        <a href="https://www.youtube.com/@Ruchitva_Kitchen" target="_blank" style="margin-left:auto;background:rgba(255,255,255,.2);color:white;padding:7px 14px;border-radius:50px;font-size:12px;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,.3);white-space:nowrap;">Subscribe →</a>
+      </div>
+      <!-- Video thumbnails mockup -->
+      <div style="padding:16px 18px;display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;gap:12px;align-items:center;padding:10px;background:#f8f8f8;border-radius:12px;cursor:pointer;" onclick="window.open('https://www.youtube.com/@Ruchitva_Kitchen','_blank')">
+          <div style="position:relative;flex-shrink:0;">
+            <img src="https://i.ibb.co/DDF7hPv9/image.jpg" style="width:100px;height:62px;object-fit:cover;border-radius:8px;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3);border-radius:8px;"><div style="width:24px;height:24px;background:red;border-radius:50%;display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" width="12" height="12" fill="white"><path d="M8 5v14l11-7z"/>
+</svg></div></div>
+          </div>
+          <div><div style="font-size:12px;font-weight:700;color:#1a1a1a;line-height:1.3;margin-bottom:4px;">How We Make Millet Dosa — Fresh Every Morning 🌾</div><div style="font-size:11px;color:#8a8a8a;">Ruchitva Kitchen · Kitchen Tour</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;padding:10px;background:#f8f8f8;border-radius:12px;cursor:pointer;" onclick="window.open('https://www.youtube.com/@Ruchitva_Kitchen','_blank')">
+          <div style="position:relative;flex-shrink:0;">
+            <img src="https://i.ibb.co/DfxWtq65/image.jpg" style="width:100px;height:62px;object-fit:cover;border-radius:8px;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3);border-radius:8px;"><div style="width:24px;height:24px;background:red;border-radius:50%;display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" width="12" height="12" fill="white"><path d="M8 5v14l11-7z"/>
+</svg></div></div>
+          </div>
+          <div><div style="font-size:12px;font-weight:700;color:#1a1a1a;line-height:1.3;margin-bottom:4px;">Why Millets? Health Benefits Explained 💪</div><div style="font-size:11px;color:#8a8a8a;">Ruchitva Kitchen · Health Tips</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;padding:10px;background:#f8f8f8;border-radius:12px;cursor:pointer;" onclick="window.open('https://www.youtube.com/@Ruchitva_Kitchen','_blank')">
+          <div style="position:relative;flex-shrink:0;">
+            <img src="https://i.ibb.co/d0PDbQy2/image.jpg" style="width:100px;height:62px;object-fit:cover;border-radius:8px;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3);border-radius:8px;"><div style="width:24px;height:24px;background:red;border-radius:50%;display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" width="12" height="12" fill="white"><path d="M8 5v14l11-7z"/>
+</svg></div></div>
+          </div>
+          <div><div style="font-size:12px;font-weight:700;color:#1a1a1a;line-height:1.3;margin-bottom:4px;">Customer Reactions — First Bite! 😍</div><div style="font-size:11px;color:#8a8a8a;">Ruchitva Kitchen · Reviews</div></div>
+        </div>
+      </div>
+      <div style="padding:0 18px 16px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:13px;color:var(--muted);">🎥 Kitchen tours &amp; food videos</div>
+        <a href="https://www.youtube.com/@Ruchitva_Kitchen" target="_blank" style="color:#FF0000;font-size:13px;font-weight:700;text-decoration:none;">Watch →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust bar — live follower counts + platform stats -->
+  <div style="background:var(--dark);border-radius:20px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+    <div style="color:white;">
+      <div style="font-size:16px;font-weight:800;">🌟 Find Us &amp; Follow Us</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.5);margin-top:4px;">Real kitchen. Real food. Updated daily.</div>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="https://www.instagram.com/ruchitvakitchen/" target="_blank" style="display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#F77737,#E1306C);color:white;padding:10px 18px;border-radius:50px;text-decoration:none;font-size:13px;font-weight:700;">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+</svg>
+        Instagram
+      </a>
+      <a href="https://www.facebook.com/Ruchitvakitchen/" target="_blank" style="display:flex;align-items:center;gap:8px;background:#1877F2;color:white;padding:10px 18px;border-radius:50px;text-decoration:none;font-size:13px;font-weight:700;">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+</svg>
+        Facebook
+      </a>
+      <a href="https://www.youtube.com/@Ruchitva_Kitchen" target="_blank" style="display:flex;align-items:center;gap:8px;background:#FF0000;color:white;padding:10px 18px;border-radius:50px;text-decoration:none;font-size:13px;font-weight:700;">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="white"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+</svg>
+        YouTube
+      </a>
+      <a href="https://wa.me/919392564542" target="_blank" style="display:flex;align-items:center;gap:8px;background:#25D366;color:white;padding:10px 18px;border-radius:50px;text-decoration:none;font-size:13px;font-weight:700;">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+</svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Google Review Offer Section -->
+<section id="rk-review-offer" style="background:linear-gradient(135deg,#2D6A4F 0%,#1B4332 100%);padding:72px 5%;position:relative;overflow:hidden;">
+  <!-- Background decoration -->
+  <div style="position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:rgba(255,255,255,.04);border-radius:50%;pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-40px;left:-40px;width:200px;height:200px;background:rgba(255,255,255,.04);border-radius:50%;pointer-events:none;"></div>
+
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:1;">
+
+    <!-- Left: Offer Details -->
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);color:#B7E4C7;padding:6px 14px;border-radius:50px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px;">
+        🎁 Special Offer
+      </div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);font-weight:900;color:white;line-height:1.15;margin-bottom:16px;">
+        Submit a Review,<br><span style="color:#E8C96A;">Get a Free Breakfast!</span>
+      </h2>
+      <p style="font-size:16px;line-height:1.75;color:rgba(255,255,255,.75);margin-bottom:24px;">
+        We value your honest feedback! Give us a ⭐⭐⭐⭐⭐ review on Google and get your next breakfast <strong style="color:white;">absolutely FREE</strong>. It only takes 30 seconds!
+      </p>
+
+      <!-- Steps -->
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.9);font-size:14px;">
+          <div style="width:28px;height:28px;background:#E8C96A;color:#1B4332;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;">1</div>
+          Scan QR code or click button below to open Google Review
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.9);font-size:14px;">
+          <div style="width:28px;height:28px;background:#E8C96A;color:#1B4332;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;">2</div>
+          Give us 5 stars ⭐⭐⭐⭐⭐ and write a short review
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.9);font-size:14px;">
+          <div style="width:28px;height:28px;background:#E8C96A;color:#1B4332;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;">3</div>
+          Screenshot your review &amp; send on WhatsApp to claim free breakfast
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <!-- EDIT: Replace with your actual Google Review link -->
+        <a href="https://g.page/r/ruchitva-kitchen/review" target="_blank"
+           style="background:#E8C96A;color:#1B4332;padding:13px 22px;border-radius:50px;font-size:14px;font-weight:800;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:transform .2s;box-shadow:0 6px 20px rgba(232,201,106,.3);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+</svg>
+          Write Google Review
+        </a>
+        <a href="https://wa.me/919392564542?text=Hi! I just gave a 5-star Google review for Ruchitva Kitchen. Here is my screenshot — please confirm my free breakfast! 🙏" target="_blank"
+           style="background:rgba(255,255,255,.15);color:white;border:2px solid rgba(255,255,255,.3);padding:13px 22px;border-radius:50px;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:8px;text-decoration:none;backdrop-filter:blur(4px);">
+          💬 Claim on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: Coupon Card + QR -->
+    <div style="display:flex;flex-direction:column;gap:16px;align-items:center;">
+
+      <!-- Coupon Card -->
+      <div style="background:white;border-radius:20px;overflow:hidden;width:100%;max-width:340px;box-shadow:0 20px 60px rgba(0,0,0,.3);">
+        <div style="background:linear-gradient(135deg,#2D6A4F,#40916C);padding:20px;display:flex;align-items:center;gap:16px;">
+          <img src="https://i.ibb.co/DfxWtq65/image.jpg" style="width:70px;height:70px;border-radius:12px;object-fit:cover;border:3px solid rgba(255,255,255,.3);" alt="Free Breakfast">
+          <div>
+            <div style="color:rgba(255,255,255,.7);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;">Submit Your Review</div>
+            <div style="color:#E8C96A;font-size:22px;font-weight:900;line-height:1.1;font-family:'Playfair Display',serif;">GET YOUR<br>FREE BREAKFAST</div>
+          </div>
+        </div>
+        <div style="padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-top:2px dashed #EDE0D4;">
+          <div>
+            <div style="font-size:11px;color:#6B5744;margin-bottom:2px;">Thanks for your...</div>
+            <div style="color:#F59E0B;font-size:18px;">★★★★★</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:#6B5744;">Valid on next order</div>
+            <div style="font-size:13px;font-weight:700;color:#2D6A4F;">Ruchitva Kitchen</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QR Code box -->
+      <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:16px;text-align:center;width:100%;max-width:340px;backdrop-filter:blur(8px);">
+        <div style="font-size:12px;color:rgba(255,255,255,.7);margin-bottom:12px;font-weight:600;">📱 SCAN TO WRITE GOOGLE REVIEW</div>
+        <!-- EDIT: Replace with your actual Google Review QR code image URL -->
+        <div style="width:140px;height:140px;background:white;border-radius:12px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;padding:8px;">
+          <img src="https://drive.google.com/uc?export=view&id=16AugwNGI2KgmCRLgaB1_kEhiAVp9Cdmy" style="width:100%;height:100%;object-fit:contain;border-radius:8px;" alt="Google Review QR Code">
+          <div style="position:absolute;font-size:11px;color:#6B5744;text-align:center;">Add your<br>Google QR code</div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6);">RUCHITVA KITCHEN</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Keyword Cloud -->
+<div class="rk-kw-cloud">
+  <span class="rk-kw p">Healthy Food Hyderabad</span>
+  <span class="rk-kw p">Millet Dosa Online Order</span>
+  <span class="rk-kw p">Diet Food Delivery Hyderabad</span>
+  <span class="rk-kw s">Organic Breakfast</span>
+  <span class="rk-kw s">Gluten Free Food</span>
+  <span class="rk-kw s">Diabetic Friendly</span>
+  <span class="rk-kw">High Protein Breakfast</span>
+  <span class="rk-kw">No Maida Dosa</span>
+  <span class="rk-kw">Millet Idli Secunderabad</span>
+  <span class="rk-kw">Healthy Tiffin Hyderabad</span>
+  <span class="rk-kw">Weight Loss Food</span>
+  <span class="rk-kw">Clean Eating Hyderabad</span>
+  <span class="rk-kw">Low GI Food</span>
+  <span class="rk-kw">Millet Restaurant Near Me</span>
+  <span class="rk-kw">Fitness Food Delivery</span>
+  <span class="rk-kw">South Indian Healthy Breakfast</span>
+</div>
+
+<!-- SEO Content -->
+<section class="rk-seo" id="rk-about">
+  <div class="rk-seo-intro">
+    <div>
+      <h2>Hyderabad's Most <em>Nutritious</em> Breakfast — Now Delivered to Your Door</h2>
+      <p>Looking for <strong>healthy food delivery in Hyderabad</strong>? Ruchitva Kitchen is the city's dedicated millet breakfast brand — serving freshly made <strong>millet dosa, millet idli, and South Indian breakfast</strong> that are as nourishing as they are delicious.</p>
+      <p>Unlike conventional tiffin centres that use refined maida and polished rice, every item at Ruchitva is made with <strong>100% millet batter</strong> — jowar, bajra, ragi and foxtail millet blended to perfection. No white flour. No preservatives. No shortcuts.</p>
+      <p>Whether you're on a <strong>diet plan in Hyderabad</strong>, following a clean eating routine, managing diabetes, or simply want a healthier alternative to your regular breakfast — Ruchitva Kitchen is built for you.</p>
+    </div>
+    <div>
+      <h2>Why <em>Millets</em> Are the Future of Healthy Eating in India</h2>
+      <p>Millets are ancient Indian super grains grown in Telangana for thousands of years. They are <strong>naturally gluten-tolerant</strong>, have a <strong>low glycemic index (GI)</strong>, and are packed with fibre, iron, calcium, magnesium, and plant-based protein.</p>
+      <p>For people searching for <strong>organic food in Hyderabad</strong>, <strong>diet-friendly tiffin</strong>, or <strong>diabetic-safe breakfast options</strong> — millet-based food is the single best upgrade you can make to your morning routine. It keeps you full longer, supports gut health, and provides sustained energy without blood sugar spikes.</p>
+      <p>At Ruchitva Kitchen, we've done the hard work of making millets taste incredible — crispy dosas, soft fluffy idlis, and spiced fillings that are genuinely crave-worthy, not just "healthy."</p>
+    </div>
+  </div>
+  <div class="rk-seo-cols">
+    <div class="rk-seo-col">
+      <h3>🥗 Perfect for Weight Management</h3>
+      <p>Struggling to find <strong>low-calorie, high-fibre food in Hyderabad</strong>? Millet dosas and idlis have far fewer empty calories than wheat or rice alternatives. The high fibre content suppresses appetite — ideal for people on a <strong>weight loss diet in Hyderabad</strong>. Our Millet Egg Dosa gives you 22g of protein at just 380 kcal — a complete, satisfying breakfast that supports your fitness goals without sabotaging your diet.</p>
+    </div>
+    <div class="rk-seo-col">
+      <h3>🩺 Safe for Diabetics &amp; PCOS</h3>
+      <p>Millets have a <strong>low glycemic index</strong> — they digest slowly and release glucose gradually, preventing the sharp spikes caused by regular dosa or idli made from polished rice. Ruchitva's millet breakfast is one of the most recommended <strong>diabetic-friendly food options in Hyderabad</strong>. It's also excellent for women managing PCOS, thyroid conditions, or hormonal imbalances who need clean, low-GI meals daily.</p>
+    </div>
+    <div class="rk-seo-col">
+      <h3>🌾 No Maida. No Compromise. Ever.</h3>
+      <p>Most "healthy" food brands in Hyderabad still sneak in refined flour (maida) to improve texture or reduce costs. At Ruchitva Kitchen, our commitment is absolute — <strong>zero maida, zero refined grains</strong> in our batter. If you're looking for truly <strong>clean, organic-style food delivery in Hyderabad</strong>, you won't find a more honest kitchen than ours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="rk-faq" id="rk-faq">
+  <div class="rk-section-hd">
+    <div class="rk-tag">FAQs</div>
+    <h2 class="rk-title">Frequently Asked Questions</h2>
+    <p class="rk-sub">Everything you need to know about ordering healthy millet food in Hyderabad.</p>
+  </div>
+  <div class="rk-faq-grid">
+    <div class="rk-faq-item" onclick="rkFaq(this)"><div class="rk-faq-q">Is millet dosa really healthier than regular dosa? <span class="rk-faq-arr">▼</span></div><div class="rk-faq-a">Yes — significantly. Regular dosa uses polished rice which is high-GI and low in fibre. Millet batter gives you 3–5x more fibre, higher iron, magnesium and plant protein. For anyone managing weight or blood sugar in Hyderabad, millet dosa is a far superior choice.</div></div>
+    <div class="rk-faq-item" onclick="rkFaq(this)"><div class="rk-faq-q">Which areas in Hyderabad does Ruchitva deliver to? <span class="rk-faq-arr">▼</span></div><div class="rk-faq-a">We deliver across Alwal, Bolarum, Secunderabad, Malkajgiri, Trimulgherry, Yapral, Sainikpuri, Bowenpally, Kompally, ECIL, Nacharam, Uppal and surrounding areas via Swiggy. You can also order directly via WhatsApp for nearby locations.</div></div>
+    <div class="rk-faq-item" onclick="rkFaq(this)"><div class="rk-faq-q">Is Ruchitva Kitchen food good for diabetics? <span class="rk-faq-arr">▼</span></div><div class="rk-faq-a">Absolutely. Millets have a low glycemic index (GI of 54–68 vs rice at 72+), meaning they release glucose slowly — preventing spikes. Our millet dosas and idlis are one of the best breakfast options for people managing Type 2 diabetes, insulin resistance, or PCOS in Hyderabad.</div></div>
+    <div class="rk-faq-item" onclick="rkFaq(this)"><div class="rk-faq-q">Is your food gluten free? <span class="rk-faq-arr">▼</span></div><div class="rk-faq-a">Millets are naturally gluten-tolerant grains. Our batter uses no wheat, no maida, and no refined flour — making Ruchitva Kitchen an excellent choice for people with gluten sensitivity or those following a gluten-free diet in Hyderabad.</div></div>
+    <div class="rk-faq-item" onclick="rkFaq(this)"><div class="rk-faq-q">How do I order without Swiggy? <span class="rk-faq-arr">▼</span></div><div class="rk-faq-a">You can order directly from this page by adding items to your cart and checking out via WhatsApp. You can also call us at +91 93925 64542 or message us on WhatsApp directly.</div></div>
+    <div class="rk-faq-item" onclick="rkFaq(this)"><div class="rk-faq-q">Do you have a monthly subscription? <span class="rk-faq-arr">▼</span></div><div class="rk-faq-a">Yes! Our Monthly Pass lets you subscribe to daily millet breakfast at a discounted flat rate — perfect for working professionals, fitness enthusiasts, and families. Contact us on WhatsApp to learn about current Monthly Pass plans.</div></div>
+    <div class="rk-faq-item" onclick="rkFaq(this)"><div class="rk-faq-q">What are your opening hours? <span class="rk-faq-arr">▼</span></div><div class="rk-faq-a">We are open Wednesday to Monday, 7:00 AM to 8:00 PM. We are closed on Tuesdays. We recommend ordering by 9:00 AM for best availability, especially during peak morning hours.</div></div>
+    <div class="rk-faq-item" onclick="rkFaq(this)"><div class="rk-faq-q">Is the food good for weight loss? <span class="rk-faq-arr">▼</span></div><div class="rk-faq-a">Yes. Millet meals are high in fibre (keeps you full), moderate in calories, low in unhealthy fats, and high in protein — especially our Egg Dosa (22g protein) and Chicken Dosa (32g protein). Combined with the absence of refined flour, our food is an excellent daily choice for a calorie-controlled, high-nutrient diet in Hyderabad.</div></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="rk-footer">
+  <div class="rk-footer-grid">
+    <div class="rk-footer-brand">
+      <div class="rk-logo" style="margin-bottom:12px;">
+        <div class="rk-logo-icon">🌾</div>
+        <div class="rk-logo-text">
+          <span style="color:white;">Ruchitva</span>
+          <span>Millet Kitchen</span>
+        </div>
+      </div>
+      <p>Hyderabad's favourite millet breakfast destination. Fresh dosas &amp; idlis made with 100% millet batter — served hot, daily.</p>
+      <div class="rk-socials">
+        <a class="rk-social" href="https://www.facebook.com/Ruchitvakitchen/" target="_blank">📘</a>
+        <a class="rk-social" href="https://wa.me/919392564542" target="_blank">💬</a>
+        <a class="rk-social" href="https://www.youtube.com/@Ruchitva_Kitchen" target="_blank">📺</a>
+        <a class="rk-social" href="https://www.swiggy.com/city/hyderabad/ruchitva-cloud-kitchen-bolarum-vivekananda-colony-rest1270430" target="_blank">🛵</a>
+      </div>
+    </div>
+    <div class="rk-footer-col">
+      <h4>Quick Order</h4>
+      <a href="#rk-menu">Dosas</a>
+      <a href="#rk-menu">Idlis</a>
+      <a href="https://ruchitvakitchen.wordpress.com/monthly-pass/" target="_blank">Monthly Pass</a>
+    </div>
+    <div class="rk-footer-col">
+      <h4>Order Via</h4>
+      <a href="https://www.swiggy.com/city/hyderabad/ruchitva-cloud-kitchen-bolarum-vivekananda-colony-rest1270430" target="_blank">Swiggy</a>
+      <a href="https://wa.me/919392564542?text=Hello Ruchitva Kitchen, I want to place an order" target="_blank">WhatsApp</a>
+      <a href="tel:+919392564542">Call Us</a>
+    </div>
+    <div class="rk-footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+919392564542">+91 93925 64542</a>
+      <a href="#">Alwal, Secunderabad</a>
+      <a href="#">Hyderabad, Telangana</a>
+      <a href="#">Wed–Mon: 7am–8pm</a>
+    </div>
+  </div>
+  <div class="rk-footer-bottom">
+    <span>© 2026 Ruchitva Kitchen. All rights reserved.</span>
+    <span>Made with ❤️ for Hyderabad's breakfast lovers</span>
+  </div>
+</footer>
+
+<!-- Cart Overlay & Drawer -->
+<div class="rk-overlay" id="rkOverlay" onclick="rkToggleCart()"></div>
+<div class="rk-drawer" id="rkDrawer">
+  <div class="rk-drawer-hd">
+    <h3>🛒 Your Order</h3>
+    <button class="rk-drawer-close" onclick="rkToggleCart()">✕</button>
+  </div>
+  <div class="rk-drawer-items" id="rkCartItems">
+    <div class="rk-cart-empty">
+      <div class="rk-cart-empty-icon">🍽️</div>
+      <p>Your cart is empty</p>
+      <p style="font-size:13px;margin-top:8px;">Add items from the menu!</p>
+    </div>
+  </div>
+  <div class="rk-drawer-ft">
+    <div class="rk-cart-total"><span>Total</span><span id="rkCartTotal">₹0</span></div>
+    <button class="rk-checkout-btn" onclick="rkCheckout()">Pay via UPI → Get Order Confirmed</button>
+  </div>
+</div>
+
+</div><!-- end #rk-wrap -->
+
+<!-- ========== FLOATING WHATSAPP CHAT BUTTON ========== -->
+<style>
+#rk-wa-btn {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9990;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+}
+#rk-wa-bubble {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; box-shadow: 0 4px 20px rgba(37,211,102,.5);
+  transition: transform .2s, box-shadow .2s;
+  animation: rk-wa-pulse 2.5s infinite;
+}
+#rk-wa-bubble:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37,211,102,.6); }
+@keyframes rk-wa-pulse {
+  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,.5); }
+  50% { box-shadow: 0 4px 32px rgba(37,211,102,.8), 0 0 0 10px rgba(37,211,102,.1); }
+}
+#rk-wa-bubble svg { width: 32px; height: 32px; }
+#rk-wa-popup {
+  background: white; border-radius: 18px; width: 300px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.18);
+  overflow: hidden; display: none;
+  animation: rk-popup-in .25s ease;
+}
+@keyframes rk-popup-in { from{opacity:0;transform:translateY(10px) scale(.96)} to{opacity:1;transform:translateY(0) scale(1)} }
+#rk-wa-popup.open { display: block; }
+#rk-wa-popup-hd {
+  background: linear-gradient(135deg, #1B5E20, #25D366);
+  padding: 16px 18px; display: flex; align-items: center; gap: 12px;
+}
+#rk-wa-popup-hd img { width: 44px; height: 44px; border-radius: 50%; border: 2px solid rgba(255,255,255,.4); object-fit: cover; }
+#rk-wa-popup-hd .rk-wa-name { color: white; font-weight: 700; font-size: 15px; }
+#rk-wa-popup-hd .rk-wa-status { color: rgba(255,255,255,.8); font-size: 12px; display: flex; align-items: center; gap: 4px; }
+#rk-wa-popup-hd .rk-wa-dot { width: 8px; height: 8px; background: #69F0AE; border-radius: 50%; }
+#rk-wa-popup-close { margin-left: auto; background: rgba(255,255,255,.2); border: none; color: white; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+#rk-wa-popup-body { padding: 16px 18px; }
+.rk-wa-msg {
+  background: #F0F9F3; border-radius: 12px 12px 12px 4px;
+  padding: 12px 14px; margin-bottom: 14px; font-size: 13px;
+  line-height: 1.6; color: #1A1207; border: 1px solid #D8F3DC;
+}
+.rk-wa-time { font-size: 10px; color: #6B5744; float: right; margin-top: 4px; }
+#rk-wa-quick-btns { display: flex; flex-direction: column; gap: 8px; }
+.rk-wa-quick {
+  background: white; border: 1.5px solid #25D366; color: #25D366;
+  padding: 9px 14px; border-radius: 50px; font-size: 13px; font-weight: 600;
+  cursor: pointer; text-align: center; text-decoration: none;
+  transition: background .2s, color .2s; display: block;
+  font-family: 'DM Sans', sans-serif;
+}
+.rk-wa-quick:hover { background: #25D366; color: white; }
+#rk-wa-popup-ft {
+  padding: 12px 18px; border-top: 1px solid #f0f0f0;
+  display: flex; gap: 8px; align-items: center;
+}
+#rk-wa-input {
+  flex: 1; border: 1.5px solid #EDE0D4; border-radius: 50px;
+  padding: 9px 14px; font-size: 13px; font-family: 'DM Sans', sans-serif;
+  outline: none;
+}
+#rk-wa-input:focus { border-color: #25D366; }
+#rk-wa-send {
+  background: #25D366; border: none; width: 36px; height: 36px;
+  border-radius: 50%; cursor: pointer; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+}
+</style>
+
+<div id="rk-wa-btn">
+  <!-- Popup Chat Window -->
+  <div id="rk-wa-popup">
+    <div id="rk-wa-popup-hd">
+      <img src="https://drive.google.com/uc?export=view&id=16AugwNGI2KgmCRLgaB1_kEhiAVp9Cdmy" alt="Ruchitva Kitchen">
+      <div>
+        <div class="rk-wa-name">Ruchitva Kitchen</div>
+        <div class="rk-wa-status"><span class="rk-wa-dot"></span> Typically replies instantly</div>
+      </div>
+      <button class="rk-wa-popup-close" onclick="rkWaClose()" style="margin-left:auto;background:rgba(255,255,255,.2);border:none;color:white;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:14px;">✕</button>
+    </div>
+    <div id="rk-wa-popup-body">
+      <div class="rk-wa-msg">
+        👋 Hi! Welcome to <strong>Ruchitva Kitchen</strong>.<br><br>
+        We serve fresh millet dosas &amp; idlis in Hyderabad 🌾<br>
+        How can we help you today?
+        <div class="rk-wa-time" id="rkWaTime"></div>
+      </div>
+      <div id="rk-wa-quick-btns">
+        <a class="rk-wa-quick" href="https://wa.me/919392564542?text=Hi! I want to place an order 🍽️" target="_blank">🍽️ Place an Order</a>
+        <a class="rk-wa-quick" href="https://wa.me/919392564542?text=Hi! I want to know about the Monthly Pass 📦" target="_blank">📦 Monthly Pass Info</a>
+        <a class="rk-wa-quick" href="https://wa.me/919392564542?text=Hi! What are today's offers? 🎯" target="_blank">🎯 Today's Offers</a>
+        <a class="rk-wa-quick" href="https://wa.me/919392564542?text=Hi! I have a question about my order." target="_blank">❓ Track / Query</a>
+      </div>
+    </div>
+    <div id="rk-wa-popup-ft">
+      <input id="rk-wa-input" type="text" placeholder="Type a message..." onkeydown="if(event.key==='Enter')rkWaSend()">
+      <button id="rk-wa-send" onclick="rkWaSend()">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+</svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- WhatsApp Bubble -->
+  <div id="rk-wa-bubble" onclick="rkWaToggle()" title="Chat with us on WhatsApp">
+    <svg viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 2C8.268 2 2 8.268 2 16c0 2.47.66 4.784 1.806 6.773L2 30l7.42-1.782A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.43 11.43 0 01-5.847-1.607l-.42-.25-4.35 1.044 1.077-4.23-.275-.437A11.456 11.456 0 014.5 16C4.5 9.648 9.648 4.5 16 4.5S27.5 9.648 27.5 16 22.352 27.5 16 27.5zm6.29-8.563c-.345-.172-2.04-1.006-2.355-1.12-.316-.115-.546-.172-.776.172-.23.345-.89 1.12-1.09 1.35-.2.23-.4.258-.746.086-.345-.172-1.456-.537-2.773-1.712-1.025-.915-1.716-2.044-1.917-2.389-.2-.345-.021-.532.15-.703.155-.155.345-.402.517-.603.172-.2.23-.345.345-.575.115-.23.057-.432-.028-.603-.086-.172-.776-1.87-1.063-2.56-.28-.672-.565-.58-.776-.59l-.66-.011c-.23 0-.603.086-.92.432-.316.345-1.206 1.178-1.206 2.872s1.235 3.33 1.407 3.56c.172.23 2.43 3.71 5.887 5.205.823.355 1.464.567 1.964.726.825.263 1.576.226 2.17.137.662-.1 2.04-.834 2.328-1.638.287-.803.287-1.49.2-1.638-.086-.143-.316-.23-.66-.402z"/>
+    </svg>
+  </div>
+</div>
+
+<script>
+function rkWaToggle(){ document.getElementById('rk-wa-popup').classList.toggle('open'); }
+function rkWaClose(){ document.getElementById('rk-wa-popup').classList.remove('open'); }
+function rkWaSend(){
+  const inp = document.getElementById('rk-wa-input');
+  const msg = inp.value.trim();
+  if(!msg) return;
+  window.open('https://wa.me/919392564542?text='+encodeURIComponent(msg),'_blank');
+  inp.value='';
+}
+// Set time in chat bubble
+document.getElementById('rkWaTime').textContent = new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+// Auto open after 8 seconds
+setTimeout(()=>{ if(!document.getElementById('rk-wa-popup').classList.contains('open')) document.getElementById('rk-wa-popup').classList.add('open'); }, 8000);
+</script>
+
+<!-- UPI PAYMENT MODAL -->
+<div id="rk-upi-overlay">
+  <div id="rk-upi-modal">
+    <div class="rk-upi-header">
+      <h3>💳 Complete Your Payment</h3>
+      <button class="rk-upi-close" onclick="rkCloseUPI()">✕</button>
+    </div>
+    <div class="rk-upi-body">
+
+      <!-- Order Summary -->
+      <div class="rk-upi-order-summary">
+        <strong>Your Order</strong>
+        <div class="rk-upi-amount" id="rkUpiAmount">₹0</div>
+        <div class="rk-upi-items" id="rkUpiItems"></div>
+      </div>
+
+      <!-- UPI Apps Quick Launch -->
+      <p style="font-size:13px;font-weight:700;color:#1A1207;margin-bottom:10px;">Pay using UPI App</p>
+      <div class="rk-upi-apps" id="rkUpiApps">
+        <!-- filled by JS with dynamic UPI deep links -->
+      </div>
+
+      <!-- UPI ID Copy -->
+      <div class="rk-upi-id-box" style="margin-bottom:12px;">
+        <div>
+          <div style="font-size:11px;color:#6B5744;margin-bottom:3px;">Or pay to UPI ID</div>
+          <!-- EDIT: Replace with your actual UPI ID below -->
+          <div class="rk-upi-id" id="rkUpiId">9392564542@upi</div>
+        </div>
+        <button class="rk-copy-btn" onclick="rkCopyUPI()">Copy UPI ID</button>
+      </div>
+
+      <!-- QR Code -->
+      <div class="rk-upi-qr-box" style="margin-bottom:16px;">
+        <div class="rk-upi-qr-label">📱 Scan QR Code with any UPI app</div>
+        <!-- EDIT: Replace with your actual UPI QR code image URL -->
+        <img id="rkQrImg" src="https://i.ibb.co/fLYVdTz/image.jpg" alt="UPI QR Code" onerror="this.parentNode.style.display='none'">
+        <div id="rkQrPlaceholder" style="display:none;"></div>
+        <div style="font-size:12px;color:#6B5744;">Pay <strong id="rkQrAmount">₹0</strong> to <strong>Ruchitva Kitchen</strong></div>
+      </div>
+
+      <!-- Confirm Payment Button -->
+      <button class="rk-paid-btn" onclick="rkConfirmPayment()">
+        ✅ I Have Paid — Confirm Order
+      </button>
+      <p class="rk-upi-note">
+        After paying, click "I Have Paid" — your order details will be sent to us on WhatsApp automatically. We'll confirm your order within 2 minutes. 🙏
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Toast (outside wrap so it overlays everything) -->
+<div id="rk-toast"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+// ═══════════════════════════════════════════════════════
+// 🟢 GOOGLE SHEETS MENU EDITOR
+// To edit your menu:
+// 1. Open your Google Sheet (link sent separately)
+// 2. Change any price, name, photo URL or description
+// 3. Website updates automatically — no coding needed!
+// ═══════════════════════════════════════════════════════
+
+// YOUR GOOGLE SHEET ID — paste between the quotes
+const SHEET_ID = '18-Xuq28mN5q29IA5S-svml_vZmyyXjQst2LH_gUSJn0';
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+
+// Fallback menu (shows if sheet fails to load)
+const FALLBACK_MENU = [
+  {id:1,  name:"Millet Chicken Dosa",            img:"https://i.ibb.co/DDF7hPv9/image.jpg",   cat:["dosa","nonveg"], price:149, kcal:548, protein:32, carbs:46, fat:22, fiber:5,  desc:"Juicy, spiced chicken keema over a crisp golden millet dosa. Hearty, filling & irresistibly flavourful.", best:true,  veg:false},
+  {id:2,  name:"Millet Gheekaram Idly",           img:"https://i.ibb.co/DfxWtq65/image.jpg",     cat:["idli","veg"],    price:89,  kcal:467, protein:23, carbs:71, fat:11, fiber:2,  desc:"Soft idlis tossed in aromatic ghee and spicy karam podi. A flavorful South Indian classic, millet style.", best:true,  veg:true},
+  {id:3,  name:"Millet Egg Dosa",                 img:"https://i.ibb.co/VW1T0hx3/image.jpg",   cat:["dosa","nonveg"], price:89,  kcal:380, protein:22, carbs:30, fat:9,  fiber:5,  desc:"Crispy millet dosa topped with freshly cooked egg. Protein-rich, light, and filling.", best:false, veg:false},
+  {id:4,  name:"Millet Mini Idly (Chitti Idly)",  img:"https://i.ibb.co/d0PDbQy2/image.jpg",              cat:["idli","veg"],    price:98,  kcal:380, protein:22, carbs:30, fat:9,  fiber:5,  desc:"Soft, fluffy chitti idlis tossed in aromatic ghee karam. Light, comforting and packed with South Indian taste.", best:false, veg:true},
+  {id:5,  name:"Millet Plain Dosa",               img:"https://i.ibb.co/3YMnMCr1/image.jpg",                    cat:["dosa","veg"],    price:69,  kcal:280, protein:9,  carbs:42, fat:5,  fiber:4,  desc:"Thin, golden, crispy millet dosa served with fresh coconut chutney and sambar.", best:false, veg:true},
+  {id:6,  name:"Millet Onion Dosa",               img:"https://i.ibb.co/YFcqMd7P/image.jpg",           cat:["dosa","veg"],    price:79,  kcal:310, protein:10, carbs:45, fat:6,  fiber:4,  desc:"Crispy millet dosa loaded with caramelized onions and green chillies. A spicy, crunchy delight.", best:false, veg:true},
+  {id:7,  name:"Millet Beetroot Dosa",            img:"https://i.ibb.co/DDF7hPv9/image.jpg",     cat:["dosa","veg"],    price:89,  kcal:300, protein:10, carbs:44, fat:6,  fiber:4,  desc:"Vibrant, crispy millet dosa with fresh beetroot — colourful, nutritious and absolutely delicious.", best:false, veg:true},
+  {id:8,  name:"Millet Idly (4 pcs)",             img:"https://i.ibb.co/DfxWtq65/image.jpg",     cat:["idli","veg"],    price:79,  kcal:320, protein:12, carbs:60, fat:4,  fiber:3,  desc:"Classic soft millet idlis served with 2 chutneys and piping hot sambar.", best:false, veg:true},
+  {id:9,  name:"Millet Paneer Dosa",              img:"https://i.ibb.co/YFcqMd7P/image.jpg",           cat:["dosa","veg"],    price:109, kcal:440, protein:18, carbs:44, fat:14, fiber:4,  desc:"Golden millet dosa stuffed with spiced, crumbled paneer filling. Rich in protein.", best:true,  veg:true},
+  {id:10, name:"Millet Pesarattu",                img:"https://i.ibb.co/3YMnMCr1/image.jpg",                    cat:["dosa","veg"],    price:79,  kcal:290, protein:14, carbs:38, fat:5,  fiber:6,  desc:"Crispy green moong millet dosa packed with plant protein. Served with ginger chutney.", best:false, veg:true},
+  {id:11, name:"Millet Pongal",                   img:"https://i.ibb.co/d0PDbQy2/image.jpg",              cat:["idli","veg"],    price:89,  kcal:380, protein:13, carbs:58, fat:9,  fiber:4,  desc:"Creamy, comforting millet pongal with ghee, pepper and cumin.", best:false, veg:true},
+  {id:12, name:"Combo Meal — Dosa + Idly",        img:"https://i.ibb.co/VW1T0hx3/image.jpg",  cat:["combo","veg"],   price:149, kcal:700, protein:32, carbs:98, fat:14, fiber:8,  desc:"Best of both worlds — 1 crispy millet dosa + 2 soft millet idlis with sambar and 2 chutneys.", best:true,  veg:true}
+];
+
+// Render menu directly — no Google Sheet, always reliable
+function loadMenuFromSheet() {
+  renderMenu(FALLBACK_MENU);
+}
+
+// Load menu on startup
+loadMenuFromSheet();
+
+// Dummy MENU var so filter buttons work
+let MENU = FALLBACK_MENU;
+
+let cart = {};
+
+function ctrl(id){
+  const q = cart[id]?cart[id].qty:0;
+  if(!q) return `<button class="rk-add-btn" onclick="window._rkAdd(${id})">+ Add</button>`;
+  return `<div class="rk-qty"><button class="rk-qty-btn" onclick="window._rkChg(${id},-1)">−</button><span class="rk-qty-n">${q}</span><button class="rk-qty-btn" onclick="window._rkChg(${id},1)">+</button></div>`;
+}
+
+function renderMenu(items){
+  document.getElementById('rkMenuGrid').innerHTML = items.map(m=>`
+    <div class="rk-card" id="rkc-${m.id}">
+      <div class="rk-card-img" style="background:none;padding:0;">
+        <img src="${m.img}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.onerror=null;this.src='https://i.ibb.co/DDF7hPv9/image.jpg';">
+        <div class="rk-veg-dot ${m.veg?'veg':'nonveg'}" style="position:absolute;top:12px;left:12px;z-index:2;"></div>
+        ${m.best?'<div class="rk-best-tag" style="position:absolute;top:12px;right:12px;z-index:2;">Bestseller</div>':''}
+      </div>
+      <div class="rk-card-body">
+        <div class="rk-card-name">${m.name}</div>
+        <div class="rk-card-desc">${m.desc}</div>
+        <div class="rk-macros">
+          <span class="rk-macro">🔥 ${m.kcal} kcal</span>
+          <span class="rk-macro g">💪 ${m.protein}g protein</span>
+          <span class="rk-macro">🍞 ${m.carbs}g carbs</span>
+        </div>
+        <div class="rk-card-ft">
+          <div class="rk-price">₹${m.price} <span>incl. taxes</span></div>
+          <div id="rkctrl-${m.id}">${ctrl(m.id)}</div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function updateCtrl(id){
+  const el=document.getElementById('rkctrl-'+id);
+  if(el) el.innerHTML=ctrl(id);
+}
+
+function updateCartUI(){
+  const total=Object.values(cart).reduce((s,i)=>s+i.price*i.qty,0);
+  const count=Object.values(cart).reduce((s,i)=>s+i.qty,0);
+  document.getElementById('rkCartBadge').textContent=count;
+  document.getElementById('rkCartTotal').textContent='₹'+total;
+  const el=document.getElementById('rkCartItems');
+  if(!count){
+    el.innerHTML='<div class="rk-cart-empty"><div class="rk-cart-empty-icon">🍽️</div><p>Your cart is empty</p><p style="font-size:13px;margin-top:8px;">Add items from the menu!</p></div>';
+    return;
+  }
+  el.innerHTML=Object.values(cart).map(i=>`
+    <div class="rk-cart-item">
+      <img src="${i.img}" alt="${i.name}" style="width:48px;height:48px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+      <div class="rk-ci-info"><div class="rk-ci-name">${i.name}</div><div class="rk-ci-price">₹${i.price} × ${i.qty} = ₹${i.price*i.qty}</div></div>
+      <div class="rk-qty" style="padding:3px 10px;">
+        <button class="rk-qty-btn" onclick="window._rkChg(${i.id},-1)">−</button>
+        <span class="rk-qty-n">${i.qty}</span>
+        <button class="rk-qty-btn" onclick="window._rkChg(${i.id},1)">+</button>
+      </div>
+    </div>`).join('');
+}
+
+window._rkAdd=function(id){
+  const m=MENU.find(x=>x.id===id);
+  cart[id]={...m,qty:1};
+  updateCtrl(id); updateCartUI();
+  rkToast(m.emoji+' '+m.name+' added!');
+};
+window._rkChg=function(id,d){
+  if(!cart[id])return;
+  cart[id].qty+=d;
+  if(cart[id].qty<=0) delete cart[id];
+  updateCtrl(id); updateCartUI();
+};
+window.rkFilter=function(cat,btn){
+  document.querySelectorAll('.rk-cat-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  if(cat==='all'){
+    renderMenu(FALLBACK_MENU);
+  } else {
+    renderMenu(FALLBACK_MENU.filter(m=>m.cat.includes(cat)));
+  }
+};
+window.rkToggleCart=function(){
+  document.getElementById('rkDrawer').classList.toggle('open');
+  document.getElementById('rkOverlay').classList.toggle('open');
+};
+window.rkCheckout=function(){
+  const count=Object.values(cart).reduce((s,i)=>s+i.qty,0);
+  if(!count){rkToast('Add items to your cart first!');return;}
+
+  const total=Object.values(cart).reduce((s,i)=>s+i.price*i.qty,0);
+  const itemsList=Object.values(cart).map(i=>i.name+' ×'+i.qty+' = ₹'+(i.price*i.qty)).join('\n');
+  const itemsShort=Object.values(cart).map(i=>i.name+' ×'+i.qty).join(', ');
+
+  // ── EDIT: Replace with your actual UPI ID ──
+  const UPI_ID = '9392564542@upi';
+  const UPI_NAME = 'Ruchitva Kitchen';
+
+  // Update modal content
+  document.getElementById('rkUpiAmount').textContent = '₹'+total;
+  document.getElementById('rkQrAmount').textContent = '₹'+total;
+  document.getElementById('rkUpiId').textContent = UPI_ID;
+  document.getElementById('rkUpiItems').textContent = itemsShort;
+
+  // Build UPI deep links for each app
+  const upiUrl = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${total}&cu=INR&tn=${encodeURIComponent('Ruchitva Kitchen Order')}`;
+  const apps = [
+    {name:'GPay', icon:'🟢', url:`tez://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${total}&cu=INR`},
+    {name:'PhonePe', icon:'🟣', url:`phonepe://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${total}&cu=INR`},
+    {name:'Paytm', icon:'🔵', url:`paytmmp://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${total}&cu=INR`},
+    {name:'BHIM', icon:'🟠', url:upiUrl},
+  ];
+  document.getElementById('rkUpiApps').innerHTML = apps.map(a=>
+    `<a class="rk-upi-app" href="${a.url}" target="_blank"><span>${a.icon}</span><span>${a.name}</span></a>`
+  ).join('');
+
+  // Store order details for WhatsApp confirmation
+  window._rkPendingOrder = { items: itemsList, itemsShort, total, upiId: UPI_ID };
+
+  // Show UPI modal, close cart
+  document.getElementById('rkDrawer').classList.remove('open');
+  document.getElementById('rkOverlay').classList.remove('open');
+  document.getElementById('rk-upi-overlay').classList.add('open');
+};
+
+window.rkCloseUPI=function(){
+  document.getElementById('rk-upi-overlay').classList.remove('open');
+};
+
+window.rkCopyUPI=function(){
+  const upiId = document.getElementById('rkUpiId').textContent;
+  navigator.clipboard.writeText(upiId).then(()=>{
+    rkToast('✅ UPI ID copied: '+upiId);
+  }).catch(()=>{
+    // fallback
+    const el = document.createElement('textarea');
+    el.value = upiId; document.body.appendChild(el);
+    el.select(); document.execCommand('copy'); document.body.removeChild(el);
+    rkToast('✅ UPI ID copied!');
+  });
+};
+
+window.rkConfirmPayment=function(){
+  const o = window._rkPendingOrder;
+  if(!o){ rkToast('No order found'); return; }
+
+  // Build WhatsApp message with full order + payment details
+  const msg = encodeURIComponent(
+    '🍽️ *NEW ORDER — Ruchitva Kitchen*\n\n' +
+    '📋 *Items Ordered:*\n' + o.items + '\n\n' +
+    '💰 *Total Amount: ₹' + o.total + '*\n' +
+    '💳 *Payment: UPI — ' + o.upiId + '*\n\n' +
+    '📱 Customer has completed UPI payment.\n' +
+    'Please confirm the order! 🙏'
+  );
+
+  // Send to your WhatsApp
+  window.open('https://wa.me/919392564542?text='+msg, '_blank');
+
+  // Clear cart and close modal
+  cart = {};
+  updateCartUI();
+  document.getElementById('rk-upi-overlay').classList.remove('open');
+  rkToast('🎉 Order sent! We\'ll confirm on WhatsApp shortly.');
+};
+window.rkFaq=function(el){
+  const open=el.classList.contains('open');
+  document.querySelectorAll('.rk-faq-item').forEach(f=>f.classList.remove('open'));
+  if(!open) el.classList.add('open');
+};
+
+let rkToastTimer;
+function rkToast(msg){
+  const el=document.getElementById('rk-toast');
+  el.textContent=msg; el.classList.add('show');
+  clearTimeout(rkToastTimer);
+  rkToastTimer=setTimeout(()=>el.classList.remove('show'),2500);
+}
+
+// ── SLIDESHOW ──
+(function(){
+  const slides = document.querySelectorAll('#rkSlideshow .rk-slide');
+  const dotsContainer = document.getElementById('rkDots');
+  if(!slides.length || !dotsContainer) return;
+  let current = 0;
+
+  // Create dots
+  slides.forEach((_,i) => {
+    const d = document.createElement('button');
+    d.className = 'rk-dot' + (i===0?' active':'');
+    d.onclick = () => goTo(i);
+    dotsContainer.appendChild(d);
+  });
+
+  function goTo(n){
+    slides[current].classList.remove('active');
+    dotsContainer.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsContainer.children[current].classList.add('active');
+  }
+
+  // Auto advance every 3 seconds
+  setInterval(() => goTo(current + 1), 3000);
+})();
+
+// Menu loaded via loadMenuFromSheet() above
+});
+</script>
+
+</body>
+</html>
