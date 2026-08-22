@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="te">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0B7A43">
-<title>PocketSeeds — Money Manager</title>
-<meta name="description" content="Simple money management: income, expenditure, balance, UPI expense capture, loan reminders and savings suggestions.">
+<title>PocketSeeds — తెలుగు డబ్బు యాప్</title>
+<meta name="description" content="తెలుగు వారి కోసం డబ్బు యాప్ — ఆదాయం, ఖర్చులు, వడ్డీ అప్పులు, చిట్టీలు, మొయి పుస్తకం, పండుగ పొదుపు.">
 <link rel="manifest" href="money.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
@@ -20,31 +20,35 @@
   --out:#DC2626; --out-bg:#FDECEC;
   --warn:#B45309; --warn-bg:#FEF3C7;
   --save:#0B7A43; --save-bg:#E6F4EC;
+  --plum:#6D28D9; --plum-bg:#EDE9FE;
   --radius:18px; --shadow:0 1px 3px rgba(14,27,20,.06),0 6px 18px rgba(14,27,20,.05);
   --card-h:154px;
 }
 @media (prefers-color-scheme:dark){
   :root{--bg:#0A120E;--surface:#121D17;--surface-2:#0E1712;--ink:#E7F0EA;--muted:#8FA398;--line:#1F2E26;
   --in:#34D399;--in-bg:#0C2A1D;--out:#F87171;--out-bg:#2E1416;--warn-bg:#2E2410;--save:#34D399;--save-bg:#0C2A1D;
-  --shadow:0 2px 12px rgba(0,0,0,.45)}
+  --plum:#C4B5FD;--plum-bg:#221A3A;--shadow:0 2px 12px rgba(0,0,0,.45)}
 }
 html,body{background:var(--bg)}
-body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);
-  -webkit-font-smoothing:antialiased;padding-bottom:88px}
+body{font-family:'Plus Jakarta Sans','Noto Sans Telugu',system-ui,-apple-system,sans-serif;color:var(--ink);
+  -webkit-font-smoothing:antialiased;padding-bottom:92px}
+html[lang="te"] body{font-family:'Noto Sans Telugu','Plus Jakarta Sans',system-ui,sans-serif;line-height:1.45}
+html[lang="te"] .balance-amt,html[lang="te"] .t-amt,html[lang="te"] .amt,html[lang="te"] .coach .big{
+  font-family:'Plus Jakarta Sans',sans-serif}
 .app{max-width:520px;margin:0 auto;padding:0 14px}
 /* ---------- header ---------- */
 .top{position:sticky;top:0;z-index:40;background:var(--bg);padding:12px 0 8px}
-.top-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px;letter-spacing:-.02em}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:-.02em}
 .logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));
-  display:grid;place-items:center;color:#fff;font-size:16px}
+  display:grid;place-items:center;color:#fff;font-size:16px;flex:0 0 auto}
 .month-pick{display:flex;align-items:center;gap:2px;background:var(--surface);border:1px solid var(--line);
   border-radius:999px;padding:3px;box-shadow:var(--shadow)}
-.month-pick button{background:none;border:0;color:var(--muted);font-size:15px;padding:4px 9px;border-radius:999px;cursor:pointer}
-.month-pick button:hover{background:var(--surface-2);color:var(--ink)}
-.month-label{font-weight:700;font-size:13px;min-width:78px;text-align:center}
-.icon-btn{width:36px;height:36px;border-radius:12px;border:1px solid var(--line);background:var(--surface);
-  color:var(--ink);font-size:16px;cursor:pointer;box-shadow:var(--shadow)}
+.month-pick button{background:none;border:0;color:var(--muted);font-size:15px;padding:4px 8px;border-radius:999px;cursor:pointer}
+.month-label{font-weight:700;font-size:12.5px;min-width:74px;text-align:center}
+.icon-btn{width:34px;height:34px;border-radius:11px;border:1px solid var(--line);background:var(--surface);
+  color:var(--ink);font-size:15px;cursor:pointer;box-shadow:var(--shadow);flex:0 0 auto}
+.lang-btn{width:auto;padding:0 11px;font-weight:800;font-size:12.5px;font-family:'Noto Sans Telugu',sans-serif}
 /* ---------- cards ---------- */
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
 .balance-card{min-height:var(--card-h);padding:18px;color:#fff;border:0;position:relative;overflow:hidden;
@@ -52,13 +56,13 @@ body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-ser
   background:linear-gradient(140deg,#0B7A43 0%,#12924F 58%,#16A34A 100%)}
 .balance-card::after{content:"";position:absolute;right:-38px;top:-52px;width:170px;height:170px;border-radius:50%;
   background:rgba(255,255,255,.10)}
-.balance-card .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.09em;opacity:.85;font-weight:600}
+.balance-card .lbl{font-size:11.5px;text-transform:uppercase;letter-spacing:.09em;opacity:.85;font-weight:700;position:relative;z-index:1}
+html[lang="te"] .balance-card .lbl{text-transform:none;letter-spacing:.02em;font-size:12.5px}
 .balance-amt{font-size:38px;font-weight:800;letter-spacing:-.03em;margin:6px 0 2px;line-height:1.05;position:relative;z-index:1}
-.balance-card .lbl{position:relative;z-index:1}
 .balance-sub{font-size:12.5px;opacity:.92;display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;position:relative;z-index:1;
   border-top:1px solid rgba(255,255,255,.22);padding-top:11px}
 .balance-sub b{font-weight:700}
-/* ---------- ad slot (same size as balance card) ---------- */
+/* ---------- ad ---------- */
 .ad-wrap{min-height:var(--card-h);height:var(--card-h);border-radius:var(--radius);overflow:hidden;
   position:relative;border:1px dashed var(--line);background:var(--surface)}
 .ad-wrap ins,.ad-wrap iframe,.ad-wrap > div{display:block;width:100%;height:100%}
@@ -69,159 +73,175 @@ body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-ser
   background:linear-gradient(135deg,#FFF6E6,#FDE7BF)}
 @media (prefers-color-scheme:dark){.house-ad{background:linear-gradient(135deg,#2A2110,#3A2E15)}}
 .house-ad .ha-ic{width:50px;height:50px;border-radius:14px;background:var(--amber-2);display:grid;place-items:center;
-  font-size:26px;flex:0 0 auto}
-.house-ad h4{font-size:15px;line-height:1.25;font-weight:800;color:#7A4A08;letter-spacing:-.01em}
+  font-size:25px;flex:0 0 auto}
+.house-ad h4{font-size:15px;line-height:1.25;font-weight:800;color:#7A4A08}
 .house-ad p{font-size:12.5px;color:#8C6522;margin-top:3px;line-height:1.35}
-.house-ad .ha-cta{margin-top:8px;display:inline-block;font-size:11.5px;font-weight:700;color:#3B2606;background:var(--amber);
-  padding:5px 12px;border-radius:999px}
+.house-ad .ha-cta{margin-top:8px;display:inline-block;font-size:11.5px;font-weight:700;color:#3B2606;
+  background:var(--amber);padding:5px 12px;border-radius:999px}
 @media (prefers-color-scheme:dark){.house-ad h4{color:#FFE0AE}.house-ad p{color:#C9B183}}
-/* ---------- stat tiles ---------- */
+/* ---------- tiles ---------- */
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
 .tile{padding:13px 14px;border-radius:15px}
-.tile .t-lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+.tile .t-lbl{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
   display:flex;align-items:center;gap:6px}
+html[lang="te"] .tile .t-lbl{text-transform:none;letter-spacing:0;font-size:12px}
 .tile .t-amt{font-size:21px;font-weight:800;letter-spacing:-.02em;margin-top:5px}
 .t-in .t-amt{color:var(--in)} .t-out .t-amt{color:var(--out)} .t-save .t-amt{color:var(--save)}
-.dot{width:8px;height:8px;border-radius:50%} .d-in{background:var(--in)} .d-out{background:var(--out)}
-.d-save{background:var(--save)} .d-warn{background:var(--warn)}
+.t-warn .t-amt{color:var(--warn)} .t-plum .t-amt{color:var(--plum)}
+.dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+.d-in{background:var(--in)} .d-out{background:var(--out)} .d-save{background:var(--save)}
+.d-warn{background:var(--warn)} .d-plum{background:var(--plum)}
 /* ---------- sections ---------- */
 .sec{margin-top:20px}
-.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;padding:0 2px}
+.sec-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px;padding:0 2px}
 .sec-head h3{font-size:15px;font-weight:700;letter-spacing:-.01em}
-.sec-head .link{font-size:12.5px;font-weight:700;color:var(--brand);background:none;border:0;cursor:pointer}
+.sec-head .link{font-size:12.5px;font-weight:700;color:var(--brand);background:none;border:0;cursor:pointer;
+  font-family:inherit;white-space:nowrap}
+.sub{font-size:12px;color:var(--muted);margin:-4px 2px 9px;line-height:1.45}
 .list{display:flex;flex-direction:column;gap:8px}
 .row{display:flex;align-items:center;gap:11px;padding:12px 13px;border-radius:14px;background:var(--surface);
   border:1px solid var(--line);box-shadow:var(--shadow)}
 .row .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:17px;flex:0 0 auto}
-.ic-in{background:var(--in-bg)} .ic-out{background:var(--out-bg)} .ic-warn{background:var(--warn-bg)} .ic-save{background:var(--save-bg)}
+.ic-in{background:var(--in-bg)} .ic-out{background:var(--out-bg)} .ic-warn{background:var(--warn-bg)}
+.ic-save{background:var(--save-bg)} .ic-plum{background:var(--plum-bg)}
 .row .body{flex:1;min-width:0}
 .row .title{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .row .meta{font-size:11.5px;color:var(--muted);margin-top:2px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
 .row .amt{font-size:15px;font-weight:700;white-space:nowrap}
-.amt.in{color:var(--in)} .amt.out{color:var(--out)}
+.amt.in{color:var(--in)} .amt.out{color:var(--out)} .amt.plum{color:var(--plum)}
 .pill{font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--surface-2);
-  border:1px solid var(--line);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  border:1px solid var(--line);color:var(--muted);letter-spacing:.03em}
 .pill.auto{background:var(--in-bg);color:var(--in);border-color:transparent}
 .pill.due{background:var(--out-bg);color:var(--out);border-color:transparent}
 .pill.soon{background:var(--warn-bg);color:var(--warn);border-color:transparent}
-.empty{text-align:center;padding:26px 16px;color:var(--muted);font-size:13px;background:var(--surface);
-  border:1px dashed var(--line);border-radius:15px}
-.empty .e-ic{font-size:26px;display:block;margin-bottom:6px;opacity:.7}
-/* ---------- savings coach ---------- */
-/* Savings coach — one single colour theme throughout */
+.pill.plum{background:var(--plum-bg);color:var(--plum);border-color:transparent}
+.empty{text-align:center;padding:24px 16px;color:var(--muted);font-size:13px;background:var(--surface);
+  border:1px dashed var(--line);border-radius:15px;line-height:1.5}
+.empty .e-ic{font-size:26px;display:block;margin-bottom:6px;opacity:.75}
+/* ---------- coach ---------- */
 .coach{padding:17px;border-radius:16px;border:0;background:var(--brand);color:#fff}
 .coach h4{font-size:14px;font-weight:800;color:#fff;display:flex;align-items:center;gap:7px}
 .coach .big{font-size:27px;font-weight:800;color:#fff;letter-spacing:-.02em;margin:7px 0 3px}
-.coach .big span{color:rgba(255,255,255,.72) !important}
-.coach p{font-size:12.5px;color:rgba(255,255,255,.86);line-height:1.5}
+.coach p{font-size:12.5px;color:rgba(255,255,255,.86);line-height:1.55}
 .coach p b{color:#fff}
 .coach .btn-save{background:#fff;color:var(--brand)}
 .coach .btn-g{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
 .bar{height:9px;border-radius:999px;background:rgba(255,255,255,.26);overflow:hidden;margin:11px 0 7px}
 .bar > i{display:block;height:100%;border-radius:999px;background:#fff;transition:width .45s ease}
 .coach-actions{display:flex;gap:8px;margin-top:11px;flex-wrap:wrap}
+.mini-bar{height:7px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin-top:7px}
+.mini-bar > i{display:block;height:100%;border-radius:999px;background:var(--brand-2)}
 /* ---------- buttons / forms ---------- */
 .btn{border:0;border-radius:12px;padding:11px 15px;font-size:13.5px;font-weight:700;cursor:pointer;
   font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
-.btn-p{background:var(--brand);color:#fff} .btn-p:active{background:var(--brand-2)}
+.btn-p{background:var(--brand);color:#fff}
 .btn-g{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
 .btn-in{background:var(--in);color:#fff} .btn-out{background:var(--out);color:#fff}
-.btn-save{background:var(--save);color:#fff}
+.btn-save{background:var(--save);color:#fff} .btn-plum{background:var(--plum);color:#fff}
 .btn-sm{padding:7px 11px;font-size:12px;border-radius:10px}
 .btn-block{width:100%}
 .field{margin-bottom:12px}
-.field label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.02em}
+.field label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px}
 input,select,textarea{width:100%;font-family:inherit;font-size:15px;color:var(--ink);background:var(--surface-2);
   border:1px solid var(--line);border-radius:12px;padding:12px 13px;outline:none}
 input:focus,select:focus,textarea:focus{border-color:var(--brand-2)}
-textarea{resize:vertical;min-height:96px;font-size:13.5px;line-height:1.5}
+textarea{resize:vertical;min-height:92px;font-size:13.5px;line-height:1.5}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .chips{display:flex;gap:7px;flex-wrap:wrap}
 .chip{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);
-  font-size:12.5px;font-weight:600;cursor:pointer;color:var(--muted)}
+  font-size:12.5px;font-weight:600;cursor:pointer;color:var(--muted);font-family:inherit}
 .chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
 .hint{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:6px}
-/* ---------- tabs / nav ---------- */
+/* ---------- nav ---------- */
 .nav{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--surface);border-top:1px solid var(--line);
   padding:7px 0 max(7px,env(safe-area-inset-bottom))}
 .nav-in{max-width:520px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
 .nav button{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 0;
-  color:var(--muted);font-size:10px;font-weight:600;font-family:inherit;cursor:pointer}
+  color:var(--muted);font-size:10px;font-weight:700;font-family:inherit;cursor:pointer;line-height:1.2}
 .nav button span{font-size:19px;line-height:1}
 .nav button[aria-selected="true"]{color:var(--brand)}
-.fab{position:fixed;right:calc(50% - 260px + 16px);bottom:84px;z-index:45;width:56px;height:56px;border-radius:50%;
-  border:0;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-size:27px;cursor:pointer;
+.fab{position:fixed;right:calc(50% - 260px + 16px);bottom:88px;z-index:45;width:56px;height:56px;border-radius:50%;
+  border:0;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-size:26px;cursor:pointer;
   box-shadow:0 8px 22px rgba(11,122,67,.4)}
+.fab.mic{bottom:152px;width:48px;height:48px;font-size:20px;background:var(--surface);color:var(--brand);
+  border:1px solid var(--line);box-shadow:var(--shadow)}
+.fab.mic.live{background:var(--out);color:#fff;border-color:transparent;animation:pulse 1.1s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
 @media (max-width:552px){.fab{right:16px}}
 .page{display:none;animation:fade .22s ease} .page.on{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 /* ---------- sheet ---------- */
-.scrim{position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:60;display:none;backdrop-filter:blur(2px)}
+.scrim{position:fixed;inset:0;background:rgba(14,27,20,.5);z-index:60;display:none;backdrop-filter:blur(2px)}
 .scrim.on{display:block}
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:61;background:var(--surface);border-radius:22px 22px 0 0;
   max-width:520px;margin:0 auto;max-height:92vh;overflow-y:auto;transform:translateY(100%);transition:transform .26s ease;
   padding:8px 16px calc(22px + env(safe-area-inset-bottom))}
 .sheet.on{transform:none}
 .grab{width:38px;height:4px;border-radius:999px;background:var(--line);margin:6px auto 12px}
-.sheet h3{font-size:17px;font-weight:800;margin-bottom:14px;letter-spacing:-.02em}
+.sheet h3{font-size:17px;font-weight:800;margin-bottom:6px;letter-spacing:-.02em}
+.sheet .sheet-sub{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:14px}
 .seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--surface-2);border:1px solid var(--line);
   padding:4px;border-radius:13px;margin-bottom:14px}
 .seg button{border:0;background:none;padding:9px;border-radius:10px;font-size:13px;font-weight:700;color:var(--muted);
   font-family:inherit;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
-.toast{position:fixed;left:50%;bottom:100px;transform:translate(-50%,20px);z-index:80;background:var(--ink);color:var(--bg);
-  padding:11px 17px;border-radius:12px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;max-width:88vw;text-align:center}
+.toast{position:fixed;left:50%;bottom:104px;transform:translate(-50%,20px);z-index:80;background:var(--ink);
+  color:var(--bg);padding:11px 17px;border-radius:12px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;
+  transition:.25s;max-width:88vw;text-align:center;line-height:1.4}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .banner{display:flex;gap:10px;align-items:flex-start;padding:12px 13px;border-radius:14px;background:var(--warn-bg);
-  margin-top:12px;font-size:12.5px;line-height:1.45;color:var(--ink)}
-.banner b{font-weight:700}
+  margin-top:12px;font-size:12.5px;line-height:1.5;color:var(--ink)}
 .catbar{display:flex;align-items:center;gap:9px;margin-bottom:9px}
-.catbar .cb-name{font-size:12.5px;font-weight:600;width:88px;flex:0 0 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.catbar .cb-name{font-size:12.5px;font-weight:600;width:92px;flex:0 0 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .catbar .cb-track{flex:1;height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden}
 .catbar .cb-track > i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
-.catbar .cb-amt{font-size:12px;font-weight:700;color:var(--muted);width:70px;text-align:right;flex:0 0 auto}
+.catbar .cb-amt{font-size:12px;font-weight:700;color:var(--muted);width:72px;text-align:right;flex:0 0 auto}
 .swipe-del{background:none;border:0;color:var(--muted);font-size:15px;cursor:pointer;padding:4px 2px;flex:0 0 auto}
+.kv{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.kv:last-child{border-bottom:0}
+.kv span{color:var(--muted)} .kv b{font-weight:700}
 </style>
 </head>
 <body>
 <div class="app">
 
-  <!-- ================= HEADER ================= -->
   <header class="top">
     <div class="top-row">
       <div class="brand"><div class="logo">🌱</div>PocketSeeds</div>
-      <div style="display:flex;gap:8px;align-items:center">
+      <div style="display:flex;gap:7px;align-items:center">
         <div class="month-pick">
-          <button id="mPrev" aria-label="Previous month">‹</button>
+          <button id="mPrev" aria-label="prev">‹</button>
           <div class="month-label" id="mLabel">—</div>
-          <button id="mNext" aria-label="Next month">›</button>
+          <button id="mNext" aria-label="next">›</button>
         </div>
-        <button class="icon-btn" id="btnSettings" aria-label="Settings">⚙️</button>
+        <button class="icon-btn lang-btn" id="btnLang">EN</button>
+        <button class="icon-btn" id="btnSettings" aria-label="settings">⚙️</button>
       </div>
     </div>
   </header>
 
-  <!-- ================= HOME ================= -->
+  <!-- ===================== HOME ===================== -->
   <section class="page on" id="page-home">
     <div class="card balance-card">
       <div>
-        <div class="lbl">Current Balance</div>
+        <div class="lbl" data-i18n="currentBalance">Current Balance</div>
         <div class="balance-amt" id="hBalance">₹0</div>
         <div style="font-size:12.5px;opacity:.88;position:relative;z-index:1" id="hCarry">—</div>
       </div>
       <div class="balance-sub">
-        <span>Safe to spend <b id="hSafe">₹0</b></span>
-        <span>Per day <b id="hPerDay">₹0</b></span>
+        <span data-i18n="safeToSpend">Safe to spend</span> <b id="hSafe">₹0</b>
+        <span><span data-i18n="perDay">Per day</span> <b id="hPerDay">₹0</b></span>
       </div>
     </div>
 
     <div class="tiles">
       <div class="card tile t-in">
-        <div class="t-lbl"><i class="dot d-in"></i>Income</div>
+        <div class="t-lbl"><i class="dot d-in"></i><span data-i18n="income">Income</span></div>
         <div class="t-amt" id="hIncome">₹0</div>
       </div>
       <div class="card tile t-out">
-        <div class="t-lbl"><i class="dot d-out"></i>Expenditure</div>
+        <div class="t-lbl"><i class="dot d-out"></i><span data-i18n="expenditure">Expenditure</span></div>
         <div class="t-amt" id="hExpense">₹0</div>
       </div>
     </div>
@@ -229,19 +249,24 @@ textarea{resize:vertical;min-height:96px;font-size:13.5px;line-height:1.5}
     <div id="dueBanner"></div>
 
     <div class="sec">
-      <div class="sec-head"><h3>Savings coach</h3></div>
+      <div class="sec-head"><h3 data-i18n="savingsCoach">Savings coach</h3></div>
       <div class="coach" id="coachBox"></div>
     </div>
 
     <div class="sec">
+      <div class="sec-head"><h3 data-i18n="quickAdd">Quick add</h3></div>
+      <div class="grid3" id="quickTiles"></div>
+      <div class="hint" data-i18n="quickAddHint">Tap once for the things you buy every day.</div>
+    </div>
+
+    <div class="sec">
       <div class="sec-head">
-        <h3>Recent activity</h3>
-        <button class="link" data-go="expense">See all →</button>
+        <h3 data-i18n="recentActivity">Recent activity</h3>
+        <button class="link" data-go="expense" data-i18n="seeAll">See all →</button>
       </div>
       <div class="list" id="recentList"></div>
     </div>
 
-    <!-- AD BANNER — same size as the Current Balance card -->
     <div class="sec">
       <div class="ad-wrap" id="adSlot">
         <span class="ad-tag">Ad</span>
@@ -250,119 +275,175 @@ textarea{resize:vertical;min-height:96px;font-size:13.5px;line-height:1.5}
     </div>
 
     <div class="sec">
-      <div class="sec-head"><h3>Where the money went</h3></div>
+      <div class="sec-head"><h3 data-i18n="whereMoneyWent">Where the money went</h3></div>
       <div class="card" style="padding:15px 14px" id="catBox"></div>
     </div>
   </section>
 
-  <!-- ================= INCOME ================= -->
+  <!-- ===================== INCOME ===================== -->
   <section class="page" id="page-income">
     <div class="card tile t-in" style="padding:16px">
-      <div class="t-lbl"><i class="dot d-in"></i>Income this month</div>
+      <div class="t-lbl"><i class="dot d-in"></i><span data-i18n="incomeThisMonth">Income this month</span></div>
       <div class="t-amt" style="font-size:30px" id="iTotal">₹0</div>
       <div class="hint" id="iAutoNote"></div>
     </div>
 
     <div class="sec">
       <div class="sec-head">
-        <h3>Auto monthly income (1st–7th)</h3>
-        <button class="link" id="btnAddSource">+ Add</button>
+        <h3 data-i18n="autoIncome">Auto monthly income (1st–7th)</h3>
+        <button class="link" id="btnAddSource" data-i18n="add">+ Add</button>
       </div>
       <div class="list" id="sourceList"></div>
-      <div class="hint">Salary and fixed income are credited automatically on your chosen date between the 1st and 7th. Open the app any time that month and it is already in.</div>
+      <div class="hint" data-i18n="autoIncomeHint">Salary and fixed income are credited automatically on your chosen day between the 1st and 7th.</div>
     </div>
 
     <div class="sec">
       <div class="sec-head">
-        <h3>Income entries</h3>
-        <button class="link" id="btnAddIncome">+ Add</button>
+        <h3 data-i18n="dailyEarning">Daily earning</h3>
+        <button class="link" id="btnDailyEarn" data-i18n="add">+ Add</button>
+      </div>
+      <div class="card" style="padding:15px">
+        <div class="hint" style="margin:0 0 11px" data-i18n="dailyEarningHint">Shop, auto, tailoring, milk, daily wage — add what came in today in one tap.</div>
+        <div class="grid2">
+          <div class="field" style="margin:0"><label data-i18n="amount">Amount ₹</label>
+            <input id="dayAmt" type="number" inputmode="decimal" placeholder="0"></div>
+          <div class="field" style="margin:0"><label data-i18n="whatFor">What for</label>
+            <input id="dayNote" type="text" placeholder=""></div>
+        </div>
+        <button class="btn btn-in btn-block" style="margin-top:12px" id="btnDaySave" data-i18n="addTodaysEarning">Add today's earning</button>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <h3 data-i18n="incomeEntries">Income entries</h3>
+        <button class="link" id="btnAddIncome" data-i18n="add">+ Add</button>
       </div>
       <div class="list" id="incomeList"></div>
     </div>
   </section>
 
-  <!-- ================= EXPENDITURE ================= -->
+  <!-- ===================== EXPENSE ===================== -->
   <section class="page" id="page-expense">
     <div class="card tile t-out" style="padding:16px">
-      <div class="t-lbl"><i class="dot d-out"></i>Expenditure this month</div>
+      <div class="t-lbl"><i class="dot d-out"></i><span data-i18n="expenseThisMonth">Expenditure this month</span></div>
       <div class="t-amt" style="font-size:30px" id="eTotal">₹0</div>
       <div class="hint" id="eUpiNote"></div>
     </div>
 
     <div class="sec">
-      <div class="sec-head"><h3>Pay by UPI &amp; auto-log</h3></div>
+      <div class="sec-head"><h3 data-i18n="upiPay">Pay by UPI &amp; auto-log</h3></div>
       <div class="card" style="padding:15px">
         <div class="grid2">
-          <div class="field" style="margin:0"><label>Amount ₹</label><input id="upiAmt" type="number" inputmode="decimal" placeholder="0"></div>
-          <div class="field" style="margin:0"><label>Pay to (UPI ID)</label><input id="upiVpa" type="text" placeholder="name@ybl"></div>
+          <div class="field" style="margin:0"><label data-i18n="amount">Amount ₹</label>
+            <input id="upiAmt" type="number" inputmode="decimal" placeholder="0"></div>
+          <div class="field" style="margin:0"><label data-i18n="upiId">Pay to (UPI ID)</label>
+            <input id="upiVpa" type="text" placeholder="name@ybl"></div>
         </div>
-        <div class="field" style="margin:12px 0 0"><label>Note</label><input id="upiNote" type="text" placeholder="Groceries"></div>
+        <div class="field" style="margin:12px 0 0"><label data-i18n="note">Note</label>
+          <input id="upiNote" type="text" placeholder=""></div>
         <div class="chips" style="margin-top:12px" id="upiApps">
           <button class="chip" data-app="phonepe" aria-pressed="true">PhonePe</button>
           <button class="chip" data-app="gpay" aria-pressed="false">Google Pay</button>
           <button class="chip" data-app="paytm" aria-pressed="false">Paytm</button>
-          <button class="chip" data-app="upi" aria-pressed="false">Any UPI</button>
+          <button class="chip" data-app="upi" aria-pressed="false" data-i18n="anyUpi">Any UPI</button>
         </div>
-        <button class="btn btn-p btn-block" style="margin-top:12px" id="btnUpiPay">Pay &amp; add to expenditure</button>
-        <div class="hint">Opens your UPI app with the amount pre-filled and records it in the expenditure column, so it is deducted from your income straight away.</div>
+        <button class="btn btn-p btn-block" style="margin-top:12px" id="btnUpiPay" data-i18n="payAndLog">Pay &amp; add to expenditure</button>
+        <div class="hint" data-i18n="upiHint">Opens your UPI app with the amount filled in and records it in expenditure.</div>
       </div>
     </div>
 
     <div class="sec">
-      <div class="sec-head"><h3>Import UPI messages</h3></div>
+      <div class="sec-head"><h3 data-i18n="importSms">Import UPI messages</h3></div>
       <div class="card" style="padding:15px">
-        <textarea id="smsBox" placeholder="Paste your bank / UPI SMS here, e.g.&#10;Rs.450.00 debited from A/c XX1234 on 12-08 to VPA store@ybl UPI Ref 4512..."></textarea>
-        <button class="btn btn-p btn-block" style="margin-top:10px" id="btnParseSms">Scan &amp; add expenses</button>
-        <div class="hint">Paste any number of PhonePe / GPay / bank debit messages. Amounts, dates and payees are read automatically — debits go to expenditure, credits to income.</div>
+        <textarea id="smsBox" placeholder="Rs.450.00 debited from A/c XX1234 to VPA store@ybl UPI Ref 4512..."></textarea>
+        <button class="btn btn-p btn-block" style="margin-top:10px" id="btnParseSms" data-i18n="scanAdd">Scan &amp; add expenses</button>
+        <div class="hint" data-i18n="smsHint">Paste any number of PhonePe / GPay / bank messages. Debits become expenditure, credits become income.</div>
       </div>
     </div>
 
     <div class="sec">
       <div class="sec-head">
-        <h3>All expenditure</h3>
-        <button class="link" id="btnAddExpense">+ Add</button>
+        <h3 data-i18n="kiranaCredit">Kirana / shop credit (అరువు)</h3>
+        <button class="link" id="btnAddUdhaar" data-i18n="add">+ Add</button>
+      </div>
+      <div class="sub" data-i18n="kiranaHint">Money you owe the shop and pay at month end — tracked separately so your balance is honest.</div>
+      <div class="list" id="udhaarList"></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <h3 data-i18n="allExpenditure">All expenditure</h3>
+        <button class="link" id="btnAddExpense" data-i18n="add">+ Add</button>
       </div>
       <div class="list" id="expenseList"></div>
     </div>
   </section>
 
-  <!-- ================= REMINDERS ================= -->
-  <section class="page" id="page-remind">
-    <div class="card tile t-out" style="padding:16px">
-      <div class="t-lbl"><i class="dot d-warn"></i>Loan / EMI due this month</div>
-      <div class="t-amt" style="font-size:30px;color:var(--warn)" id="rTotal">₹0</div>
-      <div class="hint" id="rNote"></div>
+  <!-- ===================== LOANS (vaddi + chit + reminders) ===================== -->
+  <section class="page" id="page-loans">
+    <div class="tiles">
+      <div class="card tile t-out">
+        <div class="t-lbl"><i class="dot d-out"></i><span data-i18n="iOwe">I owe</span></div>
+        <div class="t-amt" style="font-size:22px" id="lOwe">₹0</div>
+      </div>
+      <div class="card tile t-in">
+        <div class="t-lbl"><i class="dot d-in"></i><span data-i18n="owedToMe">Owed to me</span></div>
+        <div class="t-amt" style="font-size:22px" id="lGet">₹0</div>
+      </div>
+    </div>
+    <div class="card tile t-warn" style="padding:14px;margin-top:10px">
+      <div class="t-lbl"><i class="dot d-warn"></i><span data-i18n="monthlyInterest">Interest running per month</span></div>
+      <div class="t-amt" style="font-size:22px" id="lVaddi">₹0</div>
+      <div class="hint" id="lVaddiNote"></div>
     </div>
 
     <div class="sec">
       <div class="sec-head">
-        <h3>Reminders</h3>
-        <button class="link" id="btnAddRemind">+ Add</button>
+        <h3 data-i18n="vaddiLoans">Hand loans with interest (వడ్డీ)</h3>
+        <button class="link" id="btnAddLoan" data-i18n="add">+ Add</button>
+      </div>
+      <div class="sub" data-i18n="vaddiHint">Enter the rate the way it is spoken — ₹2 or ₹3 per 100 per month. Interest is worked out for you.</div>
+      <div class="list" id="loanList"></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <h3 data-i18n="chits">Chit funds (చిట్టీలు)</h3>
+        <button class="link" id="btnAddChit" data-i18n="add">+ Add</button>
+      </div>
+      <div class="sub" data-i18n="chitHint">Track every instalment, whether you have taken the chit yet, and what you are up or down overall.</div>
+      <div class="list" id="chitList"></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <h3 data-i18n="reminders">Reminders</h3>
+        <button class="link" id="btnAddRemind" data-i18n="add">+ Add</button>
       </div>
       <div class="list" id="remindList"></div>
     </div>
 
     <div class="sec">
-      <button class="btn btn-g btn-block" id="btnNotif">🔔 Turn on due-date alerts</button>
-      <div class="hint">You will get a notification a few days before every loan date, and a banner on the home screen.</div>
+      <button class="btn btn-g btn-block" id="btnNotif" data-i18n="turnOnAlerts">🔔 Turn on due-date alerts</button>
     </div>
   </section>
 
-  <!-- ================= SAVINGS ================= -->
+  <!-- ===================== SAVINGS (savings + festival + moyi) ===================== -->
   <section class="page" id="page-save">
     <div class="card tile t-save" style="padding:16px">
-      <div class="t-lbl"><i class="dot d-save"></i>Total saved</div>
+      <div class="t-lbl"><i class="dot d-save"></i><span data-i18n="totalSaved">Total saved</span></div>
       <div class="t-amt" style="font-size:30px" id="sTotal">₹0</div>
       <div class="hint" id="sNote"></div>
     </div>
 
     <div class="sec">
-      <div class="sec-head"><h3>How much should I save?</h3></div>
+      <div class="sec-head"><h3 data-i18n="howMuchSave">How much should I save?</h3></div>
       <div class="coach" id="coachBox2"></div>
     </div>
 
     <div class="sec">
-      <div class="sec-head"><h3>Savings rate</h3></div>
+      <div class="sec-head"><h3 data-i18n="savingsRate">Savings rate</h3></div>
       <div class="card" style="padding:15px">
         <div class="chips" id="rateChips">
           <button class="chip" data-rate="10">10%</button>
@@ -370,14 +451,42 @@ textarea{resize:vertical;min-height:96px;font-size:13.5px;line-height:1.5}
           <button class="chip" data-rate="30">30%</button>
           <button class="chip" data-rate="40">40%</button>
         </div>
-        <div class="hint">20% of income is the classic target. Whatever you pick, the coach recalculates your daily spending limit.</div>
+        <div class="hint" data-i18n="rateHint">20% of income is the classic target. Whatever you pick, the coach recalculates your daily limit.</div>
       </div>
     </div>
 
     <div class="sec">
       <div class="sec-head">
-        <h3>Savings history</h3>
-        <button class="link" id="btnAddSaving">+ Add</button>
+        <h3 data-i18n="festivalPlan">Festival &amp; function fund (పండుగ)</h3>
+        <button class="link" id="btnAddFest" data-i18n="add">+ Add</button>
+      </div>
+      <div class="sub" data-i18n="festivalHint">Sankranti, Ugadi, Dasara, a wedding in the family — save a little every month instead of borrowing at the last minute.</div>
+      <div class="list" id="festList"></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <h3 data-i18n="moyiBook">Gift book (మొయి / కట్నం)</h3>
+        <button class="link" id="btnAddMoyi" data-i18n="add">+ Add</button>
+      </div>
+      <div class="sub" data-i18n="moyiHint">The notebook every family keeps at weddings — who gave how much, and what you should give back when their turn comes.</div>
+      <div class="tiles" style="margin-bottom:10px">
+        <div class="card tile t-in" style="padding:12px">
+          <div class="t-lbl" style="font-size:11px"><i class="dot d-in"></i><span data-i18n="received">Received</span></div>
+          <div class="t-amt" style="font-size:19px" id="moyiIn">₹0</div>
+        </div>
+        <div class="card tile t-plum" style="padding:12px">
+          <div class="t-lbl" style="font-size:11px"><i class="dot d-plum"></i><span data-i18n="given">Given</span></div>
+          <div class="t-amt" style="font-size:19px" id="moyiOut">₹0</div>
+        </div>
+      </div>
+      <div class="list" id="moyiList"></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <h3 data-i18n="savingsHistory">Savings history</h3>
+        <button class="link" id="btnAddSaving" data-i18n="add">+ Add</button>
       </div>
       <div class="list" id="savingList"></div>
     </div>
@@ -385,15 +494,16 @@ textarea{resize:vertical;min-height:96px;font-size:13.5px;line-height:1.5}
 
 </div>
 
-<button class="fab" id="fab" aria-label="Add transaction">+</button>
+<button class="fab mic" id="fabMic" aria-label="voice">🎤</button>
+<button class="fab" id="fab" aria-label="add">+</button>
 
 <nav class="nav">
   <div class="nav-in">
-    <button data-go="home"    aria-selected="true"><span>🏠</span>Home</button>
-    <button data-go="income"  aria-selected="false"><span>💰</span>Income</button>
-    <button data-go="expense" aria-selected="false"><span>💸</span>Expenses</button>
-    <button data-go="remind"  aria-selected="false"><span>🔔</span>Reminders</button>
-    <button data-go="save"    aria-selected="false"><span>🐖</span>Savings</button>
+    <button data-go="home"    aria-selected="true"><span>🏠</span><i data-i18n="navHome" style="font-style:normal">Home</i></button>
+    <button data-go="income"  aria-selected="false"><span>💰</span><i data-i18n="navIncome" style="font-style:normal">Income</i></button>
+    <button data-go="expense" aria-selected="false"><span>💸</span><i data-i18n="navExpense" style="font-style:normal">Expenses</i></button>
+    <button data-go="loans"   aria-selected="false"><span>🤝</span><i data-i18n="navLoans" style="font-style:normal">Loans</i></button>
+    <button data-go="save"    aria-selected="false"><span>🐖</span><i data-i18n="navSave" style="font-style:normal">Savings</i></button>
   </div>
 </nav>
 
@@ -403,29 +513,289 @@ textarea{resize:vertical;min-height:96px;font-size:13.5px;line-height:1.5}
 
 <script>
 /* =========================================================================
-   PocketSeeds — Money Manager
-   All data stays on this device (localStorage). No server, no account.
+   PocketSeeds — Telugu-first money app
+   Telugu is the default language; English is a toggle, not the other way round.
    ========================================================================= */
 'use strict';
 
-const KEY = 'pocketseeds.v1';
+const STR = {
+  en: {
+    currentBalance:'Current Balance', safeToSpend:'Safe to spend', perDay:'Per day',
+    income:'Income', expenditure:'Expenditure', savingsCoach:'Savings coach',
+    quickAdd:'Quick add', quickAddHint:'Tap once for the things you buy every day.',
+    recentActivity:'Recent activity', seeAll:'See all →', whereMoneyWent:'Where the money went',
+    incomeThisMonth:'Income this month', autoIncome:'Auto monthly income (1st–7th)', add:'+ Add',
+    autoIncomeHint:'Salary and fixed income are credited automatically on your chosen day between the 1st and 7th.',
+    dailyEarning:'Daily earning',
+    dailyEarningHint:'Shop, auto, tailoring, milk, daily wage — add what came in today in one tap.',
+    amount:'Amount ₹', whatFor:'What for', addTodaysEarning:"Add today's earning",
+    incomeEntries:'Income entries', expenseThisMonth:'Expenditure this month',
+    upiPay:'Pay by UPI & auto-log', upiId:'Pay to (UPI ID)', note:'Note', anyUpi:'Any UPI',
+    payAndLog:'Pay & add to expenditure',
+    upiHint:'Opens your UPI app with the amount filled in and records it in expenditure.',
+    importSms:'Import UPI messages', scanAdd:'Scan & add expenses',
+    smsHint:'Paste any number of PhonePe / GPay / bank messages. Debits become expenditure, credits become income.',
+    kiranaCredit:'Kirana / shop credit', kiranaHint:'Money you owe the shop and pay at month end — tracked separately so your balance is honest.',
+    allExpenditure:'All expenditure', iOwe:'I owe', owedToMe:'Owed to me',
+    monthlyInterest:'Interest running per month', vaddiLoans:'Hand loans with interest',
+    vaddiHint:'Enter the rate the way it is spoken — ₹2 or ₹3 per 100 per month. Interest is worked out for you.',
+    chits:'Chit funds', chitHint:'Track every instalment, whether you have taken the chit yet, and what you are up or down overall.',
+    reminders:'Reminders', turnOnAlerts:'🔔 Turn on due-date alerts',
+    totalSaved:'Total saved', howMuchSave:'How much should I save?', savingsRate:'Savings rate',
+    rateHint:'20% of income is the classic target. Whatever you pick, the coach recalculates your daily limit.',
+    festivalPlan:'Festival & function fund',
+    festivalHint:'Sankranti, Ugadi, Dasara, a wedding in the family — save a little every month instead of borrowing at the last minute.',
+    moyiBook:'Gift book (moyi)',
+    moyiHint:'The notebook every family keeps at weddings — who gave how much, and what you should give back when their turn comes.',
+    received:'Received', given:'Given', savingsHistory:'Savings history',
+    navHome:'Home', navIncome:'Income', navExpense:'Expenses', navLoans:'Loans', navSave:'Savings',
+
+    months:['January','February','March','April','May','June','July','August','September','October','November','December'],
+    monthsShort:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    day:'day', days:'days', dueToday:'due today', dueIn:'due in {n} {d}', overdueBy:'overdue by {n} {d}',
+    inDays:'In {n}d', overdueShort:'Overdue {n}d', today:'Today',
+    auto:'Auto', monthly:'Monthly', paused:'Paused', credited:'Credited', pending:'Pending',
+    edit:'Edit', del:'Delete', saveChanges:'Save changes', cancel:'Cancel', done:'Done',
+    date:'Date', category:'Category', paidBy:'Paid by', source:'Source', paidTo:'Paid to / note',
+    carryNote:'Income minus expenses, carried forward', freshNote:'Income minus expenses in {m}',
+    autoCredited:'{a} credited automatically this month.', noAutoYet:'No automatic credit yet this month.',
+    upiOut:'{a} of this went out through UPI apps — already deducted from your income.',
+    upiNone:'UPI payments you make below are deducted from your income automatically.',
+    emptyTx:'No transactions in {m} yet. Tap + to add one.',
+    emptyIncome:'No income recorded for {m}.', emptyExpense:'No expenditure recorded for {m}.',
+    emptySources:'No auto income yet. Add your salary and pick a day between the 1st and 7th.',
+    emptyRemind:'No reminders yet. Add a loan, EMI or bill date.',
+    emptyLoans:'No hand loans. Add money you have borrowed or lent.',
+    emptyChits:'No chit funds yet.', emptyFest:'No festival fund yet.',
+    emptyMoyi:'Gift book is empty. Add what you gave or received at a function.',
+    emptySavings:'Nothing set aside yet. Use the coach to start.',
+    emptyUdhaar:'No shop credit pending.',
+    addIncome:'Add income', addExpense:'Add expenditure', editIncome:'Edit income', editExpense:'Edit expenditure',
+    incomeAdded:'Income added', expenseAdded:'Added to expenditure', deleted:'Deleted', saved:'Saved',
+    enterAmount:'Enter an amount', removed:'Removed',
+    coachTitle:'Save {a} this month', stillAside:'still to set aside',
+    pctDone:'<b>{p}%</b> of this month\'s target done · saved {a}',
+    coachNoIncome:'Add your income first — set up an auto monthly income on the Income tab and the coach will tell you exactly how much to save.',
+    coachOver:'You have spent {a} more than you earned this month. Cut back before saving — start with your biggest category.',
+    coachHit:'Target hit 🎉 You saved {a} — that is {p}% of your income. Anything extra can go to an emergency fund.',
+    coachTight:'Your {r}% target is {t}, but at this month\'s spending only about {a} is realistic. Save that, and trim {c} of spending to reach the full target.',
+    coachOn:'Set aside {a} more this month and you hit your {r}% target. You can still spend about {d} a day for the next {n} {dw}.',
+    emergency:'<b>Emergency fund:</b> aim for {a} (6 months of your average spending). You have {s} saved — {rest}',
+    emergencyOk:'you are covered ✅', emergencyGap:'{a} to go.',
+    thumb:'<b>Rule of thumb:</b> keep needs under 50% of income, wants under 30%, and save the rest.',
+    setAside:'Set aside {a}', savingsTab:'Savings tab', addIncomeBtn:'Add income',
+    openReminders:'Open reminders',
+    // loans
+    loanTitle:'Hand loan', iBorrowed:'I borrowed', iLent:'I lent', principal:'Principal ₹',
+    rateLabel:'Interest — rupees per 100 per month', person:'Person / lender', startDate:'Start date',
+    loanKind:'Type', interestSoFar:'Interest so far', totalPayable:'Total payable', totalReceivable:'Total receivable',
+    perMonth:'per month', monthsRun:'{n} months run', settle:'Settle / close',
+    loanSettled:'Loan closed', vaddiNote:'{a} of interest is building every month across your loans.',
+    vaddiNoteNone:'No interest running. Add a hand loan to track it.',
+    payInterest:'Pay interest', interestPaid:'Interest paid and added to expenditure',
+    // chit
+    chitName:'Chit name', chitInstal:'Monthly instalment ₹', chitMonths:'Total months',
+    chitPaid:'Instalments paid', chitTaken:'Have you taken the chit?', chitPrize:'Amount you received ₹',
+    chitNotTaken:'Not taken yet', chitTakenYes:'Taken', payInstal:'Pay this month',
+    chitPaidUp:'Paid {p} of {t}', chitNet:'Net position', instalAdded:'Instalment added to expenditure',
+    // festival
+    festName:'Festival / function', festTarget:'Target ₹', festDate:'Date',
+    festNeed:'Save {a} a month', festLeft:'{n} months left', festDone:'Fully saved ✅',
+    addToFest:'Add money', festAdded:'Added to the fund',
+    // moyi
+    moyiPerson:'Person / family', moyiEvent:'Function', moyiType:'Given or received',
+    moyiGiven:'I gave', moyiReceived:'I received', moyiOwe:'To return',
+    moyiSummary:'{n} families · you should return about {a} when their functions come.',
+    moyiSummaryNone:'Add entries as functions happen — this book is what you check before every wedding.',
+    // udhaar
+    udhaarShop:'Shop name', udhaarPending:'Pending ₹', settleUdhaar:'Settle now',
+    udhaarSettled:'Settled and added to expenditure',
+    // voice
+    voiceListen:'Speak the amount and what it was for…', voiceNo:'Voice input is not supported in this browser',
+    voiceFail:'Could not catch that — try again', voiceGot:'Heard: {t}',
+    // settings
+    settings:'Settings', language:'Language', savingsRatePct:'Savings rate (% of income)',
+    remindBefore:'Remind me before a due date', balanceStyle:'Balance style',
+    carryOpt:'Carry leftover money to next month', freshOpt:'Fresh balance every month',
+    adClient:'Google AdSense client ID (optional)', adSlotL:'AdSense ad slot ID (optional)',
+    adHint:'Leave both blank to keep showing your own house ad in the banner.',
+    saveSettings:'Save settings', exportD:'⬇️ Export data', importD:'⬆️ Import data',
+    eraseAll:'Erase everything', storedHint:'Everything is stored only on this phone. Export a backup before clearing browser data.',
+    confirmErase:'Erase all data on this device?', allCleared:'All cleared', restored:'Data restored',
+    badFile:'That file could not be read', backupDone:'Backup downloaded',
+    alertsOn:'Alerts on — you will be reminded before every due date',
+    alertsBlocked:'Alerts blocked in browser settings', noNotif:'This browser has no notifications',
+    upiInvalid:'Enter a valid UPI ID, e.g. name@ybl', pasteFirst:'Paste your UPI messages first',
+    nothingRead:'No payment could be read from that text',
+    smsAdded:'{e} expense(s){i} added', andCredits:' and {n} credit(s)',
+    upiConfirm:'{a} added to expenditure',
+    upiConfirmSub:'Paying <b>{v}</b> for {n}. It is already deducted from your income — your balance is now <b>{b}</b>.',
+    openApp:'Open {app} to pay →', alreadyPaid:'Already paid — done', cancelEntry:'Cancel & remove entry',
+    upiCancelHint:'If the payment does not go through, tap cancel and the expense is removed.',
+    markPaid:'Mark as paid', markPaidSub:'{t} — {a} due {d}.',
+    addToExpense:'Add {a} to expenditure', justMark:'Just mark paid (already recorded)',
+    markedPaid:'Marked paid', setAsideTitle:'Set money aside', moveToSavings:'Move to savings',
+    savedToast:'Saved {a}', savingsHint:'Saved money is kept out of “safe to spend”, so your daily limit stays honest.'
+  },
+
+  te: {
+    currentBalance:'ప్రస్తుత నిల్వ', safeToSpend:'ఖర్చుకు సురక్షితం', perDay:'రోజుకు',
+    income:'ఆదాయం', expenditure:'ఖర్చు', savingsCoach:'పొదుపు సలహా',
+    quickAdd:'త్వరిత ఖర్చు', quickAddHint:'రోజూ కొనే వాటికి ఒక్క నొక్కు చాలు.',
+    recentActivity:'ఇటీవలి లావాదేవీలు', seeAll:'అన్నీ చూడు →', whereMoneyWent:'డబ్బు ఎక్కడికి పోయింది',
+    incomeThisMonth:'ఈ నెల ఆదాయం', autoIncome:'ఆటో నెలవారీ ఆదాయం (1–7 తేదీ)', add:'+ చేర్చు',
+    autoIncomeHint:'జీతం, స్థిర ఆదాయం మీరు ఎంచుకున్న 1–7 తేదీన దానంతట అదే జమ అవుతుంది.',
+    dailyEarning:'రోజువారీ సంపాదన',
+    dailyEarningHint:'షాపు, ఆటో, టైలరింగ్, పాలు, కూలి — ఈ రోజు వచ్చినది ఒక్క నొక్కుతో చేర్చండి.',
+    amount:'మొత్తం ₹', whatFor:'దేనికి', addTodaysEarning:'ఈ రోజు సంపాదన చేర్చు',
+    incomeEntries:'ఆదాయ నమోదులు', expenseThisMonth:'ఈ నెల ఖర్చు',
+    upiPay:'UPI చెల్లింపు — వెంటనే నమోదు', upiId:'ఎవరికి (UPI ID)', note:'వివరణ', anyUpi:'ఏదైనా UPI',
+    payAndLog:'చెల్లించి ఖర్చులో చేర్చు',
+    upiHint:'మీ UPI యాప్ మొత్తంతో సహా తెరుచుకుంటుంది, ఖర్చు వెంటనే నమోదు అవుతుంది.',
+    importSms:'UPI మెసేజ్‌లు చేర్చు', scanAdd:'చదివి ఖర్చులు చేర్చు',
+    smsHint:'PhonePe / GPay / బ్యాంక్ మెసేజ్‌లు ఎన్నయినా అతికించండి. డెబిట్ ఖర్చులోకి, క్రెడిట్ ఆదాయంలోకి వెళ్తాయి.',
+    kiranaCredit:'కిరాణా అరువు', kiranaHint:'నెలాఖరున కట్టే అరువు — నిల్వ నిజాయితీగా ఉండేలా విడిగా చూపిస్తాం.',
+    allExpenditure:'అన్ని ఖర్చులు', iOwe:'నేను ఇవ్వాల్సినది', owedToMe:'నాకు రావాల్సినది',
+    monthlyInterest:'నెలకు నడుస్తున్న వడ్డీ', vaddiLoans:'చేతి అప్పులు (వడ్డీ)',
+    vaddiHint:'వడ్డీని చెప్పే విధంగానే రాయండి — వందకు ₹2 లేదా ₹3, నెలకు. లెక్క మేము చూసుకుంటాం.',
+    chits:'చిట్టీలు', chitHint:'ప్రతి వాయిదా, చిట్టీ ఎత్తారా లేదా, మొత్తంగా లాభమా నష్టమా — అన్నీ ఒకచోట.',
+    reminders:'గుర్తు చేయమను', turnOnAlerts:'🔔 గడువు హెచ్చరికలు ఆన్ చేయి',
+    totalSaved:'మొత్తం పొదుపు', howMuchSave:'ఎంత దాచాలి?', savingsRate:'పొదుపు శాతం',
+    rateHint:'ఆదాయంలో 20% సాధారణ లక్ష్యం. మీరు ఏది ఎంచుకున్నా రోజువారీ పరిమితి దానికి తగ్గట్టు మారుతుంది.',
+    festivalPlan:'పండుగ & శుభకార్యాల నిధి',
+    festivalHint:'సంక్రాంతి, ఉగాది, దసరా, ఇంట్లో పెళ్లి — చివరి నిమిషంలో అప్పు చేయకుండా నెలనెలా కొంచెం దాచండి.',
+    moyiBook:'మొయి పుస్తకం (కట్నం)',
+    moyiHint:'పెళ్లిళ్లలో ప్రతి కుటుంబం రాసుకునే పుస్తకం — ఎవరు ఎంత ఇచ్చారు, వాళ్ల వంతు వచ్చినప్పుడు మనం ఎంత ఇవ్వాలి.',
+    received:'వచ్చినవి', given:'ఇచ్చినవి', savingsHistory:'పొదుపు వివరాలు',
+    navHome:'హోమ్', navIncome:'ఆదాయం', navExpense:'ఖర్చులు', navLoans:'అప్పులు', navSave:'పొదుపు',
+
+    months:['జనవరి','ఫిబ్రవరి','మార్చి','ఏప్రిల్','మే','జూన్','జూలై','ఆగస్టు','సెప్టెంబర్','అక్టోబర్','నవంబర్','డిసెంబర్'],
+    monthsShort:['జన','ఫిబ్ర','మార్చి','ఏప్రి','మే','జూన్','జూలై','ఆగ','సెప్ట','అక్టో','నవం','డిసెం'],
+    day:'రోజు', days:'రోజులు', dueToday:'ఈ రోజే గడువు', dueIn:'ఇంకా {n} {d}', overdueBy:'{n} {d} ఆలస్యం',
+    inDays:'{n} రోజుల్లో', overdueShort:'{n} రోజులు ఆలస్యం', today:'ఈ రోజు',
+    auto:'ఆటో', monthly:'నెలవారీ', paused:'ఆపారు', credited:'జమ అయింది', pending:'ఇంకా లేదు',
+    edit:'మార్చు', del:'తొలగించు', saveChanges:'మార్పులు భద్రపరచు', cancel:'రద్దు', done:'అయ్యింది',
+    date:'తేదీ', category:'రకం', paidBy:'ఎలా చెల్లించారు', source:'మూలం', paidTo:'ఎవరికి / వివరణ',
+    carryNote:'ఆదాయం మైనస్ ఖర్చు, ముందుకు వచ్చినది కలిపి', freshNote:'{m} నెల ఆదాయం మైనస్ ఖర్చు',
+    autoCredited:'ఈ నెల {a} దానంతట అదే జమ అయింది.', noAutoYet:'ఈ నెల ఇంకా ఆటో జమ కాలేదు.',
+    upiOut:'ఇందులో {a} UPI యాప్‌ల ద్వారా వెళ్లింది — ఆదాయం నుంచి తీసేశాం.',
+    upiNone:'కింద మీరు చేసే UPI చెల్లింపులు ఆదాయం నుంచి వెంటనే తీసేయబడతాయి.',
+    emptyTx:'{m} నెలలో ఇంకా లావాదేవీలు లేవు. + నొక్కి చేర్చండి.',
+    emptyIncome:'{m} నెలకు ఆదాయం నమోదు కాలేదు.', emptyExpense:'{m} నెలకు ఖర్చు నమోదు కాలేదు.',
+    emptySources:'ఆటో ఆదాయం లేదు. జీతం చేర్చి 1–7 మధ్య తేదీ ఎంచుకోండి.',
+    emptyRemind:'గుర్తుంపులు లేవు. అప్పు, EMI లేదా బిల్లు తేదీ చేర్చండి.',
+    emptyLoans:'చేతి అప్పులు లేవు. మీరు తీసుకున్న లేదా ఇచ్చిన డబ్బు చేర్చండి.',
+    emptyChits:'చిట్టీలు లేవు.', emptyFest:'పండుగ నిధి ఇంకా లేదు.',
+    emptyMoyi:'మొయి పుస్తకం ఖాళీ. శుభకార్యంలో ఇచ్చినవి/వచ్చినవి చేర్చండి.',
+    emptySavings:'ఇంకా ఏమీ దాచలేదు. సలహా చూసి మొదలుపెట్టండి.',
+    emptyUdhaar:'అరువు బాకీ లేదు.',
+    addIncome:'ఆదాయం చేర్చు', addExpense:'ఖర్చు చేర్చు', editIncome:'ఆదాయం మార్చు', editExpense:'ఖర్చు మార్చు',
+    incomeAdded:'ఆదాయం చేర్చాం', expenseAdded:'ఖర్చులో చేర్చాం', deleted:'తొలగించాం', saved:'భద్రపరిచాం',
+    enterAmount:'మొత్తం రాయండి', removed:'తీసేశాం',
+    coachTitle:'ఈ నెల {a} దాచండి', stillAside:'ఇంకా దాచాల్సినది',
+    pctDone:'ఈ నెల లక్ష్యంలో <b>{p}%</b> అయింది · దాచినది {a}',
+    coachNoIncome:'ముందు ఆదాయం చేర్చండి — ఆదాయం ట్యాబ్‌లో నెలవారీ ఆటో ఆదాయం పెట్టండి, ఎంత దాచాలో ఖచ్చితంగా చెబుతాం.',
+    coachOver:'ఈ నెల సంపాదన కంటే {a} ఎక్కువ ఖర్చు చేశారు. ముందు ఖర్చు తగ్గించండి — పెద్ద రకంతో మొదలుపెట్టండి.',
+    coachHit:'లక్ష్యం పూర్తి 🎉 {a} దాచారు — అది ఆదాయంలో {p}%. మిగిలినది అత్యవసర నిధికి వేయండి.',
+    coachTight:'మీ {r}% లక్ష్యం {t}, కానీ ఈ నెల ఖర్చు చూస్తే {a} మాత్రమే సాధ్యం. అది దాచి, ఇంకా {c} ఖర్చు తగ్గిస్తే పూర్తి లక్ష్యం చేరతారు.',
+    coachOn:'ఈ నెల ఇంకా {a} పక్కన పెడితే మీ {r}% లక్ష్యం పూర్తి. ఇంకా {n} {dw} రోజుకు దాదాపు {d} ఖర్చు పెట్టవచ్చు.',
+    emergency:'<b>అత్యవసర నిధి:</b> {a} లక్ష్యంగా పెట్టుకోండి (మీ సగటు ఖర్చుకు 6 నెలలు). ఇప్పటికి {s} ఉంది — {rest}',
+    emergencyOk:'సరిపోయింది ✅', emergencyGap:'ఇంకా {a} కావాలి.',
+    thumb:'<b>సూత్రం:</b> అవసరాలకు 50% లోపు, కోరికలకు 30% లోపు, మిగిలినది పొదుపు.',
+    setAside:'{a} పక్కన పెట్టు', savingsTab:'పొదుపు ట్యాబ్', addIncomeBtn:'ఆదాయం చేర్చు',
+    openReminders:'గుర్తుంపులు చూడు',
+    loanTitle:'చేతి అప్పు', iBorrowed:'నేను తీసుకున్నాను', iLent:'నేను ఇచ్చాను', principal:'అసలు ₹',
+    rateLabel:'వడ్డీ — వందకు ఎంత, నెలకు', person:'ఎవరు', startDate:'మొదలైన తేదీ',
+    loanKind:'రకం', interestSoFar:'ఇప్పటివరకు వడ్డీ', totalPayable:'మొత్తం ఇవ్వాల్సినది', totalReceivable:'మొత్తం రావాల్సినది',
+    perMonth:'నెలకు', monthsRun:'{n} నెలలు అయ్యింది', settle:'తీర్చేశాను',
+    loanSettled:'అప్పు ముగిసింది', vaddiNote:'మీ అప్పులన్నిటిపై నెలకు {a} వడ్డీ పెరుగుతోంది.',
+    vaddiNoteNone:'వడ్డీ ఏమీ నడవడం లేదు. చేతి అప్పు చేర్చి చూసుకోండి.',
+    payInterest:'వడ్డీ కట్టాను', interestPaid:'వడ్డీ ఖర్చులో చేర్చాం',
+    chitName:'చిట్టీ పేరు', chitInstal:'నెల వాయిదా ₹', chitMonths:'మొత్తం నెలలు',
+    chitPaid:'కట్టిన వాయిదాలు', chitTaken:'చిట్టీ ఎత్తారా?', chitPrize:'వచ్చిన మొత్తం ₹',
+    chitNotTaken:'ఇంకా ఎత్తలేదు', chitTakenYes:'ఎత్తారు', payInstal:'ఈ నెల వాయిదా కట్టు',
+    chitPaidUp:'{t}లో {p} కట్టారు', chitNet:'నికర స్థితి', instalAdded:'వాయిదా ఖర్చులో చేర్చాం',
+    festName:'పండుగ / శుభకార్యం', festTarget:'లక్ష్యం ₹', festDate:'తేదీ',
+    festNeed:'నెలకు {a} దాచాలి', festLeft:'ఇంకా {n} నెలలు', festDone:'పూర్తిగా దాచారు ✅',
+    addToFest:'డబ్బు వేయి', festAdded:'నిధిలో చేర్చాం',
+    moyiPerson:'ఎవరు / ఏ కుటుంబం', moyiEvent:'ఏ శుభకార్యం', moyiType:'ఇచ్చారా, వచ్చిందా',
+    moyiGiven:'నేను ఇచ్చాను', moyiReceived:'నాకు వచ్చింది', moyiOwe:'తిరిగి ఇవ్వాల్సినది',
+    moyiSummary:'{n} కుటుంబాలు · వాళ్ల శుభకార్యాలప్పుడు మీరు దాదాపు {a} తిరిగి ఇవ్వాలి.',
+    moyiSummaryNone:'శుభకార్యాలు జరిగినప్పుడు రాసుకోండి — ప్రతి పెళ్లికి ముందు చూసేది ఈ పుస్తకమే.',
+    udhaarShop:'షాపు పేరు', udhaarPending:'బాకీ ₹', settleUdhaar:'ఇప్పుడే తీర్చు',
+    udhaarSettled:'తీర్చి ఖర్చులో చేర్చాం',
+    voiceListen:'మొత్తం, దేనికో చెప్పండి…', voiceNo:'ఈ బ్రౌజర్‌లో వాయిస్ పని చేయదు',
+    voiceFail:'అర్థం కాలేదు — మళ్లీ చెప్పండి', voiceGot:'విన్నది: {t}',
+    settings:'సెట్టింగ్‌లు', language:'భాష', savingsRatePct:'పొదుపు శాతం (ఆదాయంలో %)',
+    remindBefore:'గడువుకు ఎన్ని రోజుల ముందు గుర్తు చేయాలి', balanceStyle:'నిల్వ లెక్క',
+    carryOpt:'మిగిలిన డబ్బు తర్వాతి నెలకు కలుపు', freshOpt:'ప్రతి నెల కొత్త నిల్వ',
+    adClient:'Google AdSense client ID (ఐచ్ఛికం)', adSlotL:'AdSense ad slot ID (ఐచ్ఛికం)',
+    adHint:'రెండూ ఖాళీగా వదిలితే మీ సొంత ప్రకటనే బ్యానర్‌లో కనిపిస్తుంది.',
+    saveSettings:'సెట్టింగ్‌లు భద్రపరచు', exportD:'⬇️ డేటా దించు', importD:'⬆️ డేటా చేర్చు',
+    eraseAll:'అంతా తుడిచేయి', storedHint:'డేటా అంతా ఈ ఫోన్‌లోనే ఉంటుంది. బ్రౌజర్ డేటా తుడిచే ముందు బ్యాకప్ తీసుకోండి.',
+    confirmErase:'ఈ ఫోన్‌లోని మొత్తం డేటా తుడిచేయాలా?', allCleared:'అంతా తుడిచేశాం', restored:'డేటా తిరిగి వచ్చింది',
+    badFile:'ఆ ఫైల్ చదవలేకపోయాం', backupDone:'బ్యాకప్ దిగింది',
+    alertsOn:'హెచ్చరికలు ఆన్ — ప్రతి గడువుకు ముందు గుర్తు చేస్తాం',
+    alertsBlocked:'బ్రౌజర్ సెట్టింగ్‌లలో హెచ్చరికలు ఆపేసి ఉన్నాయి', noNotif:'ఈ బ్రౌజర్‌లో నోటిఫికేషన్లు లేవు',
+    upiInvalid:'సరైన UPI ID రాయండి, ఉదా. name@ybl', pasteFirst:'ముందు UPI మెసేజ్‌లు అతికించండి',
+    nothingRead:'ఆ టెక్స్ట్‌లో చెల్లింపు కనిపించలేదు',
+    smsAdded:'{e} ఖర్చులు{i} చేర్చాం', andCredits:', {n} జమలు',
+    upiConfirm:'{a} ఖర్చులో చేర్చాం',
+    upiConfirmSub:'{n} కోసం <b>{v}</b>కు చెల్లింపు. ఆదాయం నుంచి తీసేశాం — ఇప్పుడు మీ నిల్వ <b>{b}</b>.',
+    openApp:'{app} తెరిచి చెల్లించు →', alreadyPaid:'ఇప్పటికే కట్టాను', cancelEntry:'రద్దు చేసి తీసేయి',
+    upiCancelHint:'చెల్లింపు జరగకపోతే రద్దు నొక్కండి, ఖర్చు తీసేయబడుతుంది.',
+    markPaid:'కట్టినట్టు గుర్తించు', markPaidSub:'{t} — {d}కి {a} గడువు.',
+    addToExpense:'{a} ఖర్చులో చేర్చు', justMark:'కట్టినట్టు మాత్రమే గుర్తించు',
+    markedPaid:'కట్టినట్టు గుర్తించాం', setAsideTitle:'డబ్బు పక్కన పెట్టు', moveToSavings:'పొదుపులోకి మార్చు',
+    savedToast:'{a} దాచాం', savingsHint:'దాచిన డబ్బు “ఖర్చుకు సురక్షితం” నుంచి తీసేస్తాం, అందుకే రోజువారీ పరిమితి నిజాయితీగా ఉంటుంది.'
+  }
+};
+
+let LANG = localStorage.getItem('pocketseeds.lang') || 'te';
+function t(key, vars){
+  let s = (STR[LANG] && STR[LANG][key] != null) ? STR[LANG][key] : STR.en[key];
+  if(s == null) return key;
+  if(typeof s !== 'string') return s;
+  if(vars) Object.keys(vars).forEach(k => { s = s.split('{'+k+'}').join(vars[k]); });
+  return s;
+}
+function applyLang(){
+  document.documentElement.lang = LANG;
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+  const b = document.getElementById('btnLang');
+  if(b) b.textContent = LANG === 'te' ? 'EN' : 'తె';
+  const ph = {
+    dayNote: LANG==='te' ? 'పాలు, కూలి, షాపు' : 'Milk, wage, shop',
+    upiNote: LANG==='te' ? 'కూరగాయలు' : 'Groceries',
+    smsBox:  LANG==='te' ? 'Rs.450.00 debited from A/c XX1234 to VPA store@ybl UPI Ref 4512…'
+                         : 'Rs.450.00 debited from A/c XX1234 to VPA store@ybl UPI Ref 4512…'
+  };
+  Object.keys(ph).forEach(id => { const el = document.getElementById(id); if(el) el.placeholder = ph[id]; });
+}
+</script>
+
+<script>
+'use strict';
+/* =========================== DATA =========================== */
+const KEY = 'pocketseeds.v2';
 const DEFAULTS = {
-  version: 1,
-  settings: { rate: 20, carryForward: true, notifyDays: 3, adClient: '', adSlot: '' },
-  sources:  [],   // auto monthly income  {id,name,amount,day,active,credited:[]}
-  tx:       [],   // {id,type,amount,note,category,method,date,auto,ref}
-  reminders:[],   // {id,title,lender,amount,due,repeat,history:[]}
-  savings:  []    // {id,amount,date,note}
+  version: 2,
+  settings: { rate:20, carryForward:true, notifyDays:3, adClient:'', adSlot:'' },
+  sources:[], tx:[], reminders:[], savings:[],
+  loans:[],     // {id,kind:'borrowed'|'lent',person,principal,rate,start,closed}
+  chits:[],     // {id,name,instal,months,paid,taken,prize,day}
+  fests:[],     // {id,name,target,date,saved}
+  moyi:[],      // {id,person,event,type:'given'|'received',amount,date}
+  udhaar:[]     // {id,shop,amount,date}
 };
 
 let DB = load();
-let VIEW = new Date();                 // month being viewed
-let TAB  = 'home';
+let VIEW = new Date();
+let TAB = 'home';
 
-/* ---------------- storage ---------------- */
 function load(){
   try{
-    const raw = JSON.parse(localStorage.getItem(KEY) || 'null');
+    const raw = JSON.parse(localStorage.getItem(KEY) || localStorage.getItem('pocketseeds.v1') || 'null');
     if(!raw) return structuredClone(DEFAULTS);
     return Object.assign(structuredClone(DEFAULTS), raw,
       { settings: Object.assign({}, DEFAULTS.settings, raw.settings||{}) });
@@ -434,14 +804,13 @@ function load(){
 function save(){ localStorage.setItem(KEY, JSON.stringify(DB)); }
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,7);
 
-/* ---------------- dates & money ---------------- */
+/* =========================== DATES & MONEY =========================== */
 const pad  = n => String(n).padStart(2,'0');
 const ymd  = d => d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
 const mKey = d => d.getFullYear()+'-'+pad(d.getMonth()+1);
 const monthOf = s => (s||'').slice(0,7);
-const daysIn  = (y,m) => new Date(y, m+1, 0).getDate();
-const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-const fmtMonth = d => MONTHS[d.getMonth()].slice(0,3)+' '+d.getFullYear();
+const daysIn = (y,m) => new Date(y, m+1, 0).getDate();
+const fmtMonth = d => t('monthsShort')[d.getMonth()] + ' ' + d.getFullYear();
 function money(n){
   const v = Math.round(Math.abs(Number(n)||0));
   return (n<0?'-₹':'₹') + v.toLocaleString('en-IN');
@@ -449,45 +818,45 @@ function money(n){
 function shortDate(s){
   const d = new Date(s+'T00:00:00');
   if(isNaN(d)) return s;
-  return d.getDate()+' '+MONTHS[d.getMonth()].slice(0,3);
+  return d.getDate()+' '+t('monthsShort')[d.getMonth()];
 }
-function daysBetween(a,b){
-  return Math.round((new Date(b+'T00:00:00') - new Date(a+'T00:00:00')) / 86400000);
+const daysBetween = (a,b) => Math.round((new Date(b+'T00:00:00') - new Date(a+'T00:00:00'))/86400000);
+function monthsBetween(fromYmd, toDate){
+  const a = new Date(fromYmd+'T00:00:00'); if(isNaN(a)) return 0;
+  let m = (toDate.getFullYear()-a.getFullYear())*12 + (toDate.getMonth()-a.getMonth());
+  if(toDate.getDate() < a.getDate()) m -= 1;
+  return Math.max(0, m);
 }
+const dayWord = n => (n === 1 ? t('day') : t('days'));
 
-/* ---------------- derived numbers ---------------- */
-const inMonth   = (list,k) => list.filter(t => monthOf(t.date) === k);
-const upToMonth = (list,k) => list.filter(t => monthOf(t.date) <= k);
-const sum       = list => list.reduce((a,t)=> a + (Number(t.amount)||0), 0);
+/* =========================== DERIVED =========================== */
+const inMonth = (list,k) => list.filter(x => monthOf(x.date) === k);
+const upTo    = (list,k) => list.filter(x => monthOf(x.date) <= k);
+const sum     = list => list.reduce((a,x)=> a + (Number(x.amount)||0), 0);
 
 function stats(date = VIEW){
   const k = mKey(date);
-  const scope = DB.settings.carryForward ? upToMonth : inMonth;
-  const income   = sum(inMonth(DB.tx.filter(t=>t.type==='income'), k));
-  const expense  = sum(inMonth(DB.tx.filter(t=>t.type==='expense'), k));
+  const scope = DB.settings.carryForward ? upTo : inMonth;
+  const income   = sum(inMonth(DB.tx.filter(x=>x.type==='income'), k));
+  const expense  = sum(inMonth(DB.tx.filter(x=>x.type==='expense'), k));
   const savedM   = sum(inMonth(DB.savings, k));
-  const cIncome  = sum(scope(DB.tx.filter(t=>t.type==='income'), k));
-  const cExpense = sum(scope(DB.tx.filter(t=>t.type==='expense'), k));
+  const cIncome  = sum(scope(DB.tx.filter(x=>x.type==='income'), k));
+  const cExpense = sum(scope(DB.tx.filter(x=>x.type==='expense'), k));
   const cSaved   = sum(scope(DB.savings, k));
   const balance  = cIncome - cExpense - cSaved;
-
   const target    = Math.round(income * (DB.settings.rate/100));
   const stillSave = Math.max(0, target - savedM);
   const safe      = balance - stillSave;
-
   const today = new Date();
   const isNow = mKey(today) === k;
   const total = daysIn(date.getFullYear(), date.getMonth());
   const left  = isNow ? Math.max(1, total - today.getDate() + 1) : total;
-  // daily limit comes from THIS month's flow, so a big carried-forward pot
-  // never inflates what looks spendable today
   const monthLeftover = income - expense - stillSave;
-  const perDay = Math.max(0, Math.floor(Math.min(monthLeftover, Math.max(0, safe)) / left));
-
+  const perDay = Math.max(0, Math.floor(Math.min(monthLeftover, Math.max(0,safe)) / left));
   return {k,income,expense,savedM,cSaved,balance,target,stillSave,safe,perDay,daysLeft:left,isNow};
 }
 
-/* ---------------- auto monthly income (1st–7th) ---------------- */
+/* =========================== AUTO MONTHLY INCOME =========================== */
 function runAutoIncome(){
   const today = new Date();
   let added = 0;
@@ -495,43 +864,110 @@ function runAutoIncome(){
     if(!src.active) return;
     const day = Math.min(7, Math.max(1, Number(src.day)||1));
     src.credited = src.credited || [];
-    // credit this month and backfill up to 12 previous months
     for(let back = 11; back >= 0; back--){
-      const d = new Date(today.getFullYear(), today.getMonth() - back, 1);
+      const d = new Date(today.getFullYear(), today.getMonth()-back, 1);
       const key = mKey(d);
       if(src.credited.includes(key)) continue;
       if(src.since && key < src.since) continue;
       const due = new Date(d.getFullYear(), d.getMonth(), day);
-      if(due > today) continue;                     // not yet time this month
-      DB.tx.push({ id:uid(), type:'income', amount:Number(src.amount)||0,
-        note:src.name, category:'Salary', method:'auto', date:ymd(due), auto:true });
+      if(due > today) continue;
+      DB.tx.push({ id:uid(), type:'income', amount:Number(src.amount)||0, note:src.name,
+        category:'Salary', method:'auto', date:ymd(due), auto:true });
       src.credited.push(key);
       added++;
     }
   });
-  if(added){ save(); }
+  if(added) save();
   return added;
 }
 
-/* ---------------- UPI ---------------- */
+/* =========================== VADDI (hand loans) ===========================
+   Telugu private lending is quoted as rupees per 100 per month:
+   "₹2 vaddi" = ₹2 on every ₹100 each month = 2% a month = 24% a year.
+   Interest is simple, month by month, exactly as it is settled in practice. */
+function loanMath(l){
+  const months = monthsBetween(l.start, new Date());
+  const perMonth = (Number(l.principal)||0) * (Number(l.rate)||0) / 100;
+  const interest = Math.round(perMonth * months);
+  const paidInterest = Number(l.paidInterest||0);
+  const total = (Number(l.principal)||0) + interest - paidInterest;
+  const yearly = (Number(l.rate)||0) * 12;
+  return { months, perMonth: Math.round(perMonth), interest, paidInterest, total, yearly };
+}
+function loanTotals(){
+  let owe = 0, get = 0, vaddi = 0;
+  DB.loans.filter(l => !l.closed).forEach(l => {
+    const m = loanMath(l);
+    if(l.kind === 'borrowed'){ owe += m.total; vaddi += m.perMonth; }
+    else { get += m.total; }
+  });
+  return { owe: Math.round(owe), get: Math.round(get), vaddi: Math.round(vaddi) };
+}
+
+/* =========================== CHIT FUNDS =========================== */
+function chitMath(c){
+  const paid = Number(c.paid)||0;
+  const instal = Number(c.instal)||0;
+  const total = Number(c.months)||0;
+  const paidAmt = paid * instal;
+  const prize = c.taken ? (Number(c.prize)||0) : 0;
+  const remaining = Math.max(0, total - paid) * instal;
+  return { paid, total, paidAmt, prize, remaining, net: prize - paidAmt };
+}
+
+/* =========================== FESTIVAL FUND =========================== */
+function festMath(f){
+  const today = new Date();
+  const due = new Date((f.date||ymd(today))+'T00:00:00');
+  const monthsLeft = Math.max(0, (due.getFullYear()-today.getFullYear())*12 + (due.getMonth()-today.getMonth()));
+  const saved = Number(f.saved)||0;
+  const target = Number(f.target)||0;
+  const need = Math.max(0, target - saved);
+  const perMonth = monthsLeft > 0 ? Math.ceil(need / monthsLeft) : need;
+  const pct = target ? Math.min(100, Math.round(saved/target*100)) : 0;
+  return { monthsLeft, saved, target, need, perMonth, pct, done: need <= 0 };
+}
+
+/* =========================== MOYI (gift book) =========================== */
+function moyiTotals(){
+  const people = {};
+  DB.moyi.forEach(m => {
+    const p = (m.person||'').trim() || '—';
+    people[p] = people[p] || { person:p, given:0, received:0, last:'' };
+    if(m.type === 'given') people[p].given += Number(m.amount)||0;
+    else people[p].received += Number(m.amount)||0;
+    if(m.date > people[p].last) people[p].last = m.date;
+  });
+  const list = Object.values(people).map(p => ({...p, owe: Math.max(0, p.received - p.given)}))
+    .sort((a,b) => b.owe - a.owe || b.received - a.received);
+  return {
+    list,
+    given: DB.moyi.filter(m=>m.type==='given').reduce((a,m)=>a+(+m.amount||0),0),
+    received: DB.moyi.filter(m=>m.type==='received').reduce((a,m)=>a+(+m.amount||0),0),
+    owe: list.reduce((a,p)=>a+p.owe,0)
+  };
+}
+
+/* =========================== UPI =========================== */
 const UPI_SCHEME = { phonepe:'phonepe://pay', gpay:'tez://upi/pay', paytm:'paytmmp://pay', upi:'upi://pay' };
 const UPI_LABEL  = { phonepe:'PhonePe', gpay:'Google Pay', paytm:'Paytm', upi:'UPI', cash:'Cash', card:'Card', bank:'Bank', auto:'Auto' };
 const METHOD_ICON= { phonepe:'🟣', gpay:'🔵', paytm:'🔷', upi:'🏦', cash:'💵', card:'💳', bank:'🏛️', auto:'⚡' };
-
 function upiLink(app, vpa, amount, note){
   const base = UPI_SCHEME[app] || UPI_SCHEME.upi;
-  const q = new URLSearchParams({ pa: vpa, pn: (note||'Payment').slice(0,40),
-    am: (Number(amount)||0).toFixed(2), cu:'INR', tn: (note||'Payment').slice(0,40) });
+  const q = new URLSearchParams({ pa:vpa, pn:(note||'Payment').slice(0,40),
+    am:(Number(amount)||0).toFixed(2), cu:'INR', tn:(note||'Payment').slice(0,40) });
   return base + '?' + q.toString();
 }
 
-/* ---------------- SMS / UPI message parser ---------------- */
+/* =========================== SMS PARSER =========================== */
+function cleanPayee(x){
+  return String(x).split(/\s+(?:via|on|ref|upi|txn|dated|thru|through)\b/i)[0]
+    .replace(/[\s.,-]+$/,'').trim() || 'Payment';
+}
 function parseMessages(text){
   const out = [];
-  const blocks = text.split(/\n\s*\n|(?<=\.)\s*(?=(?:Rs\.?|INR)\s*[\d,])/i)
-                     .map(s=>s.trim()).filter(Boolean);
-  const chunks = blocks.length ? blocks : [text];
-  chunks.forEach(msg => {
+  const blocks = text.split(/\n\s*\n|(?<=\.)\s*(?=(?:Rs\.?|INR)\s*[\d,])/i).map(s=>s.trim()).filter(Boolean);
+  (blocks.length ? blocks : [text]).forEach(msg => {
     const amtM = msg.match(/(?:rs\.?|inr|₹)\s*([\d,]+(?:\.\d{1,2})?)/i);
     if(!amtM) return;
     const amount = parseFloat(amtM[1].replace(/,/g,''));
@@ -539,52 +975,95 @@ function parseMessages(text){
     const credit = /\b(credited|received|deposited|refund)\b/i.test(msg);
     const debit  = /\b(debited|paid|sent|spent|withdrawn|purchase|txn of)\b/i.test(msg);
     if(!credit && !debit) return;
-    let method = 'upi';
+    let method = 'bank';
     if(/phonepe/i.test(msg)) method='phonepe';
     else if(/g\s?pay|google\s?pay|tez/i.test(msg)) method='gpay';
     else if(/paytm/i.test(msg)) method='paytm';
     else if(/\bupi\b|vpa|@/i.test(msg)) method='upi';
-    else method='bank';
     const vpaM = msg.match(/([a-z0-9._-]{2,})@([a-z]{2,})/i);
     const toM  = msg.match(/\b(?:to|at|towards|from)\s+(?!your\b|a\/c\b|account\b|vpa\b)([A-Za-z0-9 &._-]{3,30})/i);
     const refM = msg.match(/(?:ref(?:erence)?(?:\s*no\.?)?|txn\s*id|utr)[:\s#]*([A-Za-z0-9]{4,})/i);
     const dtM  = msg.match(/\b(\d{1,2})[-\/](\d{1,2})(?:[-\/](\d{2,4}))?\b/);
     let date = ymd(new Date());
     if(dtM){
-      const now = new Date();
-      const dd = +dtM[1], mm = +dtM[2] - 1;
-      let yy = dtM[3] ? (+dtM[3] < 100 ? 2000 + (+dtM[3]) : +dtM[3]) : now.getFullYear();
+      const now = new Date(), dd = +dtM[1], mm = +dtM[2]-1;
+      const yy = dtM[3] ? (+dtM[3] < 100 ? 2000 + +dtM[3] : +dtM[3]) : now.getFullYear();
       const d = new Date(yy, mm, dd);
       if(!isNaN(d) && d <= new Date(now.getFullYear()+1,0,1)) date = ymd(d);
     }
     const payee = vpaM ? vpaM[0] : (toM ? cleanPayee(toM[1]) : UPI_LABEL[method]);
-    out.push({ id:uid(), type: credit ? 'income' : 'expense', amount,
-      note: payee, category: credit ? 'Other income' : guessCategory(msg + ' ' + payee),
+    out.push({ id:uid(), type:credit?'income':'expense', amount, note:payee,
+      category: credit ? 'Other income' : guessCategory(msg+' '+payee),
       method, date, ref: refM ? refM[1] : '' });
   });
   return out;
 }
 
-function cleanPayee(t){
-  return String(t).split(/\s+(?:via|on|ref|upi|txn|dated|thru|through)\b/i)[0]
-    .replace(/[\s.,-]+$/,'').trim() || 'Payment';
-}
-const CATS = ['Food','Groceries','Travel','Bills','Shopping','Health','Rent','EMI','Education','Fuel','Recharge','Other'];
+/* =========================== CATEGORIES =========================== */
+const CATS = [
+  {k:'Food',      te:'తిండి',        en:'Food',        ic:'🍛'},
+  {k:'Groceries', te:'కిరాణా',       en:'Groceries',   ic:'🛒'},
+  {k:'Vegetables',te:'కూరగాయలు',    en:'Vegetables',  ic:'🥬'},
+  {k:'Milk',      te:'పాలు',         en:'Milk',        ic:'🥛'},
+  {k:'Travel',    te:'ప్రయాణం',      en:'Travel',      ic:'🚌'},
+  {k:'Fuel',      te:'పెట్రోల్',      en:'Fuel',        ic:'⛽'},
+  {k:'Bills',     te:'బిల్లులు',      en:'Bills',       ic:'💡'},
+  {k:'Recharge',  te:'రీఛార్జ్',      en:'Recharge',    ic:'📱'},
+  {k:'Rent',      te:'అద్దె',         en:'Rent',        ic:'🏠'},
+  {k:'Health',    te:'ఆరోగ్యం',      en:'Health',      ic:'💊'},
+  {k:'Education', te:'చదువు',        en:'Education',   ic:'📚'},
+  {k:'Shopping',  te:'షాపింగ్',       en:'Shopping',    ic:'🛍️'},
+  {k:'Function',  te:'శుభకార్యం',    en:'Function',    ic:'🎉'},
+  {k:'Temple',    te:'గుడి',          en:'Temple',      ic:'🛕'},
+  {k:'EMI',       te:'EMI / వాయిదా', en:'EMI',         ic:'🏦'},
+  {k:'Vaddi',     te:'వడ్డీ',          en:'Interest',    ic:'📈'},
+  {k:'Chit',      te:'చిట్టీ',         en:'Chit',        ic:'🔄'},
+  {k:'Other',     te:'ఇతరం',         en:'Other',       ic:'•'}
+];
+const catLabel = k => { const c = CATS.find(c=>c.k===k); return c ? (LANG==='te'?c.te:c.en) : k; };
+const catIcon  = k => { const c = CATS.find(c=>c.k===k); return c ? c.ic : '•'; };
+const INCOME_CATS = [
+  {k:'Salary',     te:'జీతం',          en:'Salary'},
+  {k:'Business',   te:'వ్యాపారం',       en:'Business'},
+  {k:'DailyWage',  te:'రోజు కూలి',      en:'Daily wage'},
+  {k:'Farm',       te:'వ్యవసాయం',      en:'Farming'},
+  {k:'Rent recd',  te:'అద్దె వచ్చింది',  en:'Rent received'},
+  {k:'Interest',   te:'వడ్డీ వచ్చింది',  en:'Interest received'},
+  {k:'Other income',te:'ఇతర ఆదాయం',   en:'Other income'}
+];
+const incLabel = k => { const c = INCOME_CATS.find(c=>c.k===k); return c ? (LANG==='te'?c.te:c.en) : k; };
+
 function guessCategory(s){
   s = s.toLowerCase();
-  if(/swiggy|zomato|restaurant|cafe|hotel|kitchen|dosa|food/.test(s)) return 'Food';
-  if(/bigbasket|dmart|kirana|grocer|blinkit|zepto|instamart/.test(s)) return 'Groceries';
-  if(/uber|ola|rapido|irctc|metro|bus|flight|indigo/.test(s)) return 'Travel';
-  if(/electricity|water|gas|broadband|wifi|bill|tneb|bescom/.test(s)) return 'Bills';
-  if(/amazon|flipkart|myntra|meesho|ajio|shop/.test(s)) return 'Shopping';
-  if(/pharm|apollo|hospital|clinic|medic|health/.test(s)) return 'Health';
-  if(/rent|landlord/.test(s)) return 'Rent';
-  if(/emi|loan|finance|nbfc/.test(s)) return 'EMI';
-  if(/school|college|fee|tuition|course/.test(s)) return 'Education';
-  if(/petrol|diesel|fuel|hp |iocl|bharat petro/.test(s)) return 'Fuel';
+  if(/swiggy|zomato|restaurant|cafe|hotel|kitchen|dosa|tiffin|food|mess/.test(s)) return 'Food';
+  if(/bigbasket|dmart|kirana|grocer|blinkit|zepto|instamart|super ?market/.test(s)) return 'Groceries';
+  if(/vegetable|kurgayalu|rythu|market/.test(s)) return 'Vegetables';
+  if(/milk|dairy|heritage|jersey|dodla|amul/.test(s)) return 'Milk';
+  if(/uber|ola|rapido|irctc|metro|bus|rtc|flight|indigo|auto/.test(s)) return 'Travel';
+  if(/petrol|diesel|fuel|hp |iocl|bharat petro|bunk/.test(s)) return 'Fuel';
+  if(/electric|current|water|gas|broadband|wifi|bill|tsspdcl|apspdcl/.test(s)) return 'Bills';
   if(/recharge|airtel|jio|vi |vodafone|dth/.test(s)) return 'Recharge';
+  if(/rent|owner|landlord/.test(s)) return 'Rent';
+  if(/pharm|apollo|hospital|clinic|medic|health|medplus/.test(s)) return 'Health';
+  if(/school|college|fee|tuition|course|books/.test(s)) return 'Education';
+  if(/amazon|flipkart|myntra|meesho|ajio|shop|cloth/.test(s)) return 'Shopping';
+  if(/marriage|wedding|function|shubh|pelli|moyi/.test(s)) return 'Function';
+  if(/temple|gudi|devasthanam|tirumala|hundi/.test(s)) return 'Temple';
+  if(/emi|loan|finance|nbfc/.test(s)) return 'EMI';
+  if(/chit|chitti/.test(s)) return 'Chit';
+  if(/vaddi|interest/.test(s)) return 'Vaddi';
   return 'Other';
 }
+
+/* quick-add tiles: the six things bought every single day */
+const QUICK = [
+  {cat:'Milk',      te:'పాలు',      en:'Milk',    ic:'🥛', amt:30},
+  {cat:'Vegetables',te:'కూరగాయలు', en:'Veg',     ic:'🥬', amt:100},
+  {cat:'Food',      te:'టీ/టిఫిన్', en:'Tea',     ic:'☕', amt:20},
+  {cat:'Travel',    te:'ప్రయాణం',   en:'Travel',  ic:'🚌', amt:50},
+  {cat:'Fuel',      te:'పెట్రోల్',   en:'Petrol',  ic:'⛽', amt:200},
+  {cat:'Recharge',  te:'రీఛార్జ్',   en:'Recharge',ic:'📱', amt:239}
+];
 </script>
 
 <script>
@@ -594,124 +1073,117 @@ const $  = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
 const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c =>
   ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-
 function toast(msg){
-  const t = $('#toast'); t.textContent = msg; t.classList.add('on');
-  clearTimeout(toast._t); toast._t = setTimeout(()=>t.classList.remove('on'), 2600);
+  const el = $('#toast'); el.textContent = msg; el.classList.add('on');
+  clearTimeout(toast._t); toast._t = setTimeout(()=>el.classList.remove('on'), 2800);
 }
+const emptyBox = (icon,msg) => `<div class="empty"><span class="e-ic">${icon}</span>${esc(msg)}</div>`;
 
 function renderAll(){
+  applyLang();
   $('#mLabel').textContent = fmtMonth(VIEW);
-  renderHome(); renderIncome(); renderExpense(); renderRemind(); renderSave();
+  renderHome(); renderIncome(); renderExpense(); renderLoans(); renderSave();
 }
 
 /* ---------------- HOME ---------------- */
 function renderHome(){
   const s = stats();
   $('#hBalance').textContent = money(s.balance);
-  $('#hSafe').textContent    = money(Math.max(0, s.safe));
+  $('#hSafe').textContent    = money(Math.max(0,s.safe));
   $('#hPerDay').textContent  = money(s.perDay);
   $('#hIncome').textContent  = money(s.income);
-  $('#hCarry').textContent = DB.settings.carryForward
-    ? 'Income minus expenses, carried forward'
-    : 'Income minus expenses in ' + fmtMonth(VIEW);
   $('#hExpense').textContent = money(s.expense);
+  $('#hCarry').textContent   = DB.settings.carryForward ? t('carryNote') : t('freshNote',{m:fmtMonth(VIEW)});
 
-  // due reminders banner
   const due = upcomingDues();
   $('#dueBanner').innerHTML = due.length ? `
-    <div class="banner">
-      <span style="font-size:17px">🔔</span>
+    <div class="banner"><span style="font-size:17px">🔔</span>
       <div>${due.map(d => `<div><b>${esc(d.title)}</b> — ${money(d.amount)} ${
-        d.days < 0 ? `<span style="color:var(--out)">overdue by ${Math.abs(d.days)} day${Math.abs(d.days)>1?'s':''}</span>`
-        : d.days === 0 ? '<b>due today</b>' : `due in ${d.days} day${d.days>1?'s':''}`}</div>`).join('')}
-        <button class="btn btn-sm btn-g" style="margin-top:8px" data-go="remind">Open reminders</button>
-      </div>
-    </div>` : '';
+        d.days < 0 ? `<span style="color:var(--out)">${t('overdueBy',{n:Math.abs(d.days),d:dayWord(Math.abs(d.days))})}</span>`
+        : d.days === 0 ? `<b>${t('dueToday')}</b>` : t('dueIn',{n:d.days,d:dayWord(d.days)})}</div>`).join('')}
+        <button class="btn btn-sm btn-g" style="margin-top:8px" data-go="loans">${t('openReminders')}</button>
+      </div></div>` : '';
 
-  // recent activity
+  $('#quickTiles').innerHTML = QUICK.map((q,i) => `
+    <button class="card" data-quick="${i}" style="padding:11px 8px;text-align:center;cursor:pointer;border:1px solid var(--line);font-family:inherit">
+      <div style="font-size:21px">${q.ic}</div>
+      <div style="font-size:11.5px;font-weight:700;margin-top:3px">${LANG==='te'?q.te:q.en}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:1px">₹${q.amt}</div>
+    </button>`).join('');
+
   const k = mKey(VIEW);
-  const rows = [...inMonth(DB.tx, k)].sort((a,b)=> (b.date+b.id).localeCompare(a.date+a.id)).slice(0,6);
-  $('#recentList').innerHTML = rows.length ? rows.map(txRow).join('')
-    : emptyBox('🧾','No transactions in '+fmtMonth(VIEW)+' yet. Tap + to add one.');
+  const rows = [...inMonth(DB.tx,k)].sort((a,b)=>(b.date+b.id).localeCompare(a.date+a.id)).slice(0,6);
+  $('#recentList').innerHTML = rows.length ? rows.map(txRow).join('') : emptyBox('🧾', t('emptyTx',{m:fmtMonth(VIEW)}));
 
-  // category breakdown
-  const exp = inMonth(DB.tx.filter(t=>t.type==='expense'), k);
+  const exp = inMonth(DB.tx.filter(x=>x.type==='expense'), k);
   const by = {};
-  exp.forEach(t => by[t.category||'Other'] = (by[t.category||'Other']||0) + Number(t.amount||0));
-  const list = Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  exp.forEach(x => by[x.category||'Other'] = (by[x.category||'Other']||0) + (+x.amount||0));
+  const list = Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,7);
   const max = list.length ? list[0][1] : 1;
   $('#catBox').innerHTML = list.length ? list.map(([c,v]) => `
     <div class="catbar">
-      <div class="cb-name">${esc(c)}</div>
+      <div class="cb-name">${catIcon(c)} ${esc(catLabel(c))}</div>
       <div class="cb-track"><i style="width:${Math.max(6,(v/max)*100)}%"></i></div>
       <div class="cb-amt">${money(v)}</div>
     </div>`).join('')
-    : `<div style="color:var(--muted);font-size:13px;text-align:center;padding:8px">Spending by category will appear here.</div>`;
+    : `<div style="color:var(--muted);font-size:13px;text-align:center;padding:8px">${t('whereMoneyWent')}</div>`;
 
-  $('#coachBox').innerHTML = coachHTML(s);
+  $('#coachBox').innerHTML  = coachHTML(s);
   $('#coachBox2').innerHTML = coachHTML(s, true);
 }
 
-function emptyBox(icon,msg){ return `<div class="empty"><span class="e-ic">${icon}</span>${esc(msg)}</div>`; }
-
-function txRow(t){
-  const isIn = t.type === 'income';
+function txRow(x){
+  const isIn = x.type === 'income';
+  const label = isIn ? incLabel(x.category) : catLabel(x.category);
   return `<div class="row">
-    <div class="ic ${isIn?'ic-in':'ic-out'}">${isIn?'⬇️':(METHOD_ICON[t.method]||'💸')}</div>
+    <div class="ic ${isIn?'ic-in':'ic-out'}">${isIn?'⬇️':catIcon(x.category)}</div>
     <div class="body">
-      <div class="title">${esc(t.note || t.category || (isIn?'Income':'Expense'))}</div>
-      <div class="meta">${shortDate(t.date)} · ${esc(t.category||'')}
-        ${t.auto?'<span class="pill auto">Auto</span>':''}
-        ${t.method && t.method!=='auto'?`<span class="pill">${esc(UPI_LABEL[t.method]||t.method)}</span>`:''}
-      </div>
+      <div class="title">${esc(x.note || label)}</div>
+      <div class="meta">${shortDate(x.date)} · ${esc(label)}
+        ${x.auto?`<span class="pill auto">${t('auto')}</span>`:''}
+        ${x.method && x.method!=='auto'?`<span class="pill">${esc(UPI_LABEL[x.method]||x.method)}</span>`:''}</div>
     </div>
-    <div class="amt ${isIn?'in':'out'}">${isIn?'+':'−'}${money(t.amount)}</div>
-    <button class="swipe-del" data-del-tx="${t.id}" aria-label="Delete">✕</button>
+    <div class="amt ${isIn?'in':'out'}">${isIn?'+':'−'}${money(x.amount)}</div>
+    <button class="swipe-del" data-del-tx="${x.id}" aria-label="x">✕</button>
   </div>`;
 }
 
 /* ---------------- savings coach ---------------- */
 function coachHTML(s, full){
   if(!s.income){
-    return `<h4>🌱 Savings coach</h4>
-      <p style="margin-top:8px">Add your income first — set up an auto monthly income on the Income tab and the coach will tell you exactly how much to save.</p>
-      <div class="coach-actions"><button class="btn btn-sm btn-save" data-go="income">Add income</button></div>`;
+    return `<h4>🌱 ${t('savingsCoach')}</h4><p style="margin-top:8px">${t('coachNoIncome')}</p>
+      <div class="coach-actions"><button class="btn btn-sm btn-save" data-go="income">${t('addIncomeBtn')}</button></div>`;
   }
-  const pct = Math.min(100, Math.round((s.savedM / Math.max(1,s.target)) * 100));
-  const overspend = s.expense > s.income;
+  const pct = Math.min(100, Math.round((s.savedM / Math.max(1,s.target))*100));
   const realistic = Math.max(0, s.income - s.expense);
   let line;
-  if(overspend){
-    line = `You have spent ${money(s.expense - s.income)} more than you earned this month. Cut back before saving — start with your biggest category.`;
-  } else if(s.savedM >= s.target){
-    line = `Target hit 🎉 You saved ${money(s.savedM)} — that is ${Math.round(s.savedM/s.income*100)}% of your income. Anything extra can go to an emergency fund.`;
-  } else if(realistic < s.stillSave){
-    line = `Your ${DB.settings.rate}% target is ${money(s.target)}, but at this month's spending only about ${money(realistic)} is realistic. Save that, and trim ${money(s.stillSave - realistic)} of spending to reach the full target.`;
-  } else {
-    line = `Set aside ${money(s.stillSave)} more this month and you hit your ${DB.settings.rate}% target. You can still spend about ${money(s.perDay)} a day for the next ${s.daysLeft} day${s.daysLeft>1?'s':''}.`;
-  }
-  const emergency = Math.round(avgExpense3() * 6);
+  if(s.expense > s.income)       line = t('coachOver',{a:money(s.expense-s.income)});
+  else if(s.savedM >= s.target)  line = t('coachHit',{a:money(s.savedM), p:Math.round(s.savedM/s.income*100)});
+  else if(realistic < s.stillSave) line = t('coachTight',{r:DB.settings.rate, t:money(s.target), a:money(realistic), c:money(s.stillSave-realistic)});
+  else line = t('coachOn',{a:money(s.stillSave), r:DB.settings.rate, d:money(s.perDay), n:s.daysLeft, dw:dayWord(s.daysLeft)});
+
+  const emergency = Math.round(avgExpense3()*6);
   const extra = full ? `
-    <p style="margin-top:11px"><b>Emergency fund:</b> aim for ${money(emergency)} (6 months of your average spending). You have ${money(s.cSaved)} saved — ${
-      s.cSaved >= emergency ? 'you are covered ✅' : `${money(emergency - s.cSaved)} to go.`}</p>
-    <p style="margin-top:7px"><b>Rule of thumb:</b> keep needs under 50% of income, wants under 30%, and save the rest.</p>` : '';
-  return `<h4>🌱 Save ${money(s.target)} this month</h4>
-    <div class="big">${money(s.stillSave)} <span style="font-size:13px;font-weight:600">still to set aside</span></div>
+    <p style="margin-top:11px">${t('emergency',{a:money(emergency), s:money(s.cSaved),
+      rest: s.cSaved >= emergency ? t('emergencyOk') : t('emergencyGap',{a:money(emergency-s.cSaved)})})}</p>
+    <p style="margin-top:7px">${t('thumb')}</p>` : '';
+  const quick = Math.max(0, Math.min(s.stillSave, Math.max(0,s.balance)));
+  return `<h4>🌱 ${t('coachTitle',{a:money(s.target)})}</h4>
+    <div class="big">${money(s.stillSave)} <span style="font-size:13px;font-weight:600">${t('stillAside')}</span></div>
     <div class="bar"><i style="width:${pct}%"></i></div>
-    <p><b>${pct}%</b> of this month's target done · saved ${money(s.savedM)}</p>
+    <p>${t('pctDone',{p:pct, a:money(s.savedM)})}</p>
     <p style="margin-top:9px">${line}</p>${extra}
     <div class="coach-actions">
-      <button class="btn btn-sm btn-save" id="quickSave" data-amt="${Math.max(0,Math.min(s.stillSave, Math.max(0,s.balance)))}">Set aside ${money(Math.max(0,Math.min(s.stillSave, Math.max(0,s.balance))))}</button>
-      ${full ? '' : '<button class="btn btn-sm btn-g" data-go="save">Savings tab</button>'}
+      <button class="btn btn-sm btn-save" id="quickSave" data-amt="${quick}">${t('setAside',{a:money(quick)})}</button>
+      ${full?'':`<button class="btn btn-sm btn-g" data-go="save">${t('savingsTab')}</button>`}
     </div>`;
 }
 function avgExpense3(){
-  const now = new Date(); let tot = 0, n = 0;
+  const now = new Date(); let tot=0,n=0;
   for(let i=0;i<3;i++){
     const d = new Date(now.getFullYear(), now.getMonth()-i, 1);
-    const v = sum(inMonth(DB.tx.filter(t=>t.type==='expense'), mKey(d)));
-    if(v){ tot += v; n++; }
+    const v = sum(inMonth(DB.tx.filter(x=>x.type==='expense'), mKey(d)));
+    if(v){ tot+=v; n++; }
   }
   return n ? tot/n : 0;
 }
@@ -720,60 +1192,57 @@ function avgExpense3(){
 function renderIncome(){
   const k = mKey(VIEW), s = stats();
   $('#iTotal').textContent = money(s.income);
-  const auto = sum(inMonth(DB.tx.filter(t=>t.type==='income' && t.auto), k));
-  $('#iAutoNote').textContent = auto ? `${money(auto)} credited automatically this month.`
-    : 'No automatic credit yet this month.';
+  const auto = sum(inMonth(DB.tx.filter(x=>x.type==='income'&&x.auto), k));
+  $('#iAutoNote').textContent = auto ? t('autoCredited',{a:money(auto)}) : t('noAutoYet');
 
   $('#sourceList').innerHTML = DB.sources.length ? DB.sources.map(src => {
     const done = (src.credited||[]).includes(k);
     return `<div class="row">
       <div class="ic ic-in">⚡</div>
-      <div class="body">
-        <div class="title">${esc(src.name)}</div>
-        <div class="meta">Every month on day ${src.day}
-          ${done?'<span class="pill auto">Credited</span>':'<span class="pill">Pending</span>'}
-          ${src.active?'':'<span class="pill">Paused</span>'}</div>
-      </div>
+      <div class="body"><div class="title">${esc(src.name)}</div>
+        <div class="meta">${src.day} · ${done?`<span class="pill auto">${t('credited')}</span>`:`<span class="pill">${t('pending')}</span>`}
+        ${src.active?'':`<span class="pill">${t('paused')}</span>`}</div></div>
       <div class="amt in">${money(src.amount)}</div>
-      <button class="swipe-del" data-edit-src="${src.id}" aria-label="Edit">✏️</button>
-    </div>`;
-  }).join('') : emptyBox('⚡','No auto income yet. Add your salary and pick a day between the 1st and 7th.');
+      <button class="swipe-del" data-edit-src="${src.id}">✏️</button></div>`;
+  }).join('') : emptyBox('⚡', t('emptySources'));
 
-  const rows = inMonth(DB.tx.filter(t=>t.type==='income'), k)
-    .sort((a,b)=>(b.date+b.id).localeCompare(a.date+a.id));
-  $('#incomeList').innerHTML = rows.length ? rows.map(txRow).join('')
-    : emptyBox('💰','No income recorded for '+fmtMonth(VIEW)+'.');
+  const rows = inMonth(DB.tx.filter(x=>x.type==='income'), k).sort((a,b)=>(b.date+b.id).localeCompare(a.date+a.id));
+  $('#incomeList').innerHTML = rows.length ? rows.map(txRow).join('') : emptyBox('💰', t('emptyIncome',{m:fmtMonth(VIEW)}));
 }
 
 /* ---------------- EXPENSE ---------------- */
 function renderExpense(){
   const k = mKey(VIEW), s = stats();
   $('#eTotal').textContent = money(s.expense);
-  const upi = sum(inMonth(DB.tx.filter(t=>t.type==='expense' && ['upi','phonepe','gpay','paytm'].includes(t.method)), k));
-  $('#eUpiNote').textContent = upi
-    ? `${money(upi)} of this went out through UPI apps — already deducted from your income.`
-    : 'UPI payments you make below are deducted from your income automatically.';
+  const upi = sum(inMonth(DB.tx.filter(x=>x.type==='expense'&&['upi','phonepe','gpay','paytm'].includes(x.method)), k));
+  $('#eUpiNote').textContent = upi ? t('upiOut',{a:money(upi)}) : t('upiNone');
 
-  const rows = inMonth(DB.tx.filter(t=>t.type==='expense'), k)
-    .sort((a,b)=>(b.date+b.id).localeCompare(a.date+a.id));
-  $('#expenseList').innerHTML = rows.length ? rows.map(txRow).join('')
-    : emptyBox('💸','No expenditure recorded for '+fmtMonth(VIEW)+'.');
+  $('#udhaarList').innerHTML = DB.udhaar.length ? DB.udhaar.map(u => `
+    <div class="row">
+      <div class="ic ic-warn">🏪</div>
+      <div class="body"><div class="title">${esc(u.shop)}</div>
+        <div class="meta">${shortDate(u.date)}</div></div>
+      <div class="amt out">${money(u.amount)}</div>
+      <button class="swipe-del" data-settle-udhaar="${u.id}" title="settle">✓</button>
+      <button class="swipe-del" data-del-udhaar="${u.id}">✕</button>
+    </div>`).join('') : emptyBox('🏪', t('emptyUdhaar'));
+
+  const rows = inMonth(DB.tx.filter(x=>x.type==='expense'), k).sort((a,b)=>(b.date+b.id).localeCompare(a.date+a.id));
+  $('#expenseList').innerHTML = rows.length ? rows.map(txRow).join('') : emptyBox('💸', t('emptyExpense',{m:fmtMonth(VIEW)}));
 }
 
-/* ---------------- REMINDERS ---------------- */
+/* ---------------- LOANS: vaddi + chits + reminders ---------------- */
 function nextDue(r){
   if(r.repeat !== 'monthly') return r.due;
   const today = ymd(new Date());
   let d = new Date(r.due+'T00:00:00');
   if(isNaN(d)) return r.due;
   const day = d.getDate();
-  let probe = new Date(d);
-  let guard = 0;
+  let probe = new Date(d), guard = 0;
   while(ymd(probe) < today && guard++ < 120){
     const nm = new Date(probe.getFullYear(), probe.getMonth()+1, 1);
     probe = new Date(nm.getFullYear(), nm.getMonth(), Math.min(day, daysIn(nm.getFullYear(), nm.getMonth())));
   }
-  // if already marked paid for that cycle, jump one more month
   while((r.history||[]).includes(ymd(probe)) && guard++ < 120){
     const nm = new Date(probe.getFullYear(), probe.getMonth()+1, 1);
     probe = new Date(nm.getFullYear(), nm.getMonth(), Math.min(day, daysIn(nm.getFullYear(), nm.getMonth())));
@@ -782,56 +1251,120 @@ function nextDue(r){
 }
 function upcomingDues(){
   const today = ymd(new Date()), win = Number(DB.settings.notifyDays)||3;
-  return DB.reminders.map(r => ({...r, dueOn: nextDue(r), days: daysBetween(today, nextDue(r))}))
-    .filter(r => r.days <= win)
-    .sort((a,b)=>a.days-b.days);
+  return DB.reminders.map(r => ({...r, dueOn:nextDue(r), days:daysBetween(today, nextDue(r))}))
+    .filter(r => r.days <= win).sort((a,b)=>a.days-b.days);
 }
-function renderRemind(){
-  const k = mKey(VIEW);
-  const list = DB.reminders.map(r => ({...r, dueOn: nextDue(r), days: daysBetween(ymd(new Date()), nextDue(r))}))
-    .sort((a,b)=>a.days-b.days);
-  const monthTotal = list.filter(r => monthOf(r.dueOn) === k).reduce((a,r)=>a+Number(r.amount||0),0);
-  $('#rTotal').textContent = money(monthTotal);
-  const overdue = list.filter(r=>r.days<0).length;
-  $('#rNote').textContent = overdue ? `${overdue} payment${overdue>1?'s':''} overdue — clear them first.`
-    : (list.length ? 'All loan dates are tracked. You will be reminded before each one.'
-                   : 'Add your loans and EMIs to never miss a date.');
 
+function renderLoans(){
+  const tot = loanTotals();
+  $('#lOwe').textContent = money(tot.owe);
+  $('#lGet').textContent = money(tot.get);
+  $('#lVaddi').textContent = money(tot.vaddi);
+  $('#lVaddiNote').textContent = tot.vaddi ? t('vaddiNote',{a:money(tot.vaddi)}) : t('vaddiNoteNone');
+
+  $('#loanList').innerHTML = DB.loans.length ? DB.loans.map(l => {
+    const m = loanMath(l);
+    const borrowed = l.kind === 'borrowed';
+    return `<div class="row" style="align-items:flex-start">
+      <div class="ic ${borrowed?'ic-out':'ic-in'}">${borrowed?'📤':'📥'}</div>
+      <div class="body">
+        <div class="title">${esc(l.person)} ${l.closed?`<span class="pill">${t('done')}</span>`:''}</div>
+        <div class="meta">${money(l.principal)} · ₹${l.rate}/100 ${t('perMonth')} (${m.yearly}%/yr)
+          <span class="pill">${t('monthsRun',{n:m.months})}</span></div>
+        <div class="kv" style="margin-top:7px;border:0;padding:2px 0">
+          <span>${t('interestSoFar')}</span><b>${money(m.interest)}</b></div>
+        <div class="kv" style="padding:2px 0;border:0">
+          <span>${borrowed?t('totalPayable'):t('totalReceivable')}</span><b>${money(m.total)}</b></div>
+        ${l.closed?'':`<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+          <button class="btn btn-sm ${borrowed?'btn-out':'btn-g'}" data-pay-vaddi="${l.id}">${t('payInterest')} ${money(m.perMonth)}</button>
+          <button class="btn btn-sm btn-g" data-close-loan="${l.id}">${t('settle')}</button>
+          <button class="btn btn-sm btn-g" data-edit-loan="${l.id}">${t('edit')}</button></div>`}
+      </div></div>`;
+  }).join('') : emptyBox('🤝', t('emptyLoans'));
+
+  $('#chitList').innerHTML = DB.chits.length ? DB.chits.map(c => {
+    const m = chitMath(c);
+    const pct = m.total ? Math.round(m.paid/m.total*100) : 0;
+    return `<div class="row" style="align-items:flex-start">
+      <div class="ic ic-plum">🔄</div>
+      <div class="body">
+        <div class="title">${esc(c.name)}</div>
+        <div class="meta">${money(c.instal)} × ${c.months} ·
+          <span class="pill ${c.taken?'plum':''}">${c.taken?t('chitTakenYes'):t('chitNotTaken')}</span></div>
+        <div class="mini-bar"><i style="width:${pct}%"></i></div>
+        <div class="meta" style="margin-top:5px">${t('chitPaidUp',{p:m.paid,t:m.total})} · ${money(m.paidAmt)}</div>
+        <div class="kv" style="padding:4px 0;border:0"><span>${t('chitNet')}</span>
+          <b style="color:${m.net>=0?'var(--in)':'var(--out)'}">${money(m.net)}</b></div>
+        <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap">
+          <button class="btn btn-sm btn-plum" data-pay-chit="${c.id}">${t('payInstal')}</button>
+          <button class="btn btn-sm btn-g" data-edit-chit="${c.id}">${t('edit')}</button></div>
+      </div></div>`;
+  }).join('') : emptyBox('🔄', t('emptyChits'));
+
+  const list = DB.reminders.map(r => ({...r, dueOn:nextDue(r), days:daysBetween(ymd(new Date()), nextDue(r))}))
+    .sort((a,b)=>a.days-b.days);
   $('#remindList').innerHTML = list.length ? list.map(r => {
     const cls = r.days < 0 ? 'due' : (r.days <= (DB.settings.notifyDays||3) ? 'soon' : '');
-    const txt = r.days < 0 ? `Overdue ${Math.abs(r.days)}d` : r.days === 0 ? 'Due today' : `In ${r.days}d`;
+    const txt = r.days < 0 ? t('overdueShort',{n:Math.abs(r.days)}) : r.days === 0 ? t('dueToday') : t('inDays',{n:r.days});
     return `<div class="row">
       <div class="ic ${r.days<0?'ic-out':'ic-warn'}">📅</div>
-      <div class="body">
-        <div class="title">${esc(r.title)}</div>
+      <div class="body"><div class="title">${esc(r.title)}</div>
         <div class="meta">${shortDate(r.dueOn)}${r.lender?' · '+esc(r.lender):''}
-          ${r.repeat==='monthly'?'<span class="pill">Monthly</span>':''}
-          <span class="pill ${cls}">${txt}</span></div>
-      </div>
+          ${r.repeat==='monthly'?`<span class="pill">${t('monthly')}</span>`:''}
+          <span class="pill ${cls}">${txt}</span></div></div>
       <div class="amt out">${money(r.amount)}</div>
-      <button class="swipe-del" data-pay-rem="${r.id}" title="Mark paid">✓</button>
-      <button class="swipe-del" data-edit-rem="${r.id}" aria-label="Edit">✏️</button>
-    </div>`;
-  }).join('') : emptyBox('🔔','No reminders yet. Add a loan, EMI or bill date.');
+      <button class="swipe-del" data-pay-rem="${r.id}">✓</button>
+      <button class="swipe-del" data-edit-rem="${r.id}">✏️</button></div>`;
+  }).join('') : emptyBox('🔔', t('emptyRemind'));
 }
 
-/* ---------------- SAVINGS ---------------- */
+/* ---------------- SAVINGS + festival + moyi ---------------- */
 function renderSave(){
   const s = stats();
   $('#sTotal').textContent = money(sum(DB.savings));
-  $('#sNote').textContent = `${money(s.savedM)} set aside in ${fmtMonth(VIEW)} · target ${money(s.target)}`;
+  $('#sNote').textContent = `${money(s.savedM)} · ${fmtMonth(VIEW)} · ${t('coachTitle',{a:money(s.target)})}`;
   $$('#rateChips .chip').forEach(c => c.setAttribute('aria-pressed', String(+c.dataset.rate === +DB.settings.rate)));
+
+  $('#festList').innerHTML = DB.fests.length ? DB.fests.map(f => {
+    const m = festMath(f);
+    return `<div class="row" style="align-items:flex-start">
+      <div class="ic ic-warn">🎉</div>
+      <div class="body">
+        <div class="title">${esc(f.name)}</div>
+        <div class="meta">${shortDate(f.date)} · ${money(m.saved)} / ${money(m.target)}
+          ${m.done?`<span class="pill auto">${t('festDone')}</span>`:`<span class="pill soon">${t('festLeft',{n:m.monthsLeft})}</span>`}</div>
+        <div class="mini-bar"><i style="width:${m.pct}%"></i></div>
+        <div class="meta" style="margin-top:6px">${m.done?'':t('festNeed',{a:money(m.perMonth)})}</div>
+        <div style="display:flex;gap:6px;margin-top:7px;flex-wrap:wrap">
+          <button class="btn btn-sm btn-save" data-add-fest="${f.id}">${t('addToFest')}</button>
+          <button class="btn btn-sm btn-g" data-edit-fest="${f.id}">${t('edit')}</button></div>
+      </div></div>`;
+  }).join('') : emptyBox('🎉', t('emptyFest'));
+
+  const mt = moyiTotals();
+  $('#moyiIn').textContent = money(mt.received);
+  $('#moyiOut').textContent = money(mt.given);
+  $('#moyiList').innerHTML = mt.list.length ? (
+    `<div class="sub" style="margin:0 2px 8px">${t('moyiSummary',{n:mt.list.length, a:money(mt.owe)})}</div>` +
+    mt.list.slice(0,12).map(p => `
+      <div class="row">
+        <div class="ic ${p.owe>0?'ic-plum':'ic-in'}">🎁</div>
+        <div class="body"><div class="title">${esc(p.person)}</div>
+          <div class="meta">${t('received')} ${money(p.received)} · ${t('given')} ${money(p.given)}</div></div>
+        ${p.owe>0?`<div style="text-align:right"><div class="amt plum">${money(p.owe)}</div>
+          <div style="font-size:10px;color:var(--muted)">${t('moyiOwe')}</div></div>`:'<div class="amt in">✓</div>'}
+      </div>`).join('')
+  ) : emptyBox('🎁', t('emptyMoyi'));
+
   const rows = [...DB.savings].sort((a,b)=>(b.date+b.id).localeCompare(a.date+a.id)).slice(0,30);
   $('#savingList').innerHTML = rows.length ? rows.map(x => `
     <div class="row">
       <div class="ic ic-save">🐖</div>
-      <div class="body">
-        <div class="title">${esc(x.note||'Saved')}</div>
-        <div class="meta">${shortDate(x.date)}</div>
-      </div>
+      <div class="body"><div class="title">${esc(x.note||t('totalSaved'))}</div>
+        <div class="meta">${shortDate(x.date)}</div></div>
       <div class="amt in">${money(x.amount)}</div>
-      <button class="swipe-del" data-del-save="${x.id}" aria-label="Delete">✕</button>
-    </div>`).join('') : emptyBox('🐖','Nothing set aside yet. Use the coach to start.');
+      <button class="swipe-del" data-del-save="${x.id}">✕</button>
+    </div>`).join('') : emptyBox('🐖', t('emptySavings'));
 }
 </script>
 
@@ -849,159 +1382,333 @@ function closeSheet(){
 }
 $('#scrim').addEventListener('click', closeSheet);
 
-const catOptions = sel => CATS.map(c => `<option ${c===sel?'selected':''}>${c}</option>`).join('');
+const catOptions = sel => CATS.map(c => `<option value="${c.k}" ${c.k===sel?'selected':''}>${c.ic} ${LANG==='te'?c.te:c.en}</option>`).join('');
+const incOptions = sel => INCOME_CATS.map(c => `<option value="${c.k}" ${c.k===sel?'selected':''}>${LANG==='te'?c.te:c.en}</option>`).join('');
 const methodOptions = sel => ['phonepe','gpay','paytm','upi','cash','card','bank']
   .map(m => `<option value="${m}" ${m===sel?'selected':''}>${UPI_LABEL[m]}</option>`).join('');
 
-/* ---- add / edit transaction ---- */
-function sheetTx(type = 'expense', tx = null){
-  const t = tx || { amount:'', note:'', category: type==='income'?'Salary':'Food',
-                    method: type==='income'?'bank':'phonepe', date: ymd(new Date()) };
+/* ---- transaction ---- */
+function sheetTx(type='expense', tx=null, preset={}){
+  const x = tx || { amount:preset.amount||'', note:preset.note||'', category: preset.category || (type==='income'?'Salary':'Food'),
+                    method: type==='income'?'cash':'phonepe', date: ymd(new Date()) };
   openSheet(`
-    <h3>${tx?'Edit':'Add'} ${type === 'income' ? 'income' : 'expenditure'}</h3>
+    <h3>${tx ? (type==='income'?t('editIncome'):t('editExpense')) : (type==='income'?t('addIncome'):t('addExpense'))}</h3>
     ${tx?'':`<div class="seg" id="txSeg">
-      <button data-type="expense" aria-pressed="${type==='expense'}">💸 Expenditure</button>
-      <button data-type="income"  aria-pressed="${type==='income'}">💰 Income</button>
-    </div>`}
-    <div class="field"><label>Amount ₹</label>
-      <input id="fAmt" type="number" inputmode="decimal" value="${t.amount}" placeholder="0" autofocus></div>
-    <div class="field"><label>${type==='income'?'Source':'Paid to / note'}</label>
-      <input id="fNote" type="text" value="${esc(t.note)}" placeholder="${type==='income'?'Salary, freelance…':'Groceries, tea…'}"></div>
+      <button data-type="expense" aria-pressed="${type==='expense'}">💸 ${t('expenditure')}</button>
+      <button data-type="income"  aria-pressed="${type==='income'}">💰 ${t('income')}</button></div>`}
+    <div class="field"><label>${t('amount')}</label>
+      <input id="fAmt" type="number" inputmode="decimal" value="${x.amount}" placeholder="0"></div>
+    <div class="field"><label>${type==='income'?t('source'):t('paidTo')}</label>
+      <input id="fNote" type="text" value="${esc(x.note)}"></div>
     <div class="grid2">
-      <div class="field"><label>Category</label>
-        <select id="fCat">${type==='income'
-          ? ['Salary','Business','Freelance','Rent received','Interest','Other income'].map(c=>`<option ${c===t.category?'selected':''}>${c}</option>`).join('')
-          : catOptions(t.category)}</select></div>
-      <div class="field"><label>Paid by</label><select id="fMethod">${methodOptions(t.method)}</select></div>
+      <div class="field"><label>${t('category')}</label>
+        <select id="fCat">${type==='income'?incOptions(x.category):catOptions(x.category)}</select></div>
+      <div class="field"><label>${t('paidBy')}</label><select id="fMethod">${methodOptions(x.method)}</select></div>
     </div>
-    <div class="field"><label>Date</label><input id="fDate" type="date" value="${t.date}"></div>
-    <button class="btn ${type==='income'?'btn-in':'btn-out'} btn-block" id="fSave">${tx?'Save changes':'Add '+(type==='income'?'income':'expense')}</button>
-    ${tx?`<button class="btn btn-g btn-block" style="margin-top:8px" id="fDelete">Delete</button>`:''}
-  `);
+    <div class="field"><label>${t('date')}</label><input id="fDate" type="date" value="${x.date}"></div>
+    <button class="btn ${type==='income'?'btn-in':'btn-out'} btn-block" id="fSave">${tx?t('saveChanges'):(type==='income'?t('addIncome'):t('addExpense'))}</button>
+    ${tx?`<button class="btn btn-g btn-block" style="margin-top:8px" id="fDel">${t('del')}</button>`:''}`);
   const seg = $('#txSeg');
   if(seg) seg.addEventListener('click', e => {
-    const b = e.target.closest('button'); if(!b) return;
-    sheetTx(b.dataset.type);
+    const b = e.target.closest('button'); if(b) sheetTx(b.dataset.type);
   });
   $('#fSave').addEventListener('click', () => {
     const amount = Number($('#fAmt').value);
-    if(!amount || amount <= 0) return toast('Enter an amount');
-    const rec = { id: tx ? tx.id : uid(), type, amount, note: $('#fNote').value.trim(),
-      category: $('#fCat').value, method: $('#fMethod').value, date: $('#fDate').value || ymd(new Date()),
-      auto: tx ? !!tx.auto : false };
-    if(tx){ DB.tx = DB.tx.map(x => x.id === tx.id ? rec : x); }
-    else { DB.tx.push(rec); }
-    save(); renderAll(); closeSheet();
-    toast(type === 'income' ? 'Income added' : 'Added to expenditure');
+    if(!amount || amount <= 0) return toast(t('enterAmount'));
+    const rec = { id: tx?tx.id:uid(), type, amount, note:$('#fNote').value.trim(),
+      category:$('#fCat').value, method:$('#fMethod').value, date:$('#fDate').value||ymd(new Date()),
+      auto: tx?!!tx.auto:false };
+    if(tx) DB.tx = DB.tx.map(y => y.id===tx.id?rec:y); else DB.tx.push(rec);
+    save(); renderAll(); closeSheet(); toast(type==='income'?t('incomeAdded'):t('expenseAdded'));
   });
-  if($('#fDelete')) $('#fDelete').addEventListener('click', () => {
-    DB.tx = DB.tx.filter(x => x.id !== tx.id); save(); renderAll(); closeSheet(); toast('Deleted');
+  if($('#fDel')) $('#fDel').addEventListener('click', () => {
+    DB.tx = DB.tx.filter(y=>y.id!==tx.id); save(); renderAll(); closeSheet(); toast(t('deleted'));
   });
 }
 
 /* ---- auto income source ---- */
-function sheetSource(src = null){
-  const s = src || { name:'Salary', amount:'', day:1, active:true };
+function sheetSource(src=null){
+  const s = src || { name: LANG==='te'?'జీతం':'Salary', amount:'', day:1, active:true };
   openSheet(`
-    <h3>${src?'Edit':'Add'} auto monthly income</h3>
-    <div class="field"><label>Name</label><input id="sName" type="text" value="${esc(s.name)}" placeholder="Salary"></div>
-    <div class="field"><label>Amount ₹</label><input id="sAmt" type="number" inputmode="decimal" value="${s.amount}" placeholder="0"></div>
-    <div class="field"><label>Credit on day of month</label>
-      <select id="sDay">${[1,2,3,4,5,6,7].map(d=>`<option value="${d}" ${d==s.day?'selected':''}>${d}${['st','nd','rd'][d-1]||'th'} of every month</option>`).join('')}</select>
-      <div class="hint">Only the 1st to the 7th, as you asked. Opening the app on or after that day credits the money automatically.</div></div>
-    <div class="field"><label>Status</label>
-      <select id="sActive"><option value="1" ${s.active?'selected':''}>Active</option><option value="0" ${s.active?'':'selected'}>Paused</option></select></div>
-    <button class="btn btn-in btn-block" id="sSave">${src?'Save changes':'Add income source'}</button>
-    ${src?`<button class="btn btn-g btn-block" style="margin-top:8px" id="sDel">Delete</button>`:''}
-  `);
+    <h3>${t('autoIncome')}</h3>
+    <div class="field"><label>${t('source')}</label><input id="sName" type="text" value="${esc(s.name)}"></div>
+    <div class="field"><label>${t('amount')}</label><input id="sAmt" type="number" inputmode="decimal" value="${s.amount}" placeholder="0"></div>
+    <div class="field"><label>${t('date')} (1–7)</label>
+      <select id="sDay">${[1,2,3,4,5,6,7].map(d=>`<option value="${d}" ${d==s.day?'selected':''}>${d}</option>`).join('')}</select>
+      <div class="hint">${t('autoIncomeHint')}</div></div>
+    <div class="field"><label>${t('loanKind')}</label>
+      <select id="sActive"><option value="1" ${s.active?'selected':''}>${t('credited')}</option>
+      <option value="0" ${s.active?'':'selected'}>${t('paused')}</option></select></div>
+    <button class="btn btn-in btn-block" id="sSave">${src?t('saveChanges'):t('add')}</button>
+    ${src?`<button class="btn btn-g btn-block" style="margin-top:8px" id="sDel">${t('del')}</button>`:''}`);
   $('#sSave').addEventListener('click', () => {
     const amount = Number($('#sAmt').value);
-    if(!amount || amount <= 0) return toast('Enter an amount');
-    const rec = { id: src ? src.id : uid(), name: $('#sName').value.trim() || 'Income',
-      amount, day: Number($('#sDay').value), active: $('#sActive').value === '1',
-      credited: src ? (src.credited||[]) : [], since: src ? src.since : mKey(new Date()) };
-    if(src) DB.sources = DB.sources.map(x => x.id === src.id ? rec : x);
-    else DB.sources.push(rec);
-    save();
-    const n = runAutoIncome();
-    renderAll(); closeSheet();
-    toast(n ? `Saved · ${money(rec.amount)} credited` : 'Saved');
+    if(!amount || amount <= 0) return toast(t('enterAmount'));
+    const rec = { id:src?src.id:uid(), name:$('#sName').value.trim()||'Income', amount,
+      day:Number($('#sDay').value), active:$('#sActive').value==='1',
+      credited: src?(src.credited||[]):[], since: src?src.since:mKey(new Date()) };
+    if(src) DB.sources = DB.sources.map(y=>y.id===src.id?rec:y); else DB.sources.push(rec);
+    save(); runAutoIncome(); renderAll(); closeSheet(); toast(t('saved'));
   });
   if($('#sDel')) $('#sDel').addEventListener('click', () => {
-    DB.sources = DB.sources.filter(x => x.id !== src.id); save(); renderAll(); closeSheet(); toast('Removed');
+    DB.sources = DB.sources.filter(y=>y.id!==src.id); save(); renderAll(); closeSheet(); toast(t('removed'));
+  });
+}
+
+/* ---- vaddi hand loan ---- */
+function sheetLoan(loan=null){
+  const l = loan || { kind:'borrowed', person:'', principal:'', rate:2, start:ymd(new Date()) };
+  openSheet(`
+    <h3>${t('loanTitle')}</h3>
+    <div class="sheet-sub">${t('vaddiHint')}</div>
+    <div class="seg" id="lSeg">
+      <button data-kind="borrowed" aria-pressed="${l.kind==='borrowed'}">${t('iBorrowed')}</button>
+      <button data-kind="lent" aria-pressed="${l.kind==='lent'}">${t('iLent')}</button></div>
+    <div class="field"><label>${t('person')}</label><input id="lPerson" type="text" value="${esc(l.person)}"></div>
+    <div class="grid2">
+      <div class="field"><label>${t('principal')}</label><input id="lPrin" type="number" inputmode="decimal" value="${l.principal}" placeholder="0"></div>
+      <div class="field"><label>${t('rateLabel')}</label>
+        <select id="lRate">${[0.5,1,1.5,2,2.5,3,3.5,4,5].map(r=>`<option value="${r}" ${r==l.rate?'selected':''}>₹${r} (${(r*12)}%/yr)</option>`).join('')}</select></div>
+    </div>
+    <div class="field"><label>${t('startDate')}</label><input id="lStart" type="date" value="${l.start}"></div>
+    <div id="lPreview" class="card" style="padding:12px;margin-bottom:12px"></div>
+    <button class="btn btn-p btn-block" id="lSave">${loan?t('saveChanges'):t('add')}</button>
+    ${loan?`<button class="btn btn-g btn-block" style="margin-top:8px" id="lDel">${t('del')}</button>`:''}`);
+  let kind = l.kind;
+  const preview = () => {
+    const tmp = { principal:Number($('#lPrin').value)||0, rate:Number($('#lRate').value)||0, start:$('#lStart').value };
+    const m = loanMath(tmp);
+    $('#lPreview').innerHTML = `
+      <div class="kv"><span>${t('perMonth')}</span><b>${money(m.perMonth)}</b></div>
+      <div class="kv"><span>${t('monthsRun',{n:m.months})}</span><b>${money(m.interest)}</b></div>
+      <div class="kv"><span>${kind==='borrowed'?t('totalPayable'):t('totalReceivable')}</span><b>${money(m.total)}</b></div>`;
+  };
+  ['lPrin','lRate','lStart'].forEach(id => $('#'+id).addEventListener('input', preview));
+  $('#lSeg').addEventListener('click', e => {
+    const b = e.target.closest('button'); if(!b) return;
+    kind = b.dataset.kind;
+    $$('#lSeg button').forEach(x=>x.setAttribute('aria-pressed', String(x===b)));
+    preview();
+  });
+  preview();
+  $('#lSave').addEventListener('click', () => {
+    const principal = Number($('#lPrin').value);
+    if(!principal || principal <= 0) return toast(t('enterAmount'));
+    const rec = { id:loan?loan.id:uid(), kind, person:$('#lPerson').value.trim()||'—',
+      principal, rate:Number($('#lRate').value), start:$('#lStart').value||ymd(new Date()),
+      paidInterest: loan?(loan.paidInterest||0):0, closed: loan?!!loan.closed:false };
+    if(loan) DB.loans = DB.loans.map(y=>y.id===loan.id?rec:y); else DB.loans.push(rec);
+    save(); renderAll(); closeSheet(); toast(t('saved'));
+  });
+  if($('#lDel')) $('#lDel').addEventListener('click', () => {
+    DB.loans = DB.loans.filter(y=>y.id!==loan.id); save(); renderAll(); closeSheet(); toast(t('removed'));
+  });
+}
+
+/* ---- chit fund ---- */
+function sheetChit(chit=null){
+  const c = chit || { name:'', instal:'', months:20, paid:0, taken:false, prize:'' };
+  openSheet(`
+    <h3>${t('chits')}</h3>
+    <div class="sheet-sub">${t('chitHint')}</div>
+    <div class="field"><label>${t('chitName')}</label><input id="cName" type="text" value="${esc(c.name)}"></div>
+    <div class="grid2">
+      <div class="field"><label>${t('chitInstal')}</label><input id="cInstal" type="number" inputmode="decimal" value="${c.instal}" placeholder="0"></div>
+      <div class="field"><label>${t('chitMonths')}</label><input id="cMonths" type="number" value="${c.months}"></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label>${t('chitPaid')}</label><input id="cPaid" type="number" value="${c.paid}"></div>
+      <div class="field"><label>${t('chitTaken')}</label>
+        <select id="cTaken"><option value="0" ${c.taken?'':'selected'}>${t('chitNotTaken')}</option>
+        <option value="1" ${c.taken?'selected':''}>${t('chitTakenYes')}</option></select></div>
+    </div>
+    <div class="field"><label>${t('chitPrize')}</label><input id="cPrize" type="number" inputmode="decimal" value="${c.prize}" placeholder="0"></div>
+    <button class="btn btn-plum btn-block" id="cSave">${chit?t('saveChanges'):t('add')}</button>
+    ${chit?`<button class="btn btn-g btn-block" style="margin-top:8px" id="cDel">${t('del')}</button>`:''}`);
+  $('#cSave').addEventListener('click', () => {
+    const instal = Number($('#cInstal').value);
+    if(!instal || instal <= 0) return toast(t('enterAmount'));
+    const rec = { id:chit?chit.id:uid(), name:$('#cName').value.trim()||'Chit', instal,
+      months:Number($('#cMonths').value)||1, paid:Number($('#cPaid').value)||0,
+      taken:$('#cTaken').value==='1', prize:Number($('#cPrize').value)||0 };
+    if(chit) DB.chits = DB.chits.map(y=>y.id===chit.id?rec:y); else DB.chits.push(rec);
+    save(); renderAll(); closeSheet(); toast(t('saved'));
+  });
+  if($('#cDel')) $('#cDel').addEventListener('click', () => {
+    DB.chits = DB.chits.filter(y=>y.id!==chit.id); save(); renderAll(); closeSheet(); toast(t('removed'));
+  });
+}
+
+/* ---- festival fund ---- */
+const FESTIVALS = [
+  {te:'సంక్రాంతి', en:'Sankranti'}, {te:'ఉగాది', en:'Ugadi'}, {te:'శ్రీరామనవమి', en:'Sri Rama Navami'},
+  {te:'బోనాలు', en:'Bonalu'}, {te:'వినాయక చవితి', en:'Vinayaka Chavithi'}, {te:'బతుకమ్మ', en:'Bathukamma'},
+  {te:'దసరా', en:'Dasara'}, {te:'దీపావళి', en:'Deepavali'}, {te:'పెళ్లి / శుభకార్యం', en:'Wedding / function'}
+];
+function sheetFest(fest=null){
+  const f = fest || { name:'', target:'', date:ymd(new Date(new Date().getFullYear(), new Date().getMonth()+3, 1)), saved:0 };
+  openSheet(`
+    <h3>${t('festivalPlan')}</h3>
+    <div class="sheet-sub">${t('festivalHint')}</div>
+    <div class="field"><label>${t('festName')}</label>
+      <input id="fName" type="text" value="${esc(f.name)}" list="festList2">
+      <datalist id="festList2">${FESTIVALS.map(x=>`<option value="${LANG==='te'?x.te:x.en}">`).join('')}</datalist></div>
+    <div class="grid2">
+      <div class="field"><label>${t('festTarget')}</label><input id="fTarget" type="number" inputmode="decimal" value="${f.target}" placeholder="0"></div>
+      <div class="field"><label>${t('festDate')}</label><input id="fWhen" type="date" value="${f.date}"></div>
+    </div>
+    <div id="fPreview" class="card" style="padding:12px;margin-bottom:12px"></div>
+    <button class="btn btn-save btn-block" id="fSaveB">${fest?t('saveChanges'):t('add')}</button>
+    ${fest?`<button class="btn btn-g btn-block" style="margin-top:8px" id="fDelB">${t('del')}</button>`:''}`);
+  const preview = () => {
+    const m = festMath({ target:Number($('#fTarget').value)||0, date:$('#fWhen').value, saved:f.saved });
+    $('#fPreview').innerHTML = `<div class="kv"><span>${t('festLeft',{n:m.monthsLeft})}</span><b>${t('festNeed',{a:money(m.perMonth)})}</b></div>`;
+  };
+  ['fTarget','fWhen'].forEach(id => $('#'+id).addEventListener('input', preview));
+  preview();
+  $('#fSaveB').addEventListener('click', () => {
+    const target = Number($('#fTarget').value);
+    if(!target || target <= 0) return toast(t('enterAmount'));
+    const rec = { id:fest?fest.id:uid(), name:$('#fName').value.trim()||'Festival', target,
+      date:$('#fWhen').value, saved: fest?(fest.saved||0):0 };
+    if(fest) DB.fests = DB.fests.map(y=>y.id===fest.id?rec:y); else DB.fests.push(rec);
+    save(); renderAll(); closeSheet(); toast(t('saved'));
+  });
+  if($('#fDelB')) $('#fDelB').addEventListener('click', () => {
+    DB.fests = DB.fests.filter(y=>y.id!==fest.id); save(); renderAll(); closeSheet(); toast(t('removed'));
+  });
+}
+function sheetFestAdd(id){
+  const f = DB.fests.find(x=>x.id===id); if(!f) return;
+  const m = festMath(f);
+  openSheet(`
+    <h3>${esc(f.name)}</h3>
+    <div class="sheet-sub">${money(m.saved)} / ${money(m.target)} · ${m.done?t('festDone'):t('festNeed',{a:money(m.perMonth)})}</div>
+    <div class="field"><label>${t('amount')}</label>
+      <input id="faAmt" type="number" inputmode="decimal" value="${m.done?'':m.perMonth}"></div>
+    <button class="btn btn-save btn-block" id="faGo">${t('addToFest')}</button>`);
+  $('#faGo').addEventListener('click', () => {
+    const a = Number($('#faAmt').value);
+    if(!a || a <= 0) return toast(t('enterAmount'));
+    f.saved = (Number(f.saved)||0) + a;
+    DB.savings.push({ id:uid(), amount:a, note:f.name, date:ymd(new Date()) });
+    save(); renderAll(); closeSheet(); toast(t('festAdded'));
+  });
+}
+
+/* ---- moyi gift book ---- */
+function sheetMoyi(){
+  openSheet(`
+    <h3>${t('moyiBook')}</h3>
+    <div class="sheet-sub">${t('moyiHint')}</div>
+    <div class="seg" id="mSeg">
+      <button data-type="received" aria-pressed="true">${t('moyiReceived')}</button>
+      <button data-type="given" aria-pressed="false">${t('moyiGiven')}</button></div>
+    <div class="field"><label>${t('moyiPerson')}</label><input id="moPerson" type="text"></div>
+    <div class="grid2">
+      <div class="field"><label>${t('amount')}</label><input id="moAmt" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="field"><label>${t('date')}</label><input id="moDate" type="date" value="${ymd(new Date())}"></div>
+    </div>
+    <div class="field"><label>${t('moyiEvent')}</label><input id="moEvent" type="text"></div>
+    <button class="btn btn-plum btn-block" id="moSave">${t('add')}</button>`);
+  let type = 'received';
+  $('#mSeg').addEventListener('click', e => {
+    const b = e.target.closest('button'); if(!b) return;
+    type = b.dataset.type;
+    $$('#mSeg button').forEach(x=>x.setAttribute('aria-pressed', String(x===b)));
+  });
+  $('#moSave').addEventListener('click', () => {
+    const amount = Number($('#moAmt').value);
+    if(!amount || amount <= 0) return toast(t('enterAmount'));
+    DB.moyi.push({ id:uid(), person:$('#moPerson').value.trim()||'—', event:$('#moEvent').value.trim(),
+      type, amount, date:$('#moDate').value||ymd(new Date()) });
+    if(type === 'given') DB.tx.push({ id:uid(), type:'expense', amount, category:'Function',
+      note:($('#moEvent').value.trim()||t('moyiBook'))+' — '+($('#moPerson').value.trim()||''),
+      method:'cash', date:$('#moDate').value||ymd(new Date()) });
+    save(); renderAll(); closeSheet(); toast(t('saved'));
+  });
+}
+
+/* ---- kirana udhaar ---- */
+function sheetUdhaar(){
+  openSheet(`
+    <h3>${t('kiranaCredit')}</h3>
+    <div class="sheet-sub">${t('kiranaHint')}</div>
+    <div class="field"><label>${t('udhaarShop')}</label><input id="uShop" type="text"></div>
+    <div class="grid2">
+      <div class="field"><label>${t('udhaarPending')}</label><input id="uAmt" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="field"><label>${t('date')}</label><input id="uDate" type="date" value="${ymd(new Date())}"></div>
+    </div>
+    <button class="btn btn-p btn-block" id="uSave">${t('add')}</button>`);
+  $('#uSave').addEventListener('click', () => {
+    const amount = Number($('#uAmt').value);
+    if(!amount || amount <= 0) return toast(t('enterAmount'));
+    DB.udhaar.push({ id:uid(), shop:$('#uShop').value.trim()||'—', amount, date:$('#uDate').value||ymd(new Date()) });
+    save(); renderAll(); closeSheet(); toast(t('saved'));
   });
 }
 
 /* ---- reminder ---- */
-function sheetRemind(rem = null){
-  const r = rem || { title:'', lender:'', amount:'', due: ymd(new Date()), repeat:'monthly' };
+function sheetRemind(rem=null){
+  const r = rem || { title:'', lender:'', amount:'', due:ymd(new Date()), repeat:'monthly' };
   openSheet(`
-    <h3>${rem?'Edit':'Add'} loan reminder</h3>
-    <div class="field"><label>What is it?</label><input id="rTitle" type="text" value="${esc(r.title)}" placeholder="Bike EMI, gold loan interest…"></div>
+    <h3>${t('reminders')}</h3>
+    <div class="field"><label>${t('whatFor')}</label><input id="rTitle" type="text" value="${esc(r.title)}"></div>
     <div class="grid2">
-      <div class="field"><label>Amount ₹</label><input id="rAmt" type="number" inputmode="decimal" value="${r.amount}" placeholder="0"></div>
-      <div class="field"><label>Due date</label><input id="rDue" type="date" value="${r.due}"></div>
+      <div class="field"><label>${t('amount')}</label><input id="rAmt" type="number" inputmode="decimal" value="${r.amount}" placeholder="0"></div>
+      <div class="field"><label>${t('date')}</label><input id="rDue" type="date" value="${r.due}"></div>
     </div>
-    <div class="field"><label>Lender / to whom</label><input id="rLender" type="text" value="${esc(r.lender)}" placeholder="HDFC, Ramesh…"></div>
-    <div class="field"><label>Repeat</label>
-      <select id="rRepeat"><option value="monthly" ${r.repeat==='monthly'?'selected':''}>Every month</option>
-      <option value="none" ${r.repeat==='none'?'selected':''}>One time</option></select></div>
-    <button class="btn btn-p btn-block" id="rSave">${rem?'Save changes':'Add reminder'}</button>
-    ${rem?`<button class="btn btn-g btn-block" style="margin-top:8px" id="rDel">Delete</button>`:''}
-  `);
+    <div class="field"><label>${t('person')}</label><input id="rLender" type="text" value="${esc(r.lender)}"></div>
+    <div class="field"><label>${t('monthly')}</label>
+      <select id="rRepeat"><option value="monthly" ${r.repeat==='monthly'?'selected':''}>${t('monthly')}</option>
+      <option value="none" ${r.repeat==='none'?'selected':''}>${t('done')}</option></select></div>
+    <button class="btn btn-p btn-block" id="rSave">${rem?t('saveChanges'):t('add')}</button>
+    ${rem?`<button class="btn btn-g btn-block" style="margin-top:8px" id="rDel">${t('del')}</button>`:''}`);
   $('#rSave').addEventListener('click', () => {
-    const amount = Number($('#rAmt').value);
-    const rec = { id: rem ? rem.id : uid(), title: $('#rTitle').value.trim() || 'Loan payment',
-      lender: $('#rLender').value.trim(), amount, due: $('#rDue').value || ymd(new Date()),
-      repeat: $('#rRepeat').value, history: rem ? (rem.history||[]) : [] };
-    if(rem) DB.reminders = DB.reminders.map(x => x.id === rem.id ? rec : x);
-    else DB.reminders.push(rec);
-    save(); renderAll(); closeSheet(); toast('Reminder saved');
+    const rec = { id:rem?rem.id:uid(), title:$('#rTitle').value.trim()||t('reminders'),
+      lender:$('#rLender').value.trim(), amount:Number($('#rAmt').value)||0,
+      due:$('#rDue').value||ymd(new Date()), repeat:$('#rRepeat').value, history: rem?(rem.history||[]):[] };
+    if(rem) DB.reminders = DB.reminders.map(y=>y.id===rem.id?rec:y); else DB.reminders.push(rec);
+    save(); renderAll(); closeSheet(); toast(t('saved'));
   });
   if($('#rDel')) $('#rDel').addEventListener('click', () => {
-    DB.reminders = DB.reminders.filter(x => x.id !== rem.id); save(); renderAll(); closeSheet(); toast('Removed');
+    DB.reminders = DB.reminders.filter(y=>y.id!==rem.id); save(); renderAll(); closeSheet(); toast(t('removed'));
   });
 }
-
-/* ---- mark loan paid ---- */
 function payReminder(id){
-  const r = DB.reminders.find(x => x.id === id); if(!r) return;
+  const r = DB.reminders.find(x=>x.id===id); if(!r) return;
   const dueOn = nextDue(r);
   openSheet(`
-    <h3>Mark as paid</h3>
-    <p style="font-size:13.5px;color:var(--muted);line-height:1.5;margin-bottom:14px">
-      ${esc(r.title)} — ${money(r.amount)} due ${shortDate(dueOn)}.</p>
-    <div class="field"><label>Paid by</label><select id="pMethod">${methodOptions('phonepe')}</select></div>
-    <button class="btn btn-out btn-block" id="pGo">Add ${money(r.amount)} to expenditure</button>
-    <button class="btn btn-g btn-block" style="margin-top:8px" id="pSkip">Just mark paid (already recorded)</button>
-  `);
-  const done = (addTx) => {
+    <h3>${t('markPaid')}</h3>
+    <div class="sheet-sub">${t('markPaidSub',{t:esc(r.title), a:money(r.amount), d:shortDate(dueOn)})}</div>
+    <div class="field"><label>${t('paidBy')}</label><select id="pMethod">${methodOptions('phonepe')}</select></div>
+    <button class="btn btn-out btn-block" id="pGo">${t('addToExpense',{a:money(r.amount)})}</button>
+    <button class="btn btn-g btn-block" style="margin-top:8px" id="pSkip">${t('justMark')}</button>`);
+  const done = addTx => {
     r.history = r.history || []; r.history.push(dueOn);
-    if(r.repeat !== 'monthly') DB.reminders = DB.reminders.filter(x => x.id !== r.id);
+    if(r.repeat !== 'monthly') DB.reminders = DB.reminders.filter(x=>x.id!==r.id);
     if(addTx) DB.tx.push({ id:uid(), type:'expense', amount:Number(r.amount)||0,
-      note:r.title + (r.lender?' — '+r.lender:''), category:'EMI',
-      method: $('#pMethod').value, date: ymd(new Date()) });
-    save(); renderAll(); closeSheet(); toast('Marked paid');
+      note:r.title+(r.lender?' — '+r.lender:''), category:'EMI', method:$('#pMethod').value, date:ymd(new Date()) });
+    save(); renderAll(); closeSheet(); toast(t('markedPaid'));
   };
-  $('#pGo').addEventListener('click', () => done(true));
-  $('#pSkip').addEventListener('click', () => done(false));
+  $('#pGo').addEventListener('click', ()=>done(true));
+  $('#pSkip').addEventListener('click', ()=>done(false));
 }
 
 /* ---- savings ---- */
-function sheetSaving(preset = ''){
+function sheetSaving(preset=''){
   openSheet(`
-    <h3>Set money aside</h3>
-    <div class="field"><label>Amount ₹</label><input id="vAmt" type="number" inputmode="decimal" value="${preset||''}" placeholder="0" autofocus></div>
-    <div class="field"><label>Note</label><input id="vNote" type="text" placeholder="Monthly savings, RD, gold…"></div>
-    <div class="field"><label>Date</label><input id="vDate" type="date" value="${ymd(new Date())}"></div>
-    <button class="btn btn-save btn-block" id="vSave">Move to savings</button>
-    <div class="hint">Saved money is kept out of “safe to spend”, so your daily limit stays honest.</div>
-  `);
+    <h3>${t('setAsideTitle')}</h3>
+    <div class="field"><label>${t('amount')}</label><input id="vAmt" type="number" inputmode="decimal" value="${preset||''}" placeholder="0"></div>
+    <div class="field"><label>${t('note')}</label><input id="vNote" type="text"></div>
+    <div class="field"><label>${t('date')}</label><input id="vDate" type="date" value="${ymd(new Date())}"></div>
+    <button class="btn btn-save btn-block" id="vSave">${t('moveToSavings')}</button>
+    <div class="hint">${t('savingsHint')}</div>`);
   $('#vSave').addEventListener('click', () => {
     const amount = Number($('#vAmt').value);
-    if(!amount || amount <= 0) return toast('Enter an amount');
-    DB.savings.push({ id:uid(), amount, note: $('#vNote').value.trim() || 'Savings', date: $('#vDate').value || ymd(new Date()) });
-    save(); renderAll(); closeSheet(); toast('Saved ' + money(amount));
+    if(!amount || amount <= 0) return toast(t('enterAmount'));
+    DB.savings.push({ id:uid(), amount, note:$('#vNote').value.trim()||t('totalSaved'), date:$('#vDate').value||ymd(new Date()) });
+    save(); renderAll(); closeSheet(); toast(t('savedToast',{a:money(amount)}));
   });
 }
 
@@ -1009,45 +1716,42 @@ function sheetSaving(preset = ''){
 function sheetSettings(){
   const st = DB.settings;
   openSheet(`
-    <h3>Settings</h3>
-    <div class="field"><label>Savings rate (% of income)</label>
-      <input id="cRate" type="number" min="0" max="90" value="${st.rate}"></div>
-    <div class="field"><label>Remind me before a loan date</label>
-      <select id="cNotify">${[1,2,3,5,7].map(d=>`<option value="${d}" ${d==st.notifyDays?'selected':''}>${d} day${d>1?'s':''} before</option>`).join('')}</select></div>
-    <div class="field"><label>Balance style</label>
-      <select id="cCarry">
-        <option value="1" ${st.carryForward?'selected':''}>Carry leftover money to next month</option>
-        <option value="0" ${st.carryForward?'':'selected'}>Fresh balance every month</option></select></div>
-    <div class="field"><label>Google AdSense client ID (optional)</label>
-      <input id="cAdClient" type="text" value="${esc(st.adClient)}" placeholder="ca-pub-XXXXXXXXXXXXXXXX"></div>
-    <div class="field"><label>AdSense ad slot ID (optional)</label>
-      <input id="cAdSlot" type="text" value="${esc(st.adSlot)}" placeholder="1234567890">
-      <div class="hint">Leave both blank to keep showing your own house ad in the banner.</div></div>
-    <button class="btn btn-p btn-block" id="cSave">Save settings</button>
+    <h3>${t('settings')}</h3>
+    <div class="field"><label>${t('language')}</label>
+      <select id="cLang"><option value="te" ${LANG==='te'?'selected':''}>తెలుగు</option>
+      <option value="en" ${LANG==='en'?'selected':''}>English</option></select></div>
+    <div class="field"><label>${t('savingsRatePct')}</label><input id="cRate" type="number" min="0" max="90" value="${st.rate}"></div>
+    <div class="field"><label>${t('remindBefore')}</label>
+      <select id="cNotify">${[1,2,3,5,7].map(d=>`<option value="${d}" ${d==st.notifyDays?'selected':''}>${d}</option>`).join('')}</select></div>
+    <div class="field"><label>${t('balanceStyle')}</label>
+      <select id="cCarry"><option value="1" ${st.carryForward?'selected':''}>${t('carryOpt')}</option>
+      <option value="0" ${st.carryForward?'':'selected'}>${t('freshOpt')}</option></select></div>
+    <div class="field"><label>${t('adClient')}</label><input id="cAdClient" type="text" value="${esc(st.adClient)}" placeholder="ca-pub-XXXXXXXX"></div>
+    <div class="field"><label>${t('adSlotL')}</label><input id="cAdSlot" type="text" value="${esc(st.adSlot)}" placeholder="1234567890">
+      <div class="hint">${t('adHint')}</div></div>
+    <button class="btn btn-p btn-block" id="cSave">${t('saveSettings')}</button>
     <div class="grid2" style="margin-top:10px">
-      <button class="btn btn-g" id="cExport">⬇️ Export data</button>
-      <button class="btn btn-g" id="cImport">⬆️ Import data</button>
-    </div>
-    <button class="btn btn-g btn-block" style="margin-top:8px;color:var(--out)" id="cReset">Erase everything</button>
-    <div class="hint">Everything is stored only on this phone. Export a backup before clearing your browser data.</div>
-  `);
+      <button class="btn btn-g" id="cExport">${t('exportD')}</button>
+      <button class="btn btn-g" id="cImport">${t('importD')}</button></div>
+    <button class="btn btn-g btn-block" style="margin-top:8px;color:var(--out)" id="cReset">${t('eraseAll')}</button>
+    <div class="hint">${t('storedHint')}</div>`);
   $('#cSave').addEventListener('click', () => {
+    LANG = $('#cLang').value; localStorage.setItem('pocketseeds.lang', LANG);
     st.rate = Math.max(0, Math.min(90, Number($('#cRate').value)||0));
     st.notifyDays = Number($('#cNotify').value);
     st.carryForward = $('#cCarry').value === '1';
     st.adClient = $('#cAdClient').value.trim();
     st.adSlot = $('#cAdSlot').value.trim();
-    save(); mountAd(); renderAll(); closeSheet(); toast('Settings saved');
+    save(); mountAd(); renderAll(); closeSheet(); toast(t('saved'));
   });
   $('#cExport').addEventListener('click', () => {
     const blob = new Blob([JSON.stringify(DB,null,2)], {type:'application/json'});
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'pocketseeds-backup-' + ymd(new Date()) + '.json';
-    a.click(); URL.revokeObjectURL(a.href); toast('Backup downloaded');
+    a.href = URL.createObjectURL(blob); a.download = 'pocketseeds-'+ymd(new Date())+'.json';
+    a.click(); URL.revokeObjectURL(a.href); toast(t('backupDone'));
   });
   $('#cImport').addEventListener('click', () => {
-    const i = document.createElement('input'); i.type = 'file'; i.accept = 'application/json';
+    const i = document.createElement('input'); i.type='file'; i.accept='application/json';
     i.onchange = () => {
       const f = i.files[0]; if(!f) return;
       const rd = new FileReader();
@@ -1057,72 +1761,120 @@ function sheetSettings(){
           if(!data || typeof data !== 'object') throw 0;
           DB = Object.assign(structuredClone(DEFAULTS), data,
             { settings: Object.assign({}, DEFAULTS.settings, data.settings||{}) });
-          save(); mountAd(); renderAll(); closeSheet(); toast('Data restored');
-        }catch(e){ toast('That file could not be read'); }
+          save(); mountAd(); renderAll(); closeSheet(); toast(t('restored'));
+        }catch(e){ toast(t('badFile')); }
       };
       rd.readAsText(f);
     };
     i.click();
   });
   $('#cReset').addEventListener('click', () => {
-    if(confirm('Erase all income, expenses, reminders and savings on this device?')){
-      DB = structuredClone(DEFAULTS); save(); renderAll(); closeSheet(); toast('All cleared');
-    }
+    if(confirm(t('confirmErase'))){ DB = structuredClone(DEFAULTS); save(); renderAll(); closeSheet(); toast(t('allCleared')); }
   });
 }
 </script>
 
 <script>
 'use strict';
-/* =========================== AD BANNER =========================== */
+/* =========================== VOICE ENTRY ===========================
+   Typing Telugu on a phone keyboard is the single biggest reason people
+   abandon expense apps here. Speaking works even if you cannot type. */
+const TE_NUM = { 'పది':10,'ఇరవై':20,'ముప్పై':30,'నలభై':40,'యాభై':50,'అరవై':60,'డెబ్బై':70,'ఎనభై':80,'తొంభై':90,
+  'వంద':100,'నూరు':100,'వెయ్యి':1000,'వేయి':1000,'రెండు వందలు':200,'మూడు వందలు':300,'నాలుగు వందలు':400,
+  'ఐదు వందలు':500,'రెండు వేలు':2000,'మూడు వేలు':3000,'ఐదు వేలు':5000,'పది వేలు':10000 };
+function parseSpoken(text){
+  let amount = 0;
+  const digits = text.match(/(\d[\d,]*(?:\.\d+)?)/);
+  if(digits) amount = parseFloat(digits[1].replace(/,/g,''));
+  if(!amount){
+    Object.keys(TE_NUM).sort((a,b)=>b.length-a.length).forEach(w => {
+      if(!amount && text.includes(w)) amount = TE_NUM[w];
+    });
+  }
+  const note = text.replace(/(\d[\d,]*(?:\.\d+)?)/,'')
+    .replace(/రూపాయలు|రూపాయి|rupees?|rs\.?/gi,'').trim();
+  return { amount, note, category: guessSpokenCategory(text) };
+}
+function guessSpokenCategory(s){
+  const map = [
+    [/పాలు|milk/i,'Milk'], [/కూరగాయ|కూర|veg/i,'Vegetables'], [/టీ|టిఫిన్|భోజన|tea|tiffin|food/i,'Food'],
+    [/కిరాణా|సరుకులు|grocer/i,'Groceries'], [/బస్|ఆటో|రైలు|bus|auto|train/i,'Travel'],
+    [/పెట్రోల్|డీజిల్|petrol|diesel/i,'Fuel'], [/కరెంట్|బిల్లు|current|bill/i,'Bills'],
+    [/రీఛార్జ్|recharge/i,'Recharge'], [/అద్దె|rent/i,'Rent'], [/మందు|హాస్పిటల్|medicine|hospital/i,'Health'],
+    [/ఫీజు|స్కూల్|fee|school/i,'Education'], [/గుడి|temple/i,'Temple'],
+    [/పెళ్లి|శుభకార్య|function|marriage/i,'Function'], [/వడ్డీ|interest/i,'Vaddi'], [/చిట్టీ|chit/i,'Chit']
+  ];
+  for(const [re,cat] of map) if(re.test(s)) return cat;
+  return 'Other';
+}
+let REC = null, LISTENING = false;
+function startVoice(){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SR) return toast(t('voiceNo'));
+  if(LISTENING && REC){ REC.stop(); return; }
+  REC = new SR();
+  REC.lang = LANG === 'te' ? 'te-IN' : 'en-IN';
+  REC.interimResults = false;
+  REC.maxAlternatives = 1;
+  REC.onstart = () => { LISTENING = true; $('#fabMic').classList.add('live'); toast(t('voiceListen')); };
+  REC.onerror = () => { LISTENING = false; $('#fabMic').classList.remove('live'); toast(t('voiceFail')); };
+  REC.onend   = () => { LISTENING = false; $('#fabMic').classList.remove('live'); };
+  REC.onresult = e => {
+    const said = e.results[0][0].transcript;
+    const p = parseSpoken(said);
+    toast(t('voiceGot',{t:said}));
+    sheetTx('expense', null, { amount:p.amount||'', note:p.note, category:p.category });
+  };
+  try{ REC.start(); }catch(e){ toast(t('voiceFail')); }
+}
+
+/* =========================== AD =========================== */
 const HOUSE_ADS = [
-  { icon:'🥘', title:'Ruchitva Kitchen — millet dosa & idli',
-    text:'Healthy, gluten-free South Indian breakfast delivered across Hyderabad.',
-    cta:'Order now', url:'https://ruchitvakitchen.com' },
-  { icon:'📈', title:'Advertise here',
-    text:'This banner is a live ad slot. Add your AdSense IDs in Settings to start earning.',
-    cta:'Open settings', url:'#settings' },
-  { icon:'🐖', title:'Small savings, big harvest',
-    text:'Setting aside just ₹100 a day builds ₹36,500 in a year.',
-    cta:'Start saving', url:'#save' }
+  { icon:'🥘', te:{h:'రుచిత్వ కిచెన్ — మిల్లెట్ దోశ & ఇడ్లీ', p:'హైదరాబాద్‌లో ఆరోగ్యకరమైన మిల్లెట్ టిఫిన్ డెలివరీ.', c:'ఆర్డర్ చేయండి'},
+    en:{h:'Ruchitva Kitchen — millet dosa & idli', p:'Healthy, gluten-free South Indian breakfast across Hyderabad.', c:'Order now'},
+    url:'https://ruchitvakitchen.com' },
+  { icon:'📈', te:{h:'ఇక్కడ మీ ప్రకటన', p:'ఇది నిజమైన యాడ్ స్లాట్. సెట్టింగ్‌లలో AdSense ID పెడితే ఆదాయం మొదలు.', c:'సెట్టింగ్‌లు'},
+    en:{h:'Advertise here', p:'This is a live ad slot. Add your AdSense IDs in Settings to start earning.', c:'Open settings'},
+    url:'#settings' },
+  { icon:'🐖', te:{h:'చిన్న పొదుపు, పెద్ద పంట', p:'రోజుకు ₹100 దాస్తే ఏడాదికి ₹36,500.', c:'మొదలుపెట్టు'},
+    en:{h:'Small savings, big harvest', p:'Setting aside ₹100 a day builds ₹36,500 in a year.', c:'Start saving'},
+    url:'#save' }
 ];
 function mountAd(){
   const slot = $('#adSlot'), st = DB.settings;
-  slot.querySelectorAll('ins,script').forEach(n => n.remove());
+  slot.querySelectorAll('ins').forEach(n => n.remove());
   const house = $('#adHouse');
   if(st.adClient && st.adSlot){
     house.innerHTML = '';
     const ins = document.createElement('ins');
-    ins.className = 'adsbygoogle';
-    ins.style.display = 'block';
+    ins.className = 'adsbygoogle'; ins.style.display = 'block';
     ins.setAttribute('data-ad-client', st.adClient);
     ins.setAttribute('data-ad-slot', st.adSlot);
     ins.setAttribute('data-ad-format', 'auto');
     ins.setAttribute('data-full-width-responsive', 'true');
     slot.appendChild(ins);
     if(!window.__adsLoaded){
-      const s = document.createElement('script');
-      s.async = true; s.crossOrigin = 'anonymous';
-      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + encodeURIComponent(st.adClient);
-      document.head.appendChild(s);
-      window.__adsLoaded = true;
+      const sc = document.createElement('script');
+      sc.async = true; sc.crossOrigin = 'anonymous';
+      sc.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + encodeURIComponent(st.adClient);
+      document.head.appendChild(sc); window.__adsLoaded = true;
     }
     try{ (window.adsbygoogle = window.adsbygoogle || []).push({}); }catch(e){}
     return;
   }
   const a = HOUSE_ADS[Math.floor(Math.random()*HOUSE_ADS.length)];
+  const c = LANG === 'te' ? a.te : a.en;
   house.innerHTML = `<div class="house-ad" data-ad-url="${a.url}">
-      <div class="ha-ic">${a.icon}</div>
-      <div><h4>${a.title}</h4><p>${a.text}</p><span class="ha-cta">${a.cta} →</span></div>
-    </div>`;
+    <div class="ha-ic">${a.icon}</div>
+    <div><h4>${c.h}</h4><p>${c.p}</p><span class="ha-cta">${c.c} →</span></div></div>`;
 }
 
 /* =========================== NOTIFICATIONS =========================== */
 function askNotify(){
-  if(!('Notification' in window)) return toast('This browser has no notifications');
+  if(!('Notification' in window)) return toast(t('noNotif'));
   Notification.requestPermission().then(p => {
-    if(p === 'granted'){ toast('Alerts on — you will be reminded before every due date'); fireDueNotifications(); }
-    else toast('Alerts blocked in browser settings');
+    if(p === 'granted'){ toast(t('alertsOn')); fireDueNotifications(); }
+    else toast(t('alertsBlocked'));
   });
 }
 function fireDueNotifications(){
@@ -1132,9 +1884,9 @@ function fireDueNotifications(){
   upcomingDues().forEach(d => {
     const tag = d.id + ':' + d.dueOn;
     if(seen[tag] === today) return;
-    const when = d.days < 0 ? `overdue by ${Math.abs(d.days)} day(s)`
-      : d.days === 0 ? 'due today' : `due in ${d.days} day(s)`;
-    try{ new Notification('PocketSeeds reminder', { body: `${d.title} — ${money(d.amount)} ${when}`, tag }); }catch(e){}
+    const when = d.days < 0 ? t('overdueBy',{n:Math.abs(d.days), d:dayWord(Math.abs(d.days))})
+      : d.days === 0 ? t('dueToday') : t('dueIn',{n:d.days, d:dayWord(d.days)});
+    try{ new Notification('PocketSeeds', { body:`${d.title} — ${money(d.amount)} ${when}`, tag }); }catch(e){}
     seen[tag] = today;
   });
   localStorage.setItem('pocketseeds.notified', JSON.stringify(seen));
@@ -1143,51 +1895,101 @@ function fireDueNotifications(){
 /* =========================== EVENTS =========================== */
 function go(tab){
   TAB = tab;
-  $$('.page').forEach(p => p.classList.toggle('on', p.id === 'page-' + tab));
+  $$('.page').forEach(p => p.classList.toggle('on', p.id === 'page-'+tab));
   $$('.nav button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.go === tab)));
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
 document.addEventListener('click', e => {
-  const el = e.target.closest('[data-go],[data-del-tx],[data-del-save],[data-edit-src],[data-edit-rem],[data-pay-rem],[data-ad-url],#quickSave');
+  const el = e.target.closest('[data-go],[data-quick],[data-del-tx],[data-del-save],[data-edit-src],[data-edit-rem],[data-pay-rem],[data-ad-url],[data-edit-loan],[data-close-loan],[data-pay-vaddi],[data-edit-chit],[data-pay-chit],[data-edit-fest],[data-add-fest],[data-settle-udhaar],[data-del-udhaar],#quickSave');
   if(!el) return;
+  const d = el.dataset;
 
-  if(el.id === 'quickSave'){ sheetSaving(el.dataset.amt || ''); return; }
-  if(el.dataset.go){ closeSheet(); go(el.dataset.go); return; }
-  if(el.dataset.delTx){
-    DB.tx = DB.tx.filter(x => x.id !== el.dataset.delTx); save(); renderAll(); toast('Deleted'); return;
+  if(el.id === 'quickSave')  return sheetSaving(d.amt || '');
+  if(d.go){ closeSheet(); return go(d.go); }
+  if(d.quick){
+    const q = QUICK[+d.quick];
+    return sheetTx('expense', null, { amount:q.amt, note:(LANG==='te'?q.te:q.en), category:q.cat });
   }
-  if(el.dataset.delSave){
-    DB.savings = DB.savings.filter(x => x.id !== el.dataset.delSave); save(); renderAll(); toast('Removed'); return;
+  if(d.delTx){ DB.tx = DB.tx.filter(x=>x.id!==d.delTx); save(); renderAll(); return toast(t('deleted')); }
+  if(d.delSave){ DB.savings = DB.savings.filter(x=>x.id!==d.delSave); save(); renderAll(); return toast(t('removed')); }
+  if(d.editSrc)  return sheetSource(DB.sources.find(x=>x.id===d.editSrc));
+  if(d.editRem)  return sheetRemind(DB.reminders.find(x=>x.id===d.editRem));
+  if(d.payRem)   return payReminder(d.payRem);
+  if(d.editLoan) return sheetLoan(DB.loans.find(x=>x.id===d.editLoan));
+  if(d.closeLoan){
+    const l = DB.loans.find(x=>x.id===d.closeLoan); if(l) l.closed = true;
+    save(); renderAll(); return toast(t('loanSettled'));
   }
-  if(el.dataset.editSrc){ sheetSource(DB.sources.find(x => x.id === el.dataset.editSrc)); return; }
-  if(el.dataset.editRem){ sheetRemind(DB.reminders.find(x => x.id === el.dataset.editRem)); return; }
-  if(el.dataset.payRem){ payReminder(el.dataset.payRem); return; }
-  if(el.dataset.adUrl){
-    const u = el.dataset.adUrl;
-    if(u === '#settings') sheetSettings();
-    else if(u === '#save') go('save');
-    else window.open(u, '_blank', 'noopener');
+  if(d.payVaddi){
+    const l = DB.loans.find(x=>x.id===d.payVaddi); if(!l) return;
+    const m = loanMath(l);
+    l.paidInterest = (Number(l.paidInterest)||0) + m.perMonth;
+    DB.tx.push({ id:uid(), type:'expense', amount:m.perMonth, category:'Vaddi',
+      note:t('payInterest')+' — '+l.person, method:'cash', date:ymd(new Date()) });
+    save(); renderAll(); return toast(t('interestPaid'));
+  }
+  if(d.editChit) return sheetChit(DB.chits.find(x=>x.id===d.editChit));
+  if(d.payChit){
+    const c = DB.chits.find(x=>x.id===d.payChit); if(!c) return;
+    c.paid = Math.min(Number(c.months)||99, (Number(c.paid)||0) + 1);
+    DB.tx.push({ id:uid(), type:'expense', amount:Number(c.instal)||0, category:'Chit',
+      note:c.name, method:'cash', date:ymd(new Date()) });
+    save(); renderAll(); return toast(t('instalAdded'));
+  }
+  if(d.editFest) return sheetFest(DB.fests.find(x=>x.id===d.editFest));
+  if(d.addFest)  return sheetFestAdd(d.addFest);
+  if(d.settleUdhaar){
+    const u = DB.udhaar.find(x=>x.id===d.settleUdhaar); if(!u) return;
+    DB.tx.push({ id:uid(), type:'expense', amount:u.amount, category:'Groceries',
+      note:u.shop, method:'cash', date:ymd(new Date()) });
+    DB.udhaar = DB.udhaar.filter(x=>x.id!==u.id);
+    save(); renderAll(); return toast(t('udhaarSettled'));
+  }
+  if(d.delUdhaar){ DB.udhaar = DB.udhaar.filter(x=>x.id!==d.delUdhaar); save(); renderAll(); return toast(t('removed')); }
+  if(d.adUrl){
+    if(d.adUrl === '#settings') sheetSettings();
+    else if(d.adUrl === '#save') go('save');
+    else window.open(d.adUrl, '_blank', 'noopener');
   }
 });
 
 $$('.nav button').forEach(b => b.addEventListener('click', () => go(b.dataset.go)));
 $('#fab').addEventListener('click', () => sheetTx(TAB === 'income' ? 'income' : 'expense'));
+$('#fabMic').addEventListener('click', startVoice);
 $('#btnSettings').addEventListener('click', sheetSettings);
+$('#btnLang').addEventListener('click', () => {
+  LANG = LANG === 'te' ? 'en' : 'te';
+  localStorage.setItem('pocketseeds.lang', LANG);
+  mountAd(); renderAll(); toast(LANG === 'te' ? 'తెలుగు' : 'English');
+});
 $('#btnAddIncome').addEventListener('click', () => sheetTx('income'));
 $('#btnAddExpense').addEventListener('click', () => sheetTx('expense'));
 $('#btnAddSource').addEventListener('click', () => sheetSource());
+$('#btnDailyEarn').addEventListener('click', () => sheetTx('income', null, { category:'DailyWage' }));
 $('#btnAddRemind').addEventListener('click', () => sheetRemind());
 $('#btnAddSaving').addEventListener('click', () => sheetSaving());
+$('#btnAddLoan').addEventListener('click', () => sheetLoan());
+$('#btnAddChit').addEventListener('click', () => sheetChit());
+$('#btnAddFest').addEventListener('click', () => sheetFest());
+$('#btnAddMoyi').addEventListener('click', () => sheetMoyi());
+$('#btnAddUdhaar').addEventListener('click', () => sheetUdhaar());
 $('#btnNotif').addEventListener('click', askNotify);
-
 $('#mPrev').addEventListener('click', () => { VIEW = new Date(VIEW.getFullYear(), VIEW.getMonth()-1, 1); renderAll(); });
 $('#mNext').addEventListener('click', () => { VIEW = new Date(VIEW.getFullYear(), VIEW.getMonth()+1, 1); renderAll(); });
 
-$$('#rateChips .chip').forEach(c => c.addEventListener('click', () => {
-  DB.settings.rate = Number(c.dataset.rate); save(); renderAll(); toast(`Saving ${c.dataset.rate}% of income`);
-}));
+$('#btnDaySave').addEventListener('click', () => {
+  const amount = Number($('#dayAmt').value);
+  if(!amount || amount <= 0) return toast(t('enterAmount'));
+  DB.tx.push({ id:uid(), type:'income', amount, category:'DailyWage',
+    note:$('#dayNote').value.trim() || t('dailyEarning'), method:'cash', date:ymd(new Date()) });
+  save(); renderAll(); $('#dayAmt').value=''; $('#dayNote').value='';
+  toast(t('incomeAdded'));
+});
 
+$$('#rateChips .chip').forEach(c => c.addEventListener('click', () => {
+  DB.settings.rate = Number(c.dataset.rate); save(); renderAll();
+}));
 $$('#upiApps .chip').forEach(c => c.addEventListener('click', () => {
   $$('#upiApps .chip').forEach(x => x.setAttribute('aria-pressed','false'));
   c.setAttribute('aria-pressed','true');
@@ -1196,79 +1998,60 @@ $$('#upiApps .chip').forEach(c => c.addEventListener('click', () => {
 $('#btnUpiPay').addEventListener('click', () => {
   const amount = Number($('#upiAmt').value);
   const vpa = $('#upiVpa').value.trim();
-  const note = $('#upiNote').value.trim() || 'UPI payment';
+  const note = $('#upiNote').value.trim() || 'UPI';
   const app = ($('#upiApps .chip[aria-pressed="true"]') || {}).dataset?.app || 'upi';
-  if(!amount || amount <= 0) return toast('Enter an amount');
-  if(!/^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test(vpa)) return toast('Enter a valid UPI ID, e.g. name@ybl');
-  DB.tx.push({ id:uid(), type:'expense', amount, note: note + ' → ' + vpa,
-    category: guessCategory(note + ' ' + vpa), method: app, date: ymd(new Date()) });
-  const rec = DB.tx[DB.tx.length - 1];
+  if(!amount || amount <= 0) return toast(t('enterAmount'));
+  if(!/^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test(vpa)) return toast(t('upiInvalid'));
+  DB.tx.push({ id:uid(), type:'expense', amount, note:note+' → '+vpa,
+    category:guessCategory(note+' '+vpa), method:app, date:ymd(new Date()) });
+  const rec = DB.tx[DB.tx.length-1];
   save(); renderAll();
-  $('#upiAmt').value = ''; $('#upiNote').value = ''; $('#upiVpa').value = '';
+  $('#upiAmt').value=''; $('#upiNote').value=''; $('#upiVpa').value='';
   sheetUpiConfirm(rec, app, vpa, amount, note);
 });
-
-/* Confirmation sheet: the expense is already recorded, the button hands over to the UPI app.
-   Handing over with a real link (not location.href) keeps this app alive underneath. */
 function sheetUpiConfirm(rec, app, vpa, amount, note){
   openSheet(`
-    <h3>${money(amount)} added to expenditure</h3>
-    <p style="font-size:13.5px;color:var(--muted);line-height:1.55;margin-bottom:14px">
-      Paying <b>${esc(vpa)}</b> for ${esc(note)}. It is already deducted from your income —
-      your balance is now <b>${money(stats().balance)}</b>.</p>
-    <a class="btn btn-p btn-block" style="text-decoration:none"
-       href="${esc(upiLink(app, vpa, amount, note))}">Open ${UPI_LABEL[app]} to pay →</a>
-    <button class="btn btn-g btn-block" style="margin-top:8px" id="uDone">Already paid — done</button>
-    <button class="btn btn-g btn-block" style="margin-top:8px;color:var(--out)" id="uUndo">Cancel &amp; remove entry</button>
-    <div class="hint">If the payment does not go through, tap cancel and the expense is removed.</div>
-  `);
+    <h3>${t('upiConfirm',{a:money(amount)})}</h3>
+    <div class="sheet-sub">${t('upiConfirmSub',{v:esc(vpa), n:esc(note), b:money(stats().balance)})}</div>
+    <a class="btn btn-p btn-block" style="text-decoration:none" href="${esc(upiLink(app,vpa,amount,note))}">${t('openApp',{app:UPI_LABEL[app]})}</a>
+    <button class="btn btn-g btn-block" style="margin-top:8px" id="uDone">${t('alreadyPaid')}</button>
+    <button class="btn btn-g btn-block" style="margin-top:8px;color:var(--out)" id="uUndo">${t('cancelEntry')}</button>
+    <div class="hint">${t('upiCancelHint')}</div>`);
   $('#uDone').addEventListener('click', closeSheet);
   $('#uUndo').addEventListener('click', () => {
-    DB.tx = DB.tx.filter(x => x.id !== rec.id);
-    save(); renderAll(); closeSheet(); toast('Entry removed');
+    DB.tx = DB.tx.filter(x=>x.id!==rec.id); save(); renderAll(); closeSheet(); toast(t('removed'));
   });
 }
 
 $('#btnParseSms').addEventListener('click', () => {
   const text = $('#smsBox').value.trim();
-  if(!text) return toast('Paste your UPI messages first');
+  if(!text) return toast(t('pasteFirst'));
   const found = parseMessages(text);
-  if(!found.length) return toast('No payment could be read from that text');
-  const exp = found.filter(f => f.type === 'expense').length;
-  const inc = found.length - exp;
-  const existing = new Set(DB.tx.map(t => t.date + '|' + t.amount + '|' + (t.ref||'')));
-  const fresh = found.filter(f => !existing.has(f.date + '|' + f.amount + '|' + (f.ref||'')));
+  if(!found.length) return toast(t('nothingRead'));
+  const existing = new Set(DB.tx.map(x => x.date+'|'+x.amount+'|'+(x.ref||'')));
+  const fresh = found.filter(f => !existing.has(f.date+'|'+f.amount+'|'+(f.ref||'')));
   DB.tx.push(...fresh);
-  save(); renderAll();
-  $('#smsBox').value = '';
-  toast(`${exp} expense${exp===1?'':'s'}${inc?` and ${inc} credit${inc===1?'':'s'}`:''} added`);
+  const exp = fresh.filter(f=>f.type==='expense').length, inc = fresh.length - exp;
+  save(); renderAll(); $('#smsBox').value = '';
+  toast(t('smsAdded',{ e:exp, i: inc ? t('andCredits',{n:inc}) : '' }));
 });
 
 /* =========================== INIT =========================== */
 function sizeAd(){
   const h = document.querySelector('.balance-card').offsetHeight;
-  if(h) document.documentElement.style.setProperty('--card-h', h + 'px');
+  if(h) document.documentElement.style.setProperty('--card-h', h+'px');
 }
 window.addEventListener('resize', sizeAd);
 
 (function init(){
   const credited = runAutoIncome();
-  mountAd();
-  renderAll();
-  sizeAd();
-  setTimeout(sizeAd, 200);
-  if(credited) setTimeout(() => toast(`${credited} automatic income entr${credited>1?'ies':'y'} credited`), 700);
+  mountAd(); renderAll(); sizeAd(); setTimeout(sizeAd, 250);
+  if(credited) setTimeout(() => toast(t('autoCredited',{a:money(sum(inMonth(DB.tx.filter(x=>x.auto), mKey(new Date()))))})), 700);
   fireDueNotifications();
-  // re-check when the app is reopened (new day / new month)
   document.addEventListener('visibilitychange', () => {
-    if(document.visibilityState === 'visible'){
-      if(runAutoIncome()) toast('Monthly income credited');
-      renderAll(); fireDueNotifications();
-    }
+    if(document.visibilityState === 'visible'){ runAutoIncome(); renderAll(); fireDueNotifications(); }
   });
-  if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('money-sw.js').catch(()=>{});
-  }
+  if('serviceWorker' in navigator) navigator.serviceWorker.register('money-sw.js').catch(()=>{});
 })();
 </script>
 </body>
