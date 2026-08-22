@@ -200,6 +200,12 @@ textarea{resize:vertical;min-height:92px;font-size:13.5px;line-height:1.5}
 .swipe-del{background:none;border:0;color:var(--muted);font-size:15px;cursor:pointer;padding:4px 2px;flex:0 0 auto}
 .kv{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:6px 0;border-bottom:1px dashed var(--line)}
 .kv:last-child{border-bottom:0}
+@media print{
+  .nav,.fab,.top,.sheet,.scrim,.toast,.ad-wrap,.sec-head .link,#btnPdf,#btnWa,[data-go]{display:none !important}
+  body{padding:0;background:#fff}
+  .page{display:none !important} .page#page-reports{display:block !important}
+  .card{break-inside:avoid;box-shadow:none;border:1px solid #ddd}
+}
 .kv span{color:var(--muted)} .kv b{font-weight:700}
 </style>
 </head>
@@ -358,9 +364,13 @@ textarea{resize:vertical;min-height:92px;font-size:13.5px;line-height:1.5}
       <div class="card" style="padding:15px">
         <textarea id="smsBox" placeholder="Rs.450.00 debited from A/c XX1234 to VPA store@ybl UPI Ref 4512..."></textarea>
         <button class="btn btn-p btn-block" style="margin-top:10px" id="btnParseSms" data-i18n="scanAdd">Scan &amp; add expenses</button>
-        <div class="hint" data-i18n="smsHint">Paste any number of PhonePe / GPay / bank messages. Debits become expenditure, credits become income.</div>
+        <div class="hint" id="syncStatus"></div>
+        <div class="hint" data-i18n="smsHint">Paste any number of PhonePe / GPay / bank messages.</div>
+        <div class="hint" data-i18n="smsNative" style="margin-top:8px;padding:9px 11px;background:var(--warn-bg);border-radius:10px"></div>
       </div>
     </div>
+
+    <div id="reviewBox"></div>
 
     <div class="sec">
       <div class="sec-head">
@@ -456,6 +466,11 @@ textarea{resize:vertical;min-height:92px;font-size:13.5px;line-height:1.5}
     </div>
 
     <div class="sec">
+      <div class="sec-head"><h3 data-i18n="emergencyTitle">Emergency fund</h3></div>
+      <div class="card" style="padding:15px" id="emergencyBox"></div>
+    </div>
+
+    <div class="sec">
       <div class="sec-head">
         <h3 data-i18n="festivalPlan">Festival &amp; function fund (పండుగ)</h3>
         <button class="link" id="btnAddFest" data-i18n="add">+ Add</button>
@@ -492,6 +507,122 @@ textarea{resize:vertical;min-height:92px;font-size:13.5px;line-height:1.5}
     </div>
   </section>
 
+
+  <!-- ===================== MORE HUB ===================== -->
+  <section class="page" id="page-more">
+    <div class="sec" style="margin-top:4px">
+      <div class="list" id="moreList"></div>
+    </div>
+    <div class="sec">
+      <div class="ad-wrap" id="adSlot2"><span class="ad-tag">Ad</span><div id="adHouse2"></div></div>
+    </div>
+  </section>
+
+  <!-- ===================== BUDGET 50/30/20 ===================== -->
+  <section class="page" id="page-budget">
+    <button class="btn btn-g btn-sm" data-go="more" style="margin-bottom:12px">←</button>
+    <div class="card" style="padding:16px">
+      <div class="t-lbl" style="font-size:12px;font-weight:700;color:var(--muted)" data-i18n="budget503020">50/30/20</div>
+      <div class="field" style="margin:10px 0 0"><label data-i18n="monthlyIncomeL">My monthly income</label>
+        <input id="bIncome" type="number" inputmode="decimal" placeholder="0"></div>
+      <button class="btn btn-p btn-block" style="margin-top:10px" id="bSetIncome" data-i18n="setIncome">Set income</button>
+      <div class="hint" data-i18n="budgetHint"></div>
+    </div>
+    <div class="sec"><div class="list" id="budgetBars"></div></div>
+    <div class="sec"><div class="card" style="padding:15px" id="budgetNote"></div></div>
+  </section>
+
+  <!-- ===================== FAMILY ===================== -->
+  <section class="page" id="page-family">
+    <button class="btn btn-g btn-sm" data-go="more" style="margin-bottom:12px">←</button>
+    <div class="sec-head"><h3 data-i18n="members">Members</h3>
+      <button class="link" id="btnAddMember" data-i18n="addMember">+ Add member</button></div>
+    <div class="sub" data-i18n="familyHint"></div>
+    <div class="list" id="memberList"></div>
+    <div class="sec">
+      <div class="sec-head"><h3 data-i18n="settlement">Who owes whom</h3></div>
+      <div class="card" style="padding:15px" id="settleBox"></div>
+    </div>
+    <div class="sec"><div class="hint" data-i18n="familyLocalNote"></div></div>
+  </section>
+
+  <!-- ===================== CREDIT HEALTH ===================== -->
+  <section class="page" id="page-credit">
+    <button class="btn btn-g btn-sm" data-go="more" style="margin-bottom:12px">←</button>
+    <div class="card" style="padding:18px" id="scoreCard"></div>
+    <div class="sec">
+      <div class="sec-head"><h3 data-i18n="scoreTrend">Trend</h3>
+        <button class="link" id="btnAddScore" data-i18n="addScore">+ Add score</button></div>
+      <div class="card" style="padding:15px" id="scoreTrendBox"></div>
+    </div>
+    <div class="sec">
+      <div class="sec-head"><h3 data-i18n="breakdown">What moves the score</h3></div>
+      <div class="card" style="padding:15px" id="scoreBreak"></div>
+    </div>
+    <div class="sec"><div class="hint" data-i18n="creditAutoNote"></div></div>
+  </section>
+
+  <!-- ===================== TAX ===================== -->
+  <section class="page" id="page-tax">
+    <button class="btn btn-g btn-sm" data-go="more" style="margin-bottom:12px">←</button>
+    <div class="card tile t-in" style="padding:16px">
+      <div class="t-lbl"><i class="dot d-in"></i><span data-i18n="estSaving">Estimated tax saved</span></div>
+      <div class="t-amt" style="font-size:30px" id="taxSaved">₹0</div>
+      <div class="hint" id="taxYearNote"></div>
+    </div>
+    <div class="sec">
+      <div class="sec-head"><h3 data-i18n="taxSlab">Your tax slab</h3></div>
+      <div class="card" style="padding:15px">
+        <div class="chips" id="slabChips">
+          <button class="chip" data-slab="5">5%</button>
+          <button class="chip" data-slab="20">20%</button>
+          <button class="chip" data-slab="30">30%</button>
+        </div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="sec-head"><h3 data-i18n="deductibleFound">Deductible spending found</h3></div>
+      <div class="list" id="taxList"></div>
+      <div class="hint" id="taxHintBox"></div>
+    </div>
+  </section>
+
+  <!-- ===================== REPORTS ===================== -->
+  <section class="page" id="page-reports">
+    <button class="btn btn-g btn-sm" data-go="more" style="margin-bottom:12px">←</button>
+    <div id="reportBox"></div>
+    <div class="sec">
+      <div class="grid2">
+        <button class="btn btn-p" id="btnPdf" data-i18n="printPdf">Save as PDF</button>
+        <button class="btn btn-g" id="btnWa" data-i18n="shareWa">Share on WhatsApp</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SEARCH ===================== -->
+  <section class="page" id="page-search">
+    <button class="btn btn-g btn-sm" data-go="more" style="margin-bottom:12px">←</button>
+    <div class="card" style="padding:15px">
+      <div class="field" style="margin:0"><input id="qText" type="text" placeholder=""></div>
+      <div class="grid2" style="margin-top:10px">
+        <div class="field" style="margin:0"><label data-i18n="fromDate">From</label><input id="qFrom" type="date"></div>
+        <div class="field" style="margin:0"><label data-i18n="toDate">To</label><input id="qTo" type="date"></div>
+      </div>
+      <div class="grid2" style="margin-top:10px">
+        <div class="field" style="margin:0"><label data-i18n="minAmt">Min</label><input id="qMin" type="number" inputmode="decimal"></div>
+        <div class="field" style="margin:0"><label data-i18n="maxAmt">Max</label><input id="qMax" type="number" inputmode="decimal"></div>
+      </div>
+      <div class="grid2" style="margin-top:10px">
+        <div class="field" style="margin:0"><select id="qCat"></select></div>
+        <div class="field" style="margin:0"><select id="qMethod"></select></div>
+      </div>
+      <button class="btn btn-g btn-block btn-sm" style="margin-top:10px" id="qClear" data-i18n="clearF">Clear</button>
+    </div>
+    <div class="sec">
+      <div class="sub" id="qCount"></div>
+      <div class="list" id="qResults"></div>
+    </div>
+  </section>
 </div>
 
 <button class="fab mic" id="fabMic" aria-label="voice">🎤</button>
@@ -503,7 +634,7 @@ textarea{resize:vertical;min-height:92px;font-size:13.5px;line-height:1.5}
     <button data-go="income"  aria-selected="false"><span>💰</span><i data-i18n="navIncome" style="font-style:normal">Income</i></button>
     <button data-go="expense" aria-selected="false"><span>💸</span><i data-i18n="navExpense" style="font-style:normal">Expenses</i></button>
     <button data-go="loans"   aria-selected="false"><span>🤝</span><i data-i18n="navLoans" style="font-style:normal">Loans</i></button>
-    <button data-go="save"    aria-selected="false"><span>🐖</span><i data-i18n="navSave" style="font-style:normal">Savings</i></button>
+    <button data-go="more"    aria-selected="false"><span>⋯</span><i data-i18n="navMore" style="font-style:normal">More</i></button>
   </div>
 </nav>
 
@@ -635,7 +766,67 @@ const STR = {
     markPaid:'Mark as paid', markPaidSub:'{t} — {a} due {d}.',
     addToExpense:'Add {a} to expenditure', justMark:'Just mark paid (already recorded)',
     markedPaid:'Marked paid', setAsideTitle:'Set money aside', moveToSavings:'Move to savings',
-    savedToast:'Saved {a}', savingsHint:'Saved money is kept out of “safe to spend”, so your daily limit stays honest.'
+    savedToast:'Saved {a}', savingsHint:'Saved money is kept out of “safe to spend”, so your daily limit stays honest.',
+    navMore:'More',
+    // budget 50/30/20
+    budget:'Budget', budget503020:'50 / 30 / 20 budget', monthlyIncomeL:'My monthly income',
+    needs:'Needs', wants:'Wants', savingsPart:'Savings',
+    budgetHint:'Half for needs, a third for wants, a fifth saved. Set your income and the app watches each bucket.',
+    ofBudget:'{a} of {b}', overBy:'over by {a}', leftOver:'{a} left',
+    needsList:'Rent, groceries, milk, bills, travel, health, education',
+    wantsList:'Eating out, shopping, recharge, functions, temple',
+    setIncome:'Set income', budgetOver:'You are over on {c}. Move {a} from wants to needs or cut back.',
+    budgetOk:'All three buckets are inside their limits. Keep going.',
+    // family
+    family:'Family', household:'Household', members:'Members', addMember:'+ Add member',
+    memberName:'Name', memberPhone:'Phone (for WhatsApp invite)', inviteWa:'Invite on WhatsApp',
+    noMembers:'No family members yet. Add the people who share this household.',
+    paidByL:'Paid by', splitWith:'Split with', splitEqually:'Split equally between members',
+    settlement:'Who owes whom', settleUp:'Settle up', allSettled:'Everyone is square ✅',
+    owesTo:'{a} owes {b}', familyHint:'Add each person once. Then every expense can record who paid and who it was split with.',
+    memberSpent:'Spent {a}', share:'Share {a}', netPos:'Net',
+    inviteMsg:'Join our household on PocketSeeds to track family expenses together.',
+    familyLocalNote:'Members and splits are stored on this phone. Live sharing between phones needs the server build.',
+    // credit
+    creditHealth:'Credit health', cibil:'CIBIL score', addScore:'+ Add score', scoreL:'Score (300–900)',
+    scoreDate:'Checked on', lastUpdated:'Last updated {d}', noScore:'No score recorded. Check your CIBIL free once a month and enter it here.',
+    scorePoor:'Poor', scoreFair:'Fair', scoreGood:'Good', scoreExcellent:'Excellent',
+    scoreTrend:'Trend', scoreUp:'up {n} points', scoreDown:'down {n} points', scoreSame:'no change',
+    breakdown:'What moves the score', payHistory:'Payment history', utilization:'Credit utilisation',
+    historyLen:'Length of credit history', creditMix:'Credit mix', inquiries:'Hard enquiries',
+    creditHint:'A hand loan at ₹3 per 100 does not show in CIBIL, but a missed EMI does. Pay EMIs on the date and the score climbs.',
+    creditAutoNote:'Automatic monthly fetch needs a credit-bureau API and a server. Until then, check free on the bureau site and enter it here.',
+    checkNow:'Check free on CIBIL',
+    // tax
+    tax:'Tax savings', taxTitle:'Tax deduction insights', taxYear:'Financial year {y}',
+    estSaving:'Estimated tax saved', deductibleFound:'Deductible spending found',
+    taxHint:'Worked out from your own entries at the {r}% slab. Confirm with a CA before filing.',
+    noTax:'No deductible spending yet this year.', section:'Section',
+    sec80D:'Medical & insurance (80D)', sec80E:'Education loan interest (80E)',
+    sec24:'House rent / home loan (24)', sec80C:'Investments & savings (80C)',
+    taxSlab:'Your tax slab',
+    // emergency
+    emergencyTitle:'Emergency fund', emergencyTarget:'Target', monthsCover:'{n} months of your spending',
+    monthlyNeeded:'Put aside {a} a month to get there in a year', emergencyDone:'Fully funded ✅',
+    // search
+    search:'Search', searchPh:'Search notes, shops, people…', filters:'Filters',
+    fromDate:'From', toDate:'To', minAmt:'Min ₹', maxAmt:'Max ₹', clearF:'Clear',
+    results:'{n} entries · {a}', noResults:'Nothing matched. Try a wider date range.',
+    allCats:'All categories', allMethods:'All methods',
+    // reports
+    reports:'Reports', monthlyReport:'Monthly report', printPdf:'🖨️ Save as PDF',
+    shareWa:'📲 Share on WhatsApp', topCats:'Top categories', vsLast:'Compared with last month',
+    upBy:'{a} more than last month', downBy:'{a} less than last month', sameAsLast:'about the same as last month',
+    insightCat:'{c} took the biggest share at {a}.',
+    reportFor:'Report for {m}',
+    // sms sync
+    smsSync:'SMS sync', lastSynced:'Last read {d}', never:'not yet', reviewQ:'Check before adding',
+    confirmAll:'Add all {n}', reviewHint:'Read from your messages. Tap any row to change it, or remove what is wrong.',
+    detected:'{n} found', bankL:'Bank', smsNative:'Automatic reading of bank SMS needs the Android app version — this browser cannot read messages. Paste them here and everything else works the same.',
+    nothingNew:'Nothing new — all of those are already added.',
+    // voice confirm
+    voiceConfirmT:'Add this?', voiceConfirmB:'Confirm', voiceEdit:'Change'
+
   },
 
   te: {
@@ -747,23 +938,93 @@ const STR = {
     markPaid:'కట్టినట్టు గుర్తించు', markPaidSub:'{t} — {d}కి {a} గడువు.',
     addToExpense:'{a} ఖర్చులో చేర్చు', justMark:'కట్టినట్టు మాత్రమే గుర్తించు',
     markedPaid:'కట్టినట్టు గుర్తించాం', setAsideTitle:'డబ్బు పక్కన పెట్టు', moveToSavings:'పొదుపులోకి మార్చు',
-    savedToast:'{a} దాచాం', savingsHint:'దాచిన డబ్బు “ఖర్చుకు సురక్షితం” నుంచి తీసేస్తాం, అందుకే రోజువారీ పరిమితి నిజాయితీగా ఉంటుంది.'
+    savedToast:'{a} దాచాం', savingsHint:'దాచిన డబ్బు “ఖర్చుకు సురక్షితం” నుంచి తీసేస్తాం, అందుకే రోజువారీ పరిమితి నిజాయితీగా ఉంటుంది.',
+    navMore:'మరిన్ని',
+    budget:'బడ్జెట్', budget503020:'50 / 30 / 20 బడ్జెట్', monthlyIncomeL:'నా నెల ఆదాయం',
+    needs:'అవసరాలు', wants:'కోరికలు', savingsPart:'పొదుపు',
+    budgetHint:'సగం అవసరాలకు, మూడో వంతు కోరికలకు, ఐదో వంతు పొదుపుకు. ఆదాయం పెడితే మూడింటినీ యాప్ కనిపెడుతుంది.',
+    ofBudget:'{b}లో {a}', overBy:'{a} ఎక్కువ', leftOver:'{a} మిగిలింది',
+    needsList:'అద్దె, కిరాణా, పాలు, బిల్లులు, ప్రయాణం, ఆరోగ్యం, చదువు',
+    wantsList:'బయట తిండి, షాపింగ్, రీఛార్జ్, శుభకార్యాలు, గుడి',
+    setIncome:'ఆదాయం పెట్టు', budgetOver:'{c} పరిమితి దాటింది. {a} తగ్గించండి.',
+    budgetOk:'మూడు భాగాలూ పరిమితిలోనే ఉన్నాయి. బాగుంది.',
+    family:'కుటుంబం', household:'ఇల్లు', members:'సభ్యులు', addMember:'+ సభ్యుడిని చేర్చు',
+    memberName:'పేరు', memberPhone:'ఫోన్ (WhatsApp పిలుపుకు)', inviteWa:'WhatsAppలో పిలువు',
+    noMembers:'ఇంకా సభ్యులు లేరు. ఇంట్లో ఖర్చులు పంచుకునే వాళ్లను చేర్చండి.',
+    paidByL:'ఎవరు కట్టారు', splitWith:'ఎవరితో పంచుకున్నారు', splitEqually:'సభ్యులందరికీ సమానంగా పంచు',
+    settlement:'ఎవరు ఎవరికి ఇవ్వాలి', settleUp:'లెక్క సరిచేయి', allSettled:'అందరి లెక్క సరిపోయింది ✅',
+    owesTo:'{a} → {b}కి ఇవ్వాలి', familyHint:'ప్రతి వ్యక్తిని ఒకసారి చేర్చండి. తర్వాత ప్రతి ఖర్చుకూ ఎవరు కట్టారో, ఎవరితో పంచుకున్నారో నమోదవుతుంది.',
+    memberSpent:'{a} ఖర్చు', share:'వాటా {a}', netPos:'నికరం',
+    inviteMsg:'మన ఇంటి ఖర్చులు కలిసి చూసుకోవడానికి PocketSeedsలో చేరండి.',
+    familyLocalNote:'సభ్యులు, వాటాలు ఈ ఫోన్‌లోనే ఉంటాయి. ఫోన్ల మధ్య నేరుగా పంచుకోవాలంటే సర్వర్ వెర్షన్ కావాలి.',
+    creditHealth:'క్రెడిట్ ఆరోగ్యం', cibil:'CIBIL స్కోరు', addScore:'+ స్కోరు చేర్చు', scoreL:'స్కోరు (300–900)',
+    scoreDate:'ఎప్పుడు చూశారు', lastUpdated:'చివరిసారి {d}', noScore:'స్కోరు లేదు. నెలకోసారి ఉచితంగా CIBIL చూసి ఇక్కడ రాయండి.',
+    scorePoor:'తక్కువ', scoreFair:'ఫర్వాలేదు', scoreGood:'మంచిది', scoreExcellent:'చాలా మంచిది',
+    scoreTrend:'తీరు', scoreUp:'{n} పాయింట్లు పెరిగింది', scoreDown:'{n} పాయింట్లు తగ్గింది', scoreSame:'మార్పు లేదు',
+    breakdown:'స్కోరును కదిలించేవి', payHistory:'కట్టిన తీరు', utilization:'వాడుతున్న క్రెడిట్',
+    historyLen:'ఎంత కాలంగా', creditMix:'రుణాల కలయిక', inquiries:'కొత్త విచారణలు',
+    creditHint:'వందకు ₹3 చేతి అప్పు CIBILలో కనబడదు, కానీ EMI ఆలస్యం కనబడుతుంది. EMI తేదీకి కడితే స్కోరు పెరుగుతుంది.',
+    creditAutoNote:'నెలనెలా దానంతట అదే రావాలంటే క్రెడిట్ బ్యూరో API, సర్వర్ కావాలి. అప్పటిదాకా బ్యూరో సైట్‌లో ఉచితంగా చూసి ఇక్కడ రాయండి.',
+    checkNow:'CIBILలో ఉచితంగా చూడు',
+    tax:'పన్ను ఆదా', taxTitle:'పన్ను మినహాయింపులు', taxYear:'ఆర్థిక సంవత్సరం {y}',
+    estSaving:'ఆదా అయ్యే పన్ను (అంచనా)', deductibleFound:'మినహాయింపుకు వచ్చే ఖర్చు',
+    taxHint:'మీ నమోదుల నుంచి {r}% శ్లాబ్ ప్రకారం లెక్క. ఫైల్ చేసే ముందు CAతో సరిచూసుకోండి.',
+    noTax:'ఈ సంవత్సరం మినహాయింపు ఖర్చు ఇంకా లేదు.', section:'సెక్షన్',
+    sec80D:'వైద్యం & బీమా (80D)', sec80E:'చదువు రుణ వడ్డీ (80E)',
+    sec24:'ఇంటి అద్దె / గృహ రుణం (24)', sec80C:'పెట్టుబడులు & పొదుపు (80C)',
+    taxSlab:'మీ పన్ను శ్లాబ్',
+    emergencyTitle:'అత్యవసర నిధి', emergencyTarget:'లక్ష్యం', monthsCover:'{n} నెలల ఖర్చుకు సరిపడా',
+    monthlyNeeded:'ఏడాదిలో చేరాలంటే నెలకు {a} పక్కన పెట్టండి', emergencyDone:'పూర్తిగా సిద్ధం ✅',
+    search:'వెతుకు', searchPh:'వివరణ, షాపు, పేరు…', filters:'వడపోత',
+    fromDate:'నుంచి', toDate:'వరకు', minAmt:'కనిష్ఠం ₹', maxAmt:'గరిష్ఠం ₹', clearF:'తీసేయి',
+    results:'{n} నమోదులు · {a}', noResults:'ఏమీ దొరకలేదు. తేదీలు పెంచి చూడండి.',
+    allCats:'అన్ని రకాలు', allMethods:'అన్ని పద్ధతులు',
+    reports:'నివేదికలు', monthlyReport:'నెల నివేదిక', printPdf:'🖨️ PDF గా భద్రపరచు',
+    shareWa:'📲 WhatsAppలో పంపు', topCats:'ఎక్కువ ఖర్చు రకాలు', vsLast:'గత నెలతో పోలిక',
+    upBy:'గత నెల కంటే {a} ఎక్కువ', downBy:'గత నెల కంటే {a} తక్కువ', sameAsLast:'గత నెలతో దాదాపు సమానం',
+    insightCat:'{c} మీద అత్యధికం — {a}.',
+    reportFor:'{m} నివేదిక',
+    smsSync:'SMS సింక్', lastSynced:'చివరిసారి {d}', never:'ఇంకా లేదు', reviewQ:'చేర్చే ముందు చూడండి',
+    confirmAll:'{n} అన్నీ చేర్చు', reviewHint:'మీ మెసేజ్‌ల నుంచి చదివాం. మార్చాలంటే నొక్కండి, తప్పుంటే తీసేయండి.',
+    detected:'{n} దొరికాయి', bankL:'బ్యాంక్',
+    smsNative:'బ్యాంక్ SMS దానంతట అదే చదవాలంటే Android యాప్ వెర్షన్ కావాలి — బ్రౌజర్ మెసేజ్‌లు చదవలేదు. ఇక్కడ అతికిస్తే మిగతాదంతా అలాగే పని చేస్తుంది.',
+    nothingNew:'కొత్తవి లేవు — అన్నీ ఇప్పటికే చేర్చాం.',
+    voiceConfirmT:'ఇది చేర్చాలా?', voiceConfirmB:'సరే', voiceEdit:'మార్చు'
+
   }
 };
 
 let LANG = localStorage.getItem('pocketseeds.lang') || 'te';
-function t(key, vars){
-  let s = (STR[LANG] && STR[LANG][key] != null) ? STR[LANG][key] : STR.en[key];
+/* Display mode: 'both' shows Telugu | English together (default), or a single language. */
+let LMODE = localStorage.getItem('pocketseeds.lmode') || 'both';
+/* L() = short label. In 'both' mode it renders "తెలుగు | English" on one line.
+   t() = full sentence; always one language, because doubling prose is unreadable. */
+function L(key, vars){
+  const te = one('te', key, vars), en = one('en', key, vars);
+  if(LMODE === 'en') return en;
+  if(LMODE === 'te') return te;
+  return (te === en) ? te : te + ' | ' + en;
+}
+function one(lang, key, vars){
+  let s = (STR[lang] && STR[lang][key] != null) ? STR[lang][key] : STR.en[key];
   if(s == null) return key;
   if(typeof s !== 'string') return s;
   if(vars) Object.keys(vars).forEach(k => { s = s.split('{'+k+'}').join(vars[k]); });
   return s;
 }
+function t(key, vars){
+  return one(LMODE === 'en' ? 'en' : 'te', key, vars);
+}
 function applyLang(){
+  LANG = LMODE === 'en' ? 'en' : 'te';
   document.documentElement.lang = LANG;
-  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.documentElement.dataset.lmode = LMODE;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const prose = el.classList.contains('hint') || el.classList.contains('sub') || el.classList.contains('sheet-sub');
+    el.textContent = prose ? t(el.dataset.i18n) : L(el.dataset.i18n);
+  });
   const b = document.getElementById('btnLang');
-  if(b) b.textContent = LANG === 'te' ? 'EN' : 'తె';
+  if(b) b.textContent = LMODE === 'both' ? 'తె|EN' : (LMODE === 'te' ? 'తె' : 'EN');
   const ph = {
     dayNote: LANG==='te' ? 'పాలు, కూలి, షాపు' : 'Milk, wage, shop',
     upiNote: LANG==='te' ? 'కూరగాయలు' : 'Groceries',
@@ -782,6 +1043,11 @@ const DEFAULTS = {
   version: 2,
   settings: { rate:20, carryForward:true, notifyDays:3, adClient:'', adSlot:'' },
   sources:[], tx:[], reminders:[], savings:[],
+  members:[],   // {id,name,phone}                      family sharing
+  scores:[],    // {id,score,date}                      credit health
+  budgetIncome: 0,                                   // 50/30/20 base
+  taxSlab: 20,
+  lastSync: '',
   loans:[],     // {id,kind:'borrowed'|'lent',person,principal,rate,start,closed}
   chits:[],     // {id,name,instal,months,paid,taken,prize,day}
   fests:[],     // {id,name,target,date,saved}
@@ -973,7 +1239,7 @@ function parseMessages(text){
     const amount = parseFloat(amtM[1].replace(/,/g,''));
     if(!amount) return;
     const credit = /\b(credited|received|deposited|refund)\b/i.test(msg);
-    const debit  = /\b(debited|paid|sent|spent|withdrawn|purchase|txn of)\b/i.test(msg);
+    const debit  = /\b(debited|debit|deducted|paid|sent|spent|withdrawn|withdrawal|purchase|txn of|trf to)\b/i.test(msg);
     if(!credit && !debit) return;
     let method = 'bank';
     if(/phonepe/i.test(msg)) method='phonepe';
@@ -981,7 +1247,7 @@ function parseMessages(text){
     else if(/paytm/i.test(msg)) method='paytm';
     else if(/\bupi\b|vpa|@/i.test(msg)) method='upi';
     const vpaM = msg.match(/([a-z0-9._-]{2,})@([a-z]{2,})/i);
-    const toM  = msg.match(/\b(?:to|at|towards|from)\s+(?!your\b|a\/c\b|account\b|vpa\b)([A-Za-z0-9 &._-]{3,30})/i);
+    const toM  = msg.match(/\b(?:to|at|towards|from|for)\s+(?!your\b|a\/c\b|account\b|vpa\b|bank\b|pos\b|atm\b)([A-Za-z0-9 &._-]{3,30})/i);
     const refM = msg.match(/(?:ref(?:erence)?(?:\s*no\.?)?|txn\s*id|utr)[:\s#]*([A-Za-z0-9]{4,})/i);
     const dtM  = msg.match(/\b(\d{1,2})[-\/](\d{1,2})(?:[-\/](\d{2,4}))?\b/);
     let date = ymd(new Date());
@@ -994,7 +1260,7 @@ function parseMessages(text){
     const payee = vpaM ? vpaM[0] : (toM ? cleanPayee(toM[1]) : UPI_LABEL[method]);
     out.push({ id:uid(), type:credit?'income':'expense', amount, note:payee,
       category: credit ? 'Other income' : guessCategory(msg+' '+payee),
-      method, date, ref: refM ? refM[1] : '' });
+      method, date, ref: refM ? refM[1] : '', src: msg });
   });
   return out;
 }
@@ -1018,6 +1284,7 @@ const CATS = [
   {k:'EMI',       te:'EMI / వాయిదా', en:'EMI',         ic:'🏦'},
   {k:'Vaddi',     te:'వడ్డీ',          en:'Interest',    ic:'📈'},
   {k:'Chit',      te:'చిట్టీ',         en:'Chit',        ic:'🔄'},
+  {k:'Cash',      te:'నగదు తీత',      en:'Cash withdrawal', ic:'🏧'},
   {k:'Other',     te:'ఇతరం',         en:'Other',       ic:'•'}
 ];
 const catLabel = k => { const c = CATS.find(c=>c.k===k); return c ? (LANG==='te'?c.te:c.en) : k; };
@@ -1036,7 +1303,8 @@ const incLabel = k => { const c = INCOME_CATS.find(c=>c.k===k); return c ? (LANG
 function guessCategory(s){
   s = s.toLowerCase();
   if(/swiggy|zomato|restaurant|cafe|hotel|kitchen|dosa|tiffin|food|mess/.test(s)) return 'Food';
-  if(/bigbasket|dmart|kirana|grocer|blinkit|zepto|instamart|super ?market/.test(s)) return 'Groceries';
+  if(/\batm\b|cash ?withdraw/.test(s)) return 'Cash';
+  if(/bigbasket|dmart|kirana|grocer|blinkit|zepto|instamart|super ?market|reliance fresh|ratnadeep|vijetha|more mega/.test(s)) return 'Groceries';
   if(/vegetable|kurgayalu|rythu|market/.test(s)) return 'Vegetables';
   if(/milk|dairy|heritage|jersey|dodla|amul/.test(s)) return 'Milk';
   if(/uber|ola|rapido|irctc|metro|bus|rtc|flight|indigo|auto/.test(s)) return 'Travel';
@@ -1717,9 +1985,11 @@ function sheetSettings(){
   const st = DB.settings;
   openSheet(`
     <h3>${t('settings')}</h3>
-    <div class="field"><label>${t('language')}</label>
-      <select id="cLang"><option value="te" ${LANG==='te'?'selected':''}>తెలుగు</option>
-      <option value="en" ${LANG==='en'?'selected':''}>English</option></select></div>
+    <div class="field"><label>${L('language')}</label>
+      <select id="cLang">
+        <option value="both" ${LMODE==='both'?'selected':''}>తెలుగు | English</option>
+        <option value="te" ${LMODE==='te'?'selected':''}>తెలుగు</option>
+        <option value="en" ${LMODE==='en'?'selected':''}>English</option></select></div>
     <div class="field"><label>${t('savingsRatePct')}</label><input id="cRate" type="number" min="0" max="90" value="${st.rate}"></div>
     <div class="field"><label>${t('remindBefore')}</label>
       <select id="cNotify">${[1,2,3,5,7].map(d=>`<option value="${d}" ${d==st.notifyDays?'selected':''}>${d}</option>`).join('')}</select></div>
@@ -1736,7 +2006,7 @@ function sheetSettings(){
     <button class="btn btn-g btn-block" style="margin-top:8px;color:var(--out)" id="cReset">${t('eraseAll')}</button>
     <div class="hint">${t('storedHint')}</div>`);
   $('#cSave').addEventListener('click', () => {
-    LANG = $('#cLang').value; localStorage.setItem('pocketseeds.lang', LANG);
+    LMODE = $('#cLang').value; localStorage.setItem('pocketseeds.lmode', LMODE);
     st.rate = Math.max(0, Math.min(90, Number($('#cRate').value)||0));
     st.notifyDays = Number($('#cNotify').value);
     st.carryForward = $('#cCarry').value === '1';
@@ -1959,9 +2229,10 @@ $('#fab').addEventListener('click', () => sheetTx(TAB === 'income' ? 'income' : 
 $('#fabMic').addEventListener('click', startVoice);
 $('#btnSettings').addEventListener('click', sheetSettings);
 $('#btnLang').addEventListener('click', () => {
-  LANG = LANG === 'te' ? 'en' : 'te';
-  localStorage.setItem('pocketseeds.lang', LANG);
-  mountAd(); renderAll(); toast(LANG === 'te' ? 'తెలుగు' : 'English');
+  LMODE = LMODE === 'both' ? 'te' : (LMODE === 'te' ? 'en' : 'both');
+  localStorage.setItem('pocketseeds.lmode', LMODE);
+  mountAd(); renderAll();
+  toast(LMODE === 'both' ? 'తెలుగు | English' : (LMODE === 'te' ? 'తెలుగు' : 'English'));
 });
 $('#btnAddIncome').addEventListener('click', () => sheetTx('income'));
 $('#btnAddExpense').addEventListener('click', () => sheetTx('expense'));
@@ -2056,3 +2327,551 @@ window.addEventListener('resize', sizeAd);
 </script>
 </body>
 </html>
+
+<script>
+'use strict';
+/* =========================================================================
+   TIER 1–3 modules: budget, family, credit, tax, emergency, search, reports
+   ========================================================================= */
+
+/* ---------------- MORE hub ---------------- */
+const MORE_ITEMS = [
+  {go:'save',    ic:'🐖', key:'navSave',      sub:'howMuchSave'},
+  {go:'budget',  ic:'📊', key:'budget503020', sub:'budgetHint'},
+  {go:'family',  ic:'👨‍👩‍👦', key:'family',    sub:'familyHint'},
+  {go:'credit',  ic:'📈', key:'creditHealth', sub:'creditHint'},
+  {go:'tax',     ic:'🧾', key:'taxTitle',     sub:'taxHint'},
+  {go:'reports', ic:'📄', key:'reports',      sub:'monthlyReport'},
+  {go:'search',  ic:'🔍', key:'search',       sub:'searchPh'}
+];
+function renderMore(){
+  $('#moreList').innerHTML = MORE_ITEMS.map(m => `
+    <button class="row" data-go="${m.go}" style="width:100%;text-align:left;cursor:pointer;font-family:inherit">
+      <div class="ic ic-save">${m.ic}</div>
+      <div class="body"><div class="title">${L(m.key)}</div>
+        <div class="meta" style="white-space:normal">${t(m.sub, {r:DB.taxSlab||20})}</div></div>
+      <div style="color:var(--muted)">›</div>
+    </button>`).join('') + `
+    <button class="row" id="moreSettings" style="width:100%;text-align:left;cursor:pointer;font-family:inherit">
+      <div class="ic ic-warn">⚙️</div>
+      <div class="body"><div class="title">${L('settings')}</div></div>
+      <div style="color:var(--muted)">›</div>
+    </button>`;
+  const s2 = $('#adSlot2');
+  if(s2 && !DB.settings.adClient){
+    const a = HOUSE_ADS[1], c = LANG === 'te' ? a.te : a.en;
+    $('#adHouse2').innerHTML = `<div class="house-ad" data-ad-url="${a.url}">
+      <div class="ha-ic">${a.icon}</div><div><h4>${c.h}</h4><p>${c.p}</p>
+      <span class="ha-cta">${c.c} →</span></div></div>`;
+  }
+}
+
+/* ---------------- 50/30/20 BUDGET ---------------- */
+const NEEDS_CATS = ['Rent','Groceries','Milk','Bills','Travel','Health','Education','Fuel','Vegetables','EMI','Cash'];
+const WANTS_CATS = ['Food','Shopping','Recharge','Function','Temple','Other'];
+function budgetMath(){
+  const k = mKey(VIEW);
+  const inc = Number(DB.budgetIncome) || stats().income || 0;
+  const exp = inMonth(DB.tx.filter(x=>x.type==='expense'), k);
+  const spent = c => exp.filter(x => c.includes(x.category)).reduce((a,x)=>a+(+x.amount||0),0);
+  const savedM = sum(inMonth(DB.savings, k));
+  return {
+    income: inc,
+    rows: [
+      { key:'needs',       ic:'🏠', cap: Math.round(inc*0.50), used: spent(NEEDS_CATS), list:'needsList' },
+      { key:'wants',       ic:'🛍️', cap: Math.round(inc*0.30), used: spent(WANTS_CATS), list:'wantsList' },
+      { key:'savingsPart', ic:'🐖', cap: Math.round(inc*0.20), used: savedM,            list:null }
+    ]
+  };
+}
+function renderBudget(){
+  const b = budgetMath();
+  $('#bIncome').value = DB.budgetIncome || '';
+  $('#budgetBars').innerHTML = b.rows.map(r => {
+    const pct = r.cap ? Math.min(100, Math.round(r.used/r.cap*100)) : 0;
+    const over = r.used > r.cap;
+    return `<div class="row" style="align-items:flex-start">
+      <div class="ic ${over?'ic-out':'ic-in'}">${r.ic}</div>
+      <div class="body">
+        <div class="title">${L(r.key)}</div>
+        <div class="meta">${t('ofBudget',{a:money(r.used), b:money(r.cap)}) } ·
+          <b style="color:${over?'var(--out)':'var(--in)'}">${over?t('overBy',{a:money(r.used-r.cap)}):t('leftOver',{a:money(r.cap-r.used)})}</b></div>
+        <div class="mini-bar"><i style="width:${pct}%;background:${over?'var(--out)':'linear-gradient(90deg,var(--brand),var(--brand-2))'}"></i></div>
+        ${r.list?`<div class="meta" style="margin-top:6px;white-space:normal">${t(r.list)}</div>`:''}
+      </div>
+      <div class="amt" style="color:${over?'var(--out)':'var(--muted)'}">${pct}%</div>
+    </div>`;
+  }).join('');
+  const bad = b.rows.filter(r => r.used > r.cap && r.key !== 'savingsPart');
+  $('#budgetNote').innerHTML = !b.income
+    ? `<div style="font-size:13px;color:var(--muted)">${t('budgetHint')}</div>`
+    : (bad.length ? `<div style="font-size:13px;line-height:1.55">${t('budgetOver',{c:t(bad[0].key), a:money(bad[0].used-bad[0].cap)})}</div>`
+                  : `<div style="font-size:13px;line-height:1.55">${t('budgetOk')}</div>`);
+}
+
+/* ---------------- FAMILY ---------------- */
+function familyMath(){
+  const k = mKey(VIEW);
+  const exp = inMonth(DB.tx.filter(x=>x.type==='expense'), k);
+  const per = {};
+  DB.members.forEach(m => per[m.id] = { id:m.id, name:m.name, paid:0, share:0 });
+  exp.forEach(x => {
+    const amt = Number(x.amount)||0;
+    if(x.paidBy && per[x.paidBy]) per[x.paidBy].paid += amt;
+    const split = (x.splitWith && x.splitWith.length) ? x.splitWith.filter(id=>per[id]) : [];
+    if(split.length){ const each = amt/split.length; split.forEach(id => per[id].share += each); }
+  });
+  const list = Object.values(per).map(p => ({...p, net: Math.round(p.paid - p.share)}));
+  // simple settlement: creditors and debtors matched largest first
+  const cred = list.filter(p=>p.net>0).sort((a,b)=>b.net-a.net).map(p=>({...p}));
+  const debt = list.filter(p=>p.net<0).sort((a,b)=>a.net-b.net).map(p=>({...p, net:-p.net}));
+  const moves = [];
+  let i=0, j=0;
+  while(i<debt.length && j<cred.length){
+    const amt = Math.min(debt[i].net, cred[j].net);
+    if(amt > 0) moves.push({ from:debt[i].name, to:cred[j].name, amount:Math.round(amt) });
+    debt[i].net -= amt; cred[j].net -= amt;
+    if(debt[i].net <= 0.5) i++;
+    if(cred[j].net <= 0.5) j++;
+  }
+  return { list, moves };
+}
+function renderFamily(){
+  const f = familyMath();
+  $('#memberList').innerHTML = DB.members.length ? f.list.map(p => `
+    <div class="row">
+      <div class="ic ic-plum">👤</div>
+      <div class="body"><div class="title">${esc(p.name)}</div>
+        <div class="meta">${t('memberSpent',{a:money(p.paid)})} · ${t('share',{a:money(Math.round(p.share))})}</div></div>
+      <div class="amt ${p.net>=0?'in':'out'}">${p.net>=0?'+':''}${money(p.net)}</div>
+      <button class="swipe-del" data-del-member="${p.id}">✕</button>
+    </div>`).join('') : emptyBox('👨‍👩‍👦', t('noMembers'));
+
+  $('#settleBox').innerHTML = f.moves.length
+    ? f.moves.map(m => `<div class="kv"><span>${t('owesTo',{a:esc(m.from), b:esc(m.to)})}</span><b>${money(m.amount)}</b></div>`).join('')
+    : `<div style="font-size:13px;color:var(--muted);text-align:center;padding:6px">${t('allSettled')}</div>`;
+}
+
+/* ---------------- CREDIT HEALTH ---------------- */
+const scoreBand = n => n < 600 ? {k:'scorePoor', c:'var(--out)'} : n < 700 ? {k:'scoreFair', c:'var(--warn)'}
+  : n < 750 ? {k:'scoreGood', c:'var(--brand-2)'} : {k:'scoreExcellent', c:'var(--brand)'};
+const CREDIT_FACTORS = [['payHistory',35],['utilization',30],['historyLen',15],['creditMix',10],['inquiries',10]];
+function renderCredit(){
+  const list = [...DB.scores].sort((a,b)=>a.date.localeCompare(b.date));
+  const latest = list[list.length-1];
+  if(!latest){
+    $('#scoreCard').innerHTML = `<div style="text-align:center;padding:10px 0">
+      <div style="font-size:30px">📈</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:8px;line-height:1.5">${t('noScore')}</div>
+      <button class="btn btn-p btn-sm" style="margin-top:12px" id="scoreCta">${L('addScore')}</button></div>`;
+    $('#scoreTrendBox').innerHTML = `<div style="font-size:13px;color:var(--muted);text-align:center">—</div>`;
+  } else {
+    const band = scoreBand(latest.score);
+    const prev = list[list.length-2];
+    const diff = prev ? latest.score - prev.score : 0;
+    const pos = Math.max(0, Math.min(100, (latest.score-300)/6));
+    $('#scoreCard').innerHTML = `
+      <div class="t-lbl" style="font-size:12px;color:var(--muted);font-weight:700">${L('cibil')}</div>
+      <div style="font-size:44px;font-weight:800;color:${band.c};letter-spacing:-.03em;margin:4px 0">${latest.score}</div>
+      <div style="font-size:13px;font-weight:700;color:${band.c}">${L(band.k)}</div>
+      <div class="bar" style="background:var(--surface-2);margin:12px 0 6px">
+        <i style="width:${pos}%;background:${band.c}"></i></div>
+      <div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted)"><span>300</span><span>900</span></div>
+      <div class="hint" style="margin-top:10px">${t('lastUpdated',{d:shortDate(latest.date)})}${
+        prev ? ' · ' + (diff>0?t('scoreUp',{n:diff}):diff<0?t('scoreDown',{n:-diff}):t('scoreSame')) : ''}</div>`;
+    const max = Math.max(...list.map(x=>x.score)), min = Math.min(...list.map(x=>x.score));
+    const span = Math.max(1, max-min);
+    $('#scoreTrendBox').innerHTML = `
+      <div style="display:flex;align-items:flex-end;gap:6px;height:90px">
+        ${list.slice(-8).map(x => {
+          const h = 22 + ((x.score-min)/span)*62;
+          return `<div style="flex:1;text-align:center">
+            <div style="height:${h}px;border-radius:6px 6px 0 0;background:${scoreBand(x.score).c}"></div>
+            <div style="font-size:9.5px;color:var(--muted);margin-top:4px">${x.score}</div></div>`;
+        }).join('')}
+      </div>
+      <div class="hint" style="margin-top:8px">${t('creditHint')}</div>`;
+  }
+  $('#scoreBreak').innerHTML = CREDIT_FACTORS.map(([k,p]) => `
+    <div class="catbar"><div class="cb-name" style="width:130px">${t(k)}</div>
+      <div class="cb-track"><i style="width:${p*2.85}%"></i></div>
+      <div class="cb-amt">${p}%</div></div>`).join('');
+}
+
+/* ---------------- TAX ---------------- */
+const TAX_MAP = [
+  { sec:'sec80D', cats:['Health'] },
+  { sec:'sec80E', cats:['Education'] },
+  { sec:'sec24',  cats:['Rent'] },
+  { sec:'sec80C', cats:['Chit'] }
+];
+function taxMath(){
+  const now = new Date();
+  const fyStart = new Date(now.getMonth() >= 3 ? now.getFullYear() : now.getFullYear()-1, 3, 1);
+  const fyEnd   = new Date(fyStart.getFullYear()+1, 2, 31);
+  const yLabel  = fyStart.getFullYear()+'–'+String(fyStart.getFullYear()+1).slice(2);
+  const inRange = x => x.date >= ymd(fyStart) && x.date <= ymd(fyEnd);
+  const exp = DB.tx.filter(x => x.type==='expense' && inRange(x));
+  const savings = DB.savings.filter(inRange);
+  const rows = TAX_MAP.map(m => {
+    let amt = exp.filter(x => m.cats.includes(x.category)).reduce((a,x)=>a+(+x.amount||0),0);
+    if(m.sec === 'sec80C') amt += savings.reduce((a,x)=>a+(+x.amount||0),0);
+    return { sec:m.sec, amount:Math.round(amt) };
+  }).filter(r => r.amount > 0);
+  const total = rows.reduce((a,r)=>a+r.amount,0);
+  const slab = Number(DB.taxSlab)||20;
+  return { rows, total, slab, saved: Math.round(total*slab/100), yLabel };
+}
+function renderTax(){
+  const x = taxMath();
+  $('#taxSaved').textContent = money(x.saved);
+  $('#taxYearNote').textContent = t('taxYear',{y:x.yLabel}) + ' · ' + money(x.total);
+  $$('#slabChips .chip').forEach(c => c.setAttribute('aria-pressed', String(+c.dataset.slab === x.slab)));
+  $('#taxList').innerHTML = x.rows.length ? x.rows.map(r => `
+    <div class="row">
+      <div class="ic ic-in">🧾</div>
+      <div class="body"><div class="title">${L(r.sec)}</div>
+        <div class="meta">${t('estSaving')} ${money(Math.round(r.amount*x.slab/100))}</div></div>
+      <div class="amt in">${money(r.amount)}</div>
+    </div>`).join('') : emptyBox('🧾', t('noTax'));
+  $('#taxHintBox').textContent = t('taxHint',{r:x.slab});
+}
+
+/* ---------------- EMERGENCY FUND (shown on Savings) ---------------- */
+function emergencyMath(){
+  const avg = avgExpense3();
+  const target = Math.round(avg*6);
+  const have = sum(DB.savings);
+  const need = Math.max(0, target-have);
+  return { avg, target, have, need, pct: target ? Math.min(100, Math.round(have/target*100)) : 0,
+           perMonth: Math.ceil(need/12) };
+}
+
+/* ---------------- SEARCH ---------------- */
+function runSearch(){
+  const q  = ($('#qText').value||'').trim().toLowerCase();
+  const f  = $('#qFrom').value, tt = $('#qTo').value;
+  const mn = Number($('#qMin').value)||0, mx = Number($('#qMax').value)||Infinity;
+  const cat = $('#qCat').value, meth = $('#qMethod').value;
+  const rows = DB.tx.filter(x => {
+    if(q && !((x.note||'')+' '+catLabel(x.category)+' '+incLabel(x.category)).toLowerCase().includes(q)) return false;
+    if(f && x.date < f) return false;
+    if(tt && x.date > tt) return false;
+    const a = Number(x.amount)||0;
+    if(a < mn || a > mx) return false;
+    if(cat && x.category !== cat) return false;
+    if(meth && x.method !== meth) return false;
+    return true;
+  }).sort((a,b)=>(b.date+b.id).localeCompare(a.date+a.id));
+  const total = rows.filter(x=>x.type==='expense').reduce((a,x)=>a+(+x.amount||0),0);
+  $('#qCount').textContent = t('results',{n:rows.length, a:money(total)});
+  $('#qResults').innerHTML = rows.length ? rows.slice(0,80).map(txRow).join('') : emptyBox('🔍', t('noResults'));
+}
+function renderSearch(){
+  const cs = $('#qCat'), ms = $('#qMethod');
+  if(cs && !cs.dataset.built){
+    cs.innerHTML = `<option value="">${t('allCats')}</option>` + CATS.map(c=>`<option value="${c.k}">${c.ic} ${LANG==='te'?c.te:c.en}</option>`).join('');
+    ms.innerHTML = `<option value="">${t('allMethods')}</option>` + ['phonepe','gpay','paytm','upi','cash','card','bank'].map(m=>`<option value="${m}">${UPI_LABEL[m]}</option>`).join('');
+    cs.dataset.built = '1';
+  }
+  $('#qText').placeholder = t('searchPh');
+  runSearch();
+}
+
+/* ---------------- REPORTS ---------------- */
+function reportData(){
+  const k = mKey(VIEW);
+  const prev = new Date(VIEW.getFullYear(), VIEW.getMonth()-1, 1);
+  const s = stats(), sp = stats(prev);
+  const exp = inMonth(DB.tx.filter(x=>x.type==='expense'), k);
+  const by = {};
+  exp.forEach(x => by[x.category||'Other'] = (by[x.category||'Other']||0)+(+x.amount||0));
+  const top = Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const diff = s.expense - sp.expense;
+  return { s, sp, top, diff, k };
+}
+function renderReport(){
+  const r = reportData();
+  const trend = Math.abs(r.diff) < r.sp.expense*0.05 || !r.sp.expense ? t('sameAsLast')
+    : r.diff > 0 ? t('upBy',{a:money(r.diff)}) : t('downBy',{a:money(-r.diff)});
+  $('#reportBox').innerHTML = `
+    <div class="card" style="padding:17px">
+      <div style="font-size:12px;font-weight:700;color:var(--muted)">${L('monthlyReport')}</div>
+      <div style="font-size:22px;font-weight:800;margin:4px 0 12px">${t('reportFor',{m:fmtMonth(VIEW)})}</div>
+      <div class="kv"><span>${L('income')}</span><b style="color:var(--in)">${money(r.s.income)}</b></div>
+      <div class="kv"><span>${L('expenditure')}</span><b style="color:var(--out)">${money(r.s.expense)}</b></div>
+      <div class="kv"><span>${L('totalSaved')}</span><b>${money(r.s.savedM)}</b></div>
+      <div class="kv"><span>${L('currentBalance')}</span><b>${money(r.s.balance)}</b></div>
+    </div>
+    <div class="sec">
+      <div class="sec-head"><h3>${L('topCats')}</h3></div>
+      <div class="card" style="padding:15px">
+        ${r.top.length ? r.top.map(([c,v]) => {
+          const max = r.top[0][1];
+          return `<div class="catbar"><div class="cb-name">${catIcon(c)} ${esc(catLabel(c))}</div>
+            <div class="cb-track"><i style="width:${Math.max(6,(v/max)*100)}%"></i></div>
+            <div class="cb-amt">${money(v)}</div></div>`;
+        }).join('') : `<div style="font-size:13px;color:var(--muted);text-align:center">—</div>`}
+      </div>
+    </div>
+    <div class="sec">
+      <div class="sec-head"><h3>${L('vsLast')}</h3></div>
+      <div class="card" style="padding:15px;font-size:13px;line-height:1.6">
+        ${trend}${r.top.length?'<br>'+t('insightCat',{c:catLabel(r.top[0][0]), a:money(r.top[0][1])}):''}
+      </div>
+    </div>`;
+}
+function reportText(){
+  const r = reportData();
+  const lines = [
+    `PocketSeeds — ${t('reportFor',{m:fmtMonth(VIEW)})}`,
+    `${t('income')}: ${money(r.s.income)}`,
+    `${t('expenditure')}: ${money(r.s.expense)}`,
+    `${t('totalSaved')}: ${money(r.s.savedM)}`,
+    `${t('currentBalance')}: ${money(r.s.balance)}`,
+    '', t('topCats') + ':',
+    ...r.top.map(([c,v]) => `• ${catLabel(c)} — ${money(v)}`)
+  ];
+  return lines.join('\n');
+}
+</script>
+
+<script>
+'use strict';
+/* =========================== BANK SMS PATTERNS =========================== */
+const BANKS = [
+  { id:'SBI',       re:/\b(sbi|state bank)\b/i },
+  { id:'HDFC',      re:/\bhdfc\b/i },
+  { id:'ICICI',     re:/\bicici\b/i },
+  { id:'Axis',      re:/\baxis\b/i },
+  { id:'IndusInd',  re:/\bindusind\b/i },
+  { id:'Kotak',     re:/\bkotak\b/i },
+  { id:'Union',     re:/\bunion bank\b/i },
+  { id:'PNB',       re:/\b(pnb|punjab national)\b/i },
+  { id:'Canara',    re:/\bcanara\b/i },
+  { id:'BOB',       re:/\b(bob|bank of baroda)\b/i }
+];
+const detectBank = msg => (BANKS.find(b => b.re.test(msg)) || {}).id || '';
+
+/* extra category rules the spec asked for, on top of guessCategory */
+function categorise(msg, payee){
+  if(/\batm\b|cash withdrawal|withdrawn at/i.test(msg)) return 'Cash';
+  return guessCategory(msg + ' ' + payee);
+}
+
+let REVIEW = [];   // parsed rows waiting for the user to confirm
+
+function renderReview(){
+  const box = $('#reviewBox');
+  if(!box) return;
+  if(!REVIEW.length){ box.innerHTML = ''; return; }
+  box.innerHTML = `
+    <div class="sec-head" style="margin-top:14px"><h3>${L('reviewQ')}</h3>
+      <span class="pill">${t('detected',{n:REVIEW.length})}</span></div>
+    <div class="sub">${t('reviewHint')}</div>
+    <div class="list">${REVIEW.map((r,i) => `
+      <div class="row">
+        <div class="ic ${r.type==='income'?'ic-in':'ic-out'}">${r.type==='income'?'⬇️':catIcon(r.category)}</div>
+        <div class="body"><div class="title">${esc(r.note)}</div>
+          <div class="meta">${shortDate(r.date)} · ${esc(r.type==='income'?incLabel(r.category):catLabel(r.category))}
+            ${r.bank?`<span class="pill">${esc(r.bank)}</span>`:''}
+            <span class="pill">${esc(UPI_LABEL[r.method]||r.method)}</span></div></div>
+        <div class="amt ${r.type==='income'?'in':'out'}">${money(r.amount)}</div>
+        <button class="swipe-del" data-review-edit="${i}">✏️</button>
+        <button class="swipe-del" data-review-drop="${i}">✕</button>
+      </div>`).join('')}</div>
+    <button class="btn btn-p btn-block" style="margin-top:10px" id="btnConfirmAll">${t('confirmAll',{n:REVIEW.length})}</button>`;
+  $('#btnConfirmAll').addEventListener('click', commitReview);
+}
+function commitReview(){
+  if(!REVIEW.length) return;
+  const n = REVIEW.length;
+  DB.tx.push(...REVIEW.map(r => ({ id:r.id, type:r.type, amount:r.amount, note:r.note,
+    category:r.category, method:r.method, date:r.date, ref:r.ref, autoSync:true })));
+  REVIEW = [];
+  DB.lastSync = new Date().toISOString();
+  save(); renderAll(); renderReview();
+  toast(t('smsAdded',{ e:n, i:'' }));
+}
+function syncStatusText(){
+  if(!DB.lastSync) return t('lastSynced',{d:t('never')});
+  const d = new Date(DB.lastSync);
+  return t('lastSynced',{d: shortDate(ymd(d)) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes())});
+}
+
+/* =========================== SHEETS: member, score =========================== */
+function sheetMember(){
+  openSheet(`
+    <h3>${L('addMember')}</h3>
+    <div class="sheet-sub">${t('familyHint')}</div>
+    <div class="field"><label>${L('memberName')}</label><input id="mName" type="text"></div>
+    <div class="field"><label>${L('memberPhone')}</label><input id="mPhone" type="tel" placeholder="9XXXXXXXXX"></div>
+    <button class="btn btn-p btn-block" id="mSave">${L('add')}</button>
+    <button class="btn btn-g btn-block" style="margin-top:8px" id="mInvite">${L('inviteWa')}</button>`);
+  $('#mSave').addEventListener('click', () => {
+    const name = $('#mName').value.trim();
+    if(!name) return toast(t('enterAmount'));
+    DB.members.push({ id:uid(), name, phone:$('#mPhone').value.trim() });
+    save(); renderAll(); closeSheet(); toast(t('saved'));
+  });
+  $('#mInvite').addEventListener('click', () => {
+    const ph = $('#mPhone').value.replace(/\D/g,'');
+    const url = 'https://wa.me/' + (ph ? (ph.length===10?'91':'')+ph : '') + '?text=' + encodeURIComponent(t('inviteMsg'));
+    window.open(url, '_blank', 'noopener');
+  });
+}
+function sheetScore(){
+  openSheet(`
+    <h3>${L('cibil')}</h3>
+    <div class="sheet-sub">${t('creditAutoNote')}</div>
+    <div class="grid2">
+      <div class="field"><label>${L('scoreL')}</label><input id="csScore" type="number" min="300" max="900" placeholder="750"></div>
+      <div class="field"><label>${L('scoreDate')}</label><input id="csDate" type="date" value="${ymd(new Date())}"></div>
+    </div>
+    <button class="btn btn-p btn-block" id="csSave">${L('add')}</button>
+    <a class="btn btn-g btn-block" style="margin-top:8px;text-decoration:none" href="https://www.cibil.com/freecibilscore" target="_blank" rel="noopener">${t('checkNow')}</a>`);
+  $('#csSave').addEventListener('click', () => {
+    const v = Number($('#csScore').value);
+    if(!v || v < 300 || v > 900) return toast(t('enterAmount'));
+    DB.scores.push({ id:uid(), score:v, date:$('#csDate').value || ymd(new Date()) });
+    save(); renderAll(); closeSheet(); toast(t('saved'));
+  });
+}
+
+/* =========================== VOICE CONFIRM =========================== */
+function voiceConfirm(said, p){
+  openSheet(`
+    <h3>${L('voiceConfirmT')}</h3>
+    <div class="sheet-sub">${t('voiceGot',{t:esc(said)})}</div>
+    <div class="card" style="padding:15px;margin-bottom:14px">
+      <div class="kv"><span>${L('amount')}</span><b style="font-size:19px">${money(p.amount||0)}</b></div>
+      <div class="kv"><span>${L('category')}</span><b>${catIcon(p.category)} ${esc(catLabel(p.category))}</b></div>
+      ${p.note?`<div class="kv"><span>${L('note')}</span><b>${esc(p.note)}</b></div>`:''}
+    </div>
+    <button class="btn btn-out btn-block" id="vcOk">${L('voiceConfirmB')}</button>
+    <button class="btn btn-g btn-block" style="margin-top:8px" id="vcEdit">${L('voiceEdit')}</button>`);
+  $('#vcOk').addEventListener('click', () => {
+    if(!p.amount){ closeSheet(); return sheetTx('expense', null, p); }
+    DB.tx.push({ id:uid(), type:'expense', amount:p.amount, note:p.note||catLabel(p.category),
+      category:p.category, method:'cash', date:ymd(new Date()) });
+    save(); renderAll(); closeSheet(); toast(t('expenseAdded'));
+  });
+  $('#vcEdit').addEventListener('click', () => { closeSheet(); sheetTx('expense', null, p); });
+}
+
+/* =========================== WIRE EVERYTHING =========================== */
+(function wire(){
+  // render the new pages alongside the old ones
+  const baseRender = renderAll;
+  window.renderAll = function(){
+    baseRender();
+    try{
+      renderMore(); renderBudget(); renderFamily(); renderCredit(); renderTax();
+      renderSearch(); renderReport(); renderEmergency();
+      const st = $('#syncStatus'); if(st) st.textContent = syncStatusText();
+      renderReview();
+    }catch(e){ console.error(e); }
+  };
+
+  // voice now goes through the confirm sheet
+  if(typeof REC !== 'undefined' || true){
+    const oldStart = startVoice;
+    window.startVoice = function(){
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if(!SR) return toast(t('voiceNo'));
+      const r = new SR();
+      r.lang = LANG === 'te' ? 'te-IN' : 'en-IN';
+      r.interimResults = false; r.maxAlternatives = 1;
+      r.onstart = () => { $('#fabMic').classList.add('live'); toast(t('voiceListen')); };
+      r.onerror = () => { $('#fabMic').classList.remove('live'); toast(t('voiceFail')); };
+      r.onend   = () => { $('#fabMic').classList.remove('live'); };
+      r.onresult = e => {
+        const said = e.results[0][0].transcript;
+        voiceConfirm(said, parseSpoken(said));
+      };
+      try{ r.start(); }catch(e){ toast(t('voiceFail')); }
+    };
+    const mic = $('#fabMic');
+    const fresh = mic.cloneNode(true);
+    mic.parentNode.replaceChild(fresh, mic);
+    fresh.addEventListener('click', () => window.startVoice());
+  }
+
+  // SMS scan now fills a review queue instead of writing straight in
+  const scan = $('#btnParseSms');
+  const freshScan = scan.cloneNode(true);
+  scan.parentNode.replaceChild(freshScan, scan);
+  freshScan.addEventListener('click', () => {
+    const text = $('#smsBox').value.trim();
+    if(!text) return toast(t('pasteFirst'));
+    const found = parseMessages(text).map(r => ({...r,
+      bank: detectBank(r.src || text),
+      category: r.type === 'income' ? r.category : categorise(r.src || text, r.note) }));
+    if(!found.length) return toast(t('nothingRead'));
+    const existing = new Set(DB.tx.map(x => x.date+'|'+x.amount+'|'+(x.ref||'')));
+    REVIEW = found.filter(f => !existing.has(f.date+'|'+f.amount+'|'+(f.ref||'')));
+    $('#smsBox').value = '';
+    if(!REVIEW.length) return toast(t('nothingNew'));
+    renderReview();
+    $('#reviewBox').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  // budget
+  $('#bSetIncome').addEventListener('click', () => {
+    DB.budgetIncome = Number($('#bIncome').value)||0;
+    save(); renderAll(); toast(t('saved'));
+  });
+  // tax slab
+  $$('#slabChips .chip').forEach(c => c.addEventListener('click', () => {
+    DB.taxSlab = Number(c.dataset.slab); save(); renderAll();
+  }));
+  // family / credit
+  $('#btnAddMember').addEventListener('click', sheetMember);
+  $('#btnAddScore').addEventListener('click', sheetScore);
+  // search
+  ['qText','qFrom','qTo','qMin','qMax','qCat','qMethod'].forEach(id =>
+    $('#'+id).addEventListener('input', runSearch));
+  $('#qClear').addEventListener('click', () => {
+    ['qText','qFrom','qTo','qMin','qMax'].forEach(id => $('#'+id).value = '');
+    $('#qCat').value = ''; $('#qMethod').value = ''; runSearch();
+  });
+  // reports
+  $('#btnPdf').addEventListener('click', () => window.print());
+  $('#btnWa').addEventListener('click', () => {
+    window.open('https://wa.me/?text=' + encodeURIComponent(reportText()), '_blank', 'noopener');
+  });
+  // delegated clicks for the new controls
+  document.addEventListener('click', e => {
+    const el = e.target.closest('[data-del-member],[data-review-drop],[data-review-edit],#moreSettings,#scoreCta');
+    if(!el) return;
+    if(el.id === 'moreSettings') return sheetSettings();
+    if(el.id === 'scoreCta') return sheetScore();
+    if(el.dataset.delMember){
+      DB.members = DB.members.filter(m => m.id !== el.dataset.delMember);
+      save(); renderAll(); return toast(t('removed'));
+    }
+    if(el.dataset.reviewDrop){
+      REVIEW.splice(+el.dataset.reviewDrop, 1); renderReview(); return;
+    }
+    if(el.dataset.reviewEdit){
+      const i = +el.dataset.reviewEdit, r = REVIEW[i];
+      REVIEW.splice(i,1); renderReview();
+      sheetTx(r.type, null, { amount:r.amount, note:r.note, category:r.category });
+    }
+  });
+
+  renderAll();
+})();
+
+/* emergency fund card */
+function renderEmergency(){
+  const box = $('#emergencyBox'); if(!box) return;
+  const e = emergencyMath();
+  box.innerHTML = !e.target
+    ? `<div style="font-size:13px;color:var(--muted);text-align:center">${t('emptyExpense',{m:fmtMonth(VIEW)})}</div>`
+    : `<div class="kv"><span>${L('emergencyTarget')}</span><b>${money(e.target)}</b></div>
+       <div class="kv"><span>${t('monthsCover',{n:6})}</span><b>${money(e.have)}</b></div>
+       <div class="mini-bar"><i style="width:${e.pct}%"></i></div>
+       <div class="hint" style="margin-top:8px">${e.need <= 0 ? t('emergencyDone') : t('monthlyNeeded',{a:money(e.perMonth)})}</div>`;
+}
+</script>
