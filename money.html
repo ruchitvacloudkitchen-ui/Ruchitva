@@ -59,7 +59,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-ser
   border-top:1px solid rgba(255,255,255,.22);padding-top:11px}
 .balance-sub b{font-weight:700}
 /* ---------- ad slot (same size as balance card) ---------- */
-.ad-wrap{min-height:var(--card-h);height:var(--card-h);margin-top:12px;border-radius:var(--radius);overflow:hidden;
+.ad-wrap{min-height:var(--card-h);height:var(--card-h);border-radius:var(--radius);overflow:hidden;
   position:relative;border:1px dashed var(--line);background:var(--surface)}
 .ad-wrap ins,.ad-wrap iframe,.ad-wrap > div{display:block;width:100%;height:100%}
 .ad-tag{position:absolute;top:8px;left:8px;z-index:2;font-size:9.5px;font-weight:700;letter-spacing:.08em;
@@ -108,12 +108,17 @@ body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-ser
   border:1px dashed var(--line);border-radius:15px}
 .empty .e-ic{font-size:26px;display:block;margin-bottom:6px;opacity:.7}
 /* ---------- savings coach ---------- */
-.coach{padding:17px;border-radius:16px;background:var(--save-bg);border:1px solid transparent}
-.coach h4{font-size:14px;font-weight:800;color:var(--save);display:flex;align-items:center;gap:7px}
-.coach .big{font-size:27px;font-weight:800;color:var(--save);letter-spacing:-.02em;margin:7px 0 3px}
-.coach p{font-size:12.5px;color:var(--muted);line-height:1.5}
-.bar{height:9px;border-radius:999px;background:rgba(3,105,161,.18);overflow:hidden;margin:11px 0 7px}
-.bar > i{display:block;height:100%;border-radius:999px;background:var(--save);transition:width .45s ease}
+/* Savings coach — one single colour theme throughout */
+.coach{padding:17px;border-radius:16px;border:0;background:var(--brand);color:#fff}
+.coach h4{font-size:14px;font-weight:800;color:#fff;display:flex;align-items:center;gap:7px}
+.coach .big{font-size:27px;font-weight:800;color:#fff;letter-spacing:-.02em;margin:7px 0 3px}
+.coach .big span{color:rgba(255,255,255,.72) !important}
+.coach p{font-size:12.5px;color:rgba(255,255,255,.86);line-height:1.5}
+.coach p b{color:#fff}
+.coach .btn-save{background:#fff;color:var(--brand)}
+.coach .btn-g{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
+.bar{height:9px;border-radius:999px;background:rgba(255,255,255,.26);overflow:hidden;margin:11px 0 7px}
+.bar > i{display:block;height:100%;border-radius:999px;background:#fff;transition:width .45s ease}
 .coach-actions{display:flex;gap:8px;margin-top:11px;flex-wrap:wrap}
 /* ---------- buttons / forms ---------- */
 .btn{border:0;border-radius:12px;padding:11px 15px;font-size:13.5px;font-weight:700;cursor:pointer;
@@ -210,12 +215,6 @@ textarea{resize:vertical;min-height:96px;font-size:13.5px;line-height:1.5}
       </div>
     </div>
 
-    <!-- AD BANNER — same size as Current Balance card -->
-    <div class="ad-wrap" id="adSlot">
-      <span class="ad-tag">Ad</span>
-      <div id="adHouse"></div>
-    </div>
-
     <div class="tiles">
       <div class="card tile t-in">
         <div class="t-lbl"><i class="dot d-in"></i>Income</div>
@@ -240,6 +239,14 @@ textarea{resize:vertical;min-height:96px;font-size:13.5px;line-height:1.5}
         <button class="link" data-go="expense">See all →</button>
       </div>
       <div class="list" id="recentList"></div>
+    </div>
+
+    <!-- AD BANNER — same size as the Current Balance card -->
+    <div class="sec">
+      <div class="ad-wrap" id="adSlot">
+        <span class="ad-tag">Ad</span>
+        <div id="adHouse"></div>
+      </div>
     </div>
 
     <div class="sec">
@@ -690,7 +697,7 @@ function coachHTML(s, full){
       s.cSaved >= emergency ? 'you are covered ✅' : `${money(emergency - s.cSaved)} to go.`}</p>
     <p style="margin-top:7px"><b>Rule of thumb:</b> keep needs under 50% of income, wants under 30%, and save the rest.</p>` : '';
   return `<h4>🌱 Save ${money(s.target)} this month</h4>
-    <div class="big">${money(s.stillSave)} <span style="font-size:13px;font-weight:600;color:var(--muted)">still to set aside</span></div>
+    <div class="big">${money(s.stillSave)} <span style="font-size:13px;font-weight:600">still to set aside</span></div>
     <div class="bar"><i style="width:${pct}%"></i></div>
     <p><b>${pct}%</b> of this month's target done · saved ${money(s.savedM)}</p>
     <p style="margin-top:9px">${line}</p>${extra}
