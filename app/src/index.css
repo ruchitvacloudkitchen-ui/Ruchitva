@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-brand: #8b3a1a;
+  --color-brand-dark: #6b2c13;
+  --color-gold: #e8a020;
+  --color-gold-soft: #f6d9a3;
+  --color-forest: #2d6a4f;
+  --color-cream: #fdf6ec;
+  --color-cream-deep: #f6e9d7;
+  --color-ink: #2c1a0e;
+  --color-ink-soft: #6b5744;
+  --color-whatsapp: #25d366;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Noto Sans Telugu', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Budget Android phones: never render a tap target smaller than a thumb. */
+button,
+a[role='button'],
+input,
+select,
+textarea {
+  min-height: 48px;
+}
+
+input,
+select,
+textarea {
+  font-size: 16px; /* stops iOS/Android zoom-on-focus */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
