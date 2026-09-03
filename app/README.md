@@ -38,6 +38,23 @@ Three facts are saved — `start_date`, `days_total`, and one row per skipped da
 - **Skips lock at 8 PM** the previous night, checked on the server in India
   time so a phone with a wrong clock cannot get past it.
 
+## Look at it first (no setup)
+
+```bash
+cd app
+npm install
+npm run demo      # http://localhost:5173
+```
+
+This starts the app against an in-memory stand-in for the database, seeded with
+five sample subscribers, a menu, and some skips — no Supabase account, no UPI
+ID, nothing to configure. Sign in at `/owner` with the password **demo**, and
+look up a subscription with **9876543210**.
+
+Everything is real except the storage: the skip cutoff, the cook count, the
+delivery list and the WhatsApp links all behave exactly as they will in
+production. Nothing is saved — restart and you are back to the sample data.
+
 ## Setup
 
 ### 1. Supabase
@@ -72,7 +89,8 @@ password and the service-role key never are.
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173 — serves the app and /api together
+npm run demo     # sample data, no Supabase account needed
+npm run dev      # your real Supabase, from .env
 npm test         # subscription maths and both API handlers
 npm run build
 ```
