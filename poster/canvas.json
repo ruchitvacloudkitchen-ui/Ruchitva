@@ -1,11 +1,41 @@
 {
   "artboards": [
-    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1123, "h": 1587, "title": "A — Menu poster (A3)", "print": "fixed" },
-    { "file": "AltBoldBlock.dc.html", "x": 1323, "y": 0, "w": 1123, "h": 1587, "title": "B — Bold type (A3)", "print": "fixed" }
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1123,
+      "h": 1587,
+      "title": "A — Menu poster (A3)",
+      "print": "fixed"
+    },
+    {
+      "file": "AltBoldBlock.dc.html",
+      "x": 1323,
+      "y": 0,
+      "w": 1123,
+      "h": 1587,
+      "title": "B — Bold type (A3)",
+      "print": "fixed"
+    }
   ],
   "annotations": [
-    { "id": "note-a", "x": 0, "y": -150, "w": 520, "text": "Direction A — warm editorial.\nFull menu with prices, reads as a shop/notice-board poster. Tradeoff: more to read, less punch at a distance." },
-    { "id": "note-b", "x": 1323, "y": -150, "w": 520, "text": "Direction B — bold type-led.\nSix hero items only, huge headline, reads across a room. Tradeoff: not a full menu." }
+    {
+      "id": "note-a",
+      "x": 0,
+      "y": -200,
+      "w": 520,
+      "text": "Direction A — warm editorial.\nFull menu with prices, reads as a shop/notice-board poster. Tradeoff: more to read, less punch at a distance."
+    },
+    {
+      "id": "note-b",
+      "x": 1323,
+      "y": -200,
+      "w": 520,
+      "text": "Direction B — bold type-led.\nSix hero items only, huge headline, reads across a room. Tradeoff: not a full menu."
+    }
   ],
-  "launch": { "view": "canvas" }
+  "launch": {
+    "view": "canvas"
+  }
 }
