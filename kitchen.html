@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#C2410C">
+<title>Ruchitva Kitchen — Day Planner &amp; Reminders</title>
+<meta name="description" content="Daily time slots, staff reminders, WhatsApp alerts, absence cover, money balance and material needs for one cloud kitchen.">
+<link rel="manifest" href="kitchen.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#FAF7F4; --surface:#FFFFFF; --surface-2:#F5F0EB;
+  --ink:#1C1410; --muted:#7A6A60; --line:#EAE2DB;
+  --brand:#C2410C; --brand-2:#EA580C;
+  --ok:#15803D; --ok-bg:#DCFCE7;
+  --off:#DC2626; --off-bg:#FEE2E2;
+  --wait:#B45309; --wait-bg:#FEF3C7;
+  --info:#1D4ED8; --info-bg:#DBEAFE;
+  --radius:18px; --shadow:0 1px 3px rgba(28,20,16,.06),0 6px 18px rgba(28,20,16,.05);
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12100E;--surface:#1C1815;--surface-2:#241F1B;--ink:#F2EBE5;--muted:#9C8E84;--line:#2C2622;
+    --brand:#F97316;--brand-2:#FB923C;
+    --ok:#4ADE80;--ok-bg:#0F2A1B;--off:#F87171;--off-bg:#2E1416;--wait:#FBBF24;--wait-bg:#2E2410;
+    --info:#93C5FD;--info-bg:#14203A;--shadow:0 2px 12px rgba(0,0,0,.45)}
+}
+html,body{background:var(--bg)}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:var(--ink);
+  -webkit-font-smoothing:antialiased;padding-bottom:96px}
+.app{max-width:520px;margin:0 auto;padding:0 14px}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:0;z-index:40;background:var(--bg);padding:12px 0 8px}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:-.02em}
+.brand small{display:block;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0}
+.logo{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  display:grid;place-items:center;color:#fff;font-size:17px;flex:0 0 auto}
+.icon-btn{width:34px;height:34px;border-radius:11px;border:1px solid var(--line);background:var(--surface);
+  color:var(--ink);font-size:15px;cursor:pointer;box-shadow:var(--shadow);flex:0 0 auto}
+
+/* ---------- cards ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.hero{padding:17px;color:#fff;border:0;position:relative;overflow:hidden;
+  background:linear-gradient(140deg,#B8420F 0%,#D2530E 58%,#EA580C 100%)}
+.hero::after{content:"";position:absolute;right:-38px;top:-52px;width:170px;height:170px;border-radius:50%;
+  background:rgba(255,255,255,.10)}
+.hero .lbl{font-size:11.5px;text-transform:uppercase;letter-spacing:.09em;opacity:.85;font-weight:700;position:relative;z-index:1}
+.hero .big{font-size:26px;font-weight:800;letter-spacing:-.03em;margin:5px 0 0;line-height:1.15;position:relative;z-index:1}
+.hero .sub{font-size:12.5px;opacity:.92;display:flex;gap:14px;flex-wrap:wrap;margin-top:11px;position:relative;z-index:1;
+  border-top:1px solid rgba(255,255,255,.22);padding-top:11px}
+.hero .sub b{font-weight:800;font-size:14px;display:block}
+
+/* ---------- tiles ---------- */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.tiles.three{grid-template-columns:1fr 1fr 1fr}
+.tile{padding:13px 14px;border-radius:15px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.tile .t-lbl{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
+  display:flex;align-items:center;gap:6px}
+.tile .t-amt{font-size:20px;font-weight:800;letter-spacing:-.02em;margin-top:5px}
+.tile .t-sub{font-size:11px;color:var(--muted);margin-top:3px}
+.c-ok{color:var(--ok)} .c-off{color:var(--off)} .c-wait{color:var(--wait)} .c-info{color:var(--info)}
+.c-brand{color:var(--brand)} .c-muted{color:var(--muted)}
+
+/* ---------- sections ---------- */
+.sec{margin-top:20px}
+.sec-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px;padding:0 2px}
+.sec-head h3{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.link{font-size:12.5px;font-weight:700;color:var(--brand);background:none;border:0;cursor:pointer;
+  font-family:inherit;white-space:nowrap}
+.sub-note{font-size:12px;color:var(--muted);margin:-4px 2px 9px;line-height:1.45}
+.list{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;align-items:center;gap:11px;padding:12px 13px;border-radius:14px;background:var(--surface);
+  border:1px solid var(--line);box-shadow:var(--shadow)}
+.row .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:18px;flex:0 0 auto;
+  background:var(--surface-2)}
+.row .body{flex:1;min-width:0}
+.row .title{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .meta{font-size:11.5px;color:var(--muted);margin-top:2px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.row .amt{font-size:15px;font-weight:800;white-space:nowrap}
+.row.flag{border-color:var(--off);background:var(--off-bg)}
+.row.done .title{text-decoration:line-through;color:var(--muted)}
+.pill{font-size:10px;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--surface-2);
+  border:1px solid var(--line);color:var(--muted);letter-spacing:.03em;white-space:nowrap}
+.pill.ok{background:var(--ok-bg);color:var(--ok);border-color:transparent}
+.pill.off{background:var(--off-bg);color:var(--off);border-color:transparent}
+.pill.wait{background:var(--wait-bg);color:var(--wait);border-color:transparent}
+.pill.info{background:var(--info-bg);color:var(--info);border-color:transparent}
+.empty{text-align:center;padding:22px 16px;color:var(--muted);font-size:13px;background:var(--surface);
+  border:1px dashed var(--line);border-radius:15px;line-height:1.5}
+.empty .e-ic{font-size:26px;display:block;margin-bottom:6px;opacity:.75}
+
+/* ---------- alerts ---------- */
+.alert{display:flex;gap:11px;padding:13px;border-radius:15px;margin-bottom:8px;border:1px solid transparent;align-items:flex-start}
+.alert.red{background:var(--off-bg);color:var(--off)}
+.alert.amber{background:var(--wait-bg);color:var(--wait)}
+.alert .a-ic{font-size:19px;line-height:1.1}
+.alert h4{font-size:13.5px;font-weight:800}
+.alert p{font-size:12px;margin-top:3px;line-height:1.45;opacity:.95;color:var(--ink)}
+.alert .acts{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap}
+
+/* ---------- slots ---------- */
+.slot{padding:14px;border-radius:15px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);
+  border-left:4px solid var(--brand)}
+.slot.past{opacity:.6;border-left-color:var(--line)}
+.slot.now{border-left-color:var(--ok);background:var(--ok-bg)}
+.slot-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.slot h4{font-size:14.5px;font-weight:800}
+.slot .time{font-size:12px;font-weight:700;color:var(--brand)}
+.slot p{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.45;white-space:pre-wrap}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.chip{font-size:11px;font-weight:700;padding:4px 9px;border-radius:999px;background:var(--surface-2);
+  border:1px solid var(--line);color:var(--ink)}
+
+/* ---------- buttons / forms ---------- */
+.btn{border:0;border-radius:12px;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer;
+  font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.btn-p{background:var(--brand);color:#fff}
+.btn-g{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.btn-ok{background:var(--ok);color:#fff}
+.btn-off{background:var(--off);color:#fff}
+.btn-wa{background:#25D366;color:#0A2E17}
+.btn-sm{padding:7px 11px;font-size:12px;border-radius:10px}
+.btn-full{width:100%}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.mini{width:32px;height:32px;border-radius:10px;border:1px solid var(--line);background:var(--surface);
+  color:var(--ink);font-size:14px;cursor:pointer;flex:0 0 auto;display:grid;place-items:center}
+.mini.wa{background:#25D366;border-color:#25D366;color:#0A2E17}
+.mini.ok{background:var(--ok-bg);border-color:transparent;color:var(--ok)}
+.mini.off{background:var(--off-bg);border-color:transparent;color:var(--off)}
+label{display:block;font-size:11.5px;font-weight:700;color:var(--muted);margin:11px 0 5px;letter-spacing:.02em}
+input,select,textarea{width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--line);
+  background:var(--surface-2);color:var(--ink);font-size:14px;font-family:inherit}
+textarea{min-height:88px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-offset:-1px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg{display:flex;gap:4px;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:4px}
+.seg button{flex:1;background:none;border:0;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--muted);
+  padding:7px 6px;border-radius:999px;cursor:pointer}
+.seg button.on{background:var(--brand);color:#fff}
+
+/* ---------- sheet ---------- */
+.scrim{position:fixed;inset:0;background:rgba(10,7,5,.5);z-index:60;display:none}
+.scrim.open{display:block}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:61;background:var(--surface);border-radius:22px 22px 0 0;
+  max-width:520px;margin:0 auto;max-height:90vh;overflow-y:auto;padding:8px 16px calc(24px + env(safe-area-inset-bottom,0px));
+  transform:translateY(100%);transition:transform .22s ease}
+.sheet.open{transform:translateY(0)}
+.sheet .handle{width:40px;height:4px;border-radius:999px;background:var(--line);margin:8px auto 12px}
+.sheet h3{font-size:17px;font-weight:800;letter-spacing:-.02em}
+.sheet .sh-sub{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+
+/* ---------- tabs ---------- */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--surface);border-top:1px solid var(--line);
+  display:flex;max-width:520px;margin:0 auto;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))}
+.tabs button{flex:1;background:none;border:0;font-family:inherit;color:var(--muted);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;font-size:10.5px;font-weight:700}
+.tabs button i{font-style:normal;font-size:19px;line-height:1.1}
+.tabs button.on{color:var(--brand)}
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(14px);z-index:70;
+  background:var(--ink);color:var(--bg);font-size:13px;font-weight:700;padding:11px 16px;border-radius:12px;
+  opacity:0;transition:.2s;pointer-events:none;max-width:88vw;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <header class="top">
+    <div class="top-row">
+      <div class="brand">
+        <span class="logo">🍲</span>
+        <span>Ruchitva Kitchen<small id="todayLine">—</small></span>
+      </div>
+      <button class="icon-btn" id="bellBtn" title="Turn on alerts">🔔</button>
+    </div>
+  </header>
+  <main id="view"></main>
+</div>
+
+<nav class="tabs">
+  <button data-tab="today" class="on"><i>📋</i>Today</button>
+  <button data-tab="team"><i>👥</i>Team</button>
+  <button data-tab="money"><i>💰</i>Money</button>
+  <button data-tab="stock"><i>🧺</i>Material</button>
+  <button data-tab="set"><i>⚙️</i>Settings</button>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet"><div class="handle"></div><div id="sheetBody"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================================
+   Ruchitva Kitchen — day planner, staff reminders, money and material needs.
+   One file, no build, no server. Everything lives in localStorage.
+   ========================================================================= */
+const KEY = 'ruchitva-kitchen-v1';
+
+/* ---------- tiny helpers ---------- */
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const uid = () => Math.random().toString(36).slice(2, 9);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+const dkey = (d = new Date()) => {
+  const t = new Date(d);
+  t.setMinutes(t.getMinutes() - t.getTimezoneOffset());
+  return t.toISOString().slice(0, 10);
+};
+const addDays = (n, d = new Date()) => { const t = new Date(d); t.setDate(t.getDate() + n); return t; };
+const nowMin  = () => { const d = new Date(); return d.getHours() * 60 + d.getMinutes(); };
+const toMin   = hhmm => { const [h, m] = String(hhmm || '00:00').split(':').map(Number); return h * 60 + (m || 0); };
+const fmtTime = hhmm => {
+  const [h, m] = String(hhmm || '00:00').split(':').map(Number);
+  const ap = h < 12 ? 'AM' : 'PM', hh = h % 12 === 0 ? 12 : h % 12;
+  return hh + ':' + String(m || 0).padStart(2, '0') + ' ' + ap;
+};
+const fmtDate = (d = new Date()) =>
+  d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+const money = n => '₹' + Math.round(Number(n) || 0).toLocaleString('en-IN');
+
+function toast(msg) {
+  const t = $('#toast');
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('on'), 2200);
+}
+
+/* ---------- seed / store ---------- */
+function seed() {
+  return {
+    settings: {
+      kitchen: 'Ruchitva Kitchen',
+      cc: '91',                 // country code added to 10-digit numbers
+      ownerPhone: '',
+      leadMin: 30,              // warn this many minutes before duty time
+      openingBalance: 0
+    },
+    templates: {
+      duty:   "🌞 Good morning {name}!\n{date} — your duty time is {time}.\nPlease reach the kitchen 10 minutes early and get things ready.\n— {kitchen}",
+      confirm:"{name}, are you coming today ({date})?\nDuty time {time}. Please reply YES or NO now so I can arrange.\n— {kitchen}",
+      cover:  "{name}, {who} is not coming today ({date}).\nCan you please come at {time} instead? Reply quickly.\n— {kitchen}",
+      slot:   "⏰ {slot} — {time}\n{note}\nPlease be ready.\n— {kitchen}",
+      buy:    "🧺 Tomorrow's needs ({date}):\n{items}\nApprox {total}. Please arrange.\n— {kitchen}"
+    },
+    team: [
+      { id: uid(), name: 'Manager',                 role: 'Manager',  phone: '', time: '06:30', backup: '', active: true },
+      { id: uid(), name: 'Batter Preparation',      role: 'Batter',   phone: '', time: '09:30', backup: '', active: true },
+      { id: uid(), name: 'Cleaner',                 role: 'Cleaner',  phone: '', time: '16:30', backup: '', active: true }
+    ],
+    slots: [
+      { id: uid(), name: 'Morning service', from: '07:00', to: '09:00', note: 'Breakfast dispatch — dosa, idli, packing, delivery run.' },
+      { id: uid(), name: 'Mid-day',         from: '11:00', to: '13:00', note: 'Lunch prep, cleaning, stock check.' },
+      { id: uid(), name: 'Evening',         from: '15:00', to: '22:00', note: 'Batter soaking and grinding, next day prep, closing clean.' }
+    ],
+    reminders: [
+      { id: uid(), title: 'Soak millets for tomorrow', time: '17:00', daily: true,  done: {} },
+      { id: uid(), title: 'Check gas cylinder',        time: '20:00', daily: false, date: '', done: {} }
+    ],
+    attend: {},                 // { '2026-09-15': { personId: {s:'in'|'off'|'yes', by:'' } } }
+    tx: [],                     // { id, date, type:'in'|'out', amount, cat, note }
+    needs: [],                  // { id, title, amount, when:'tomorrow'|'week'|'month', done }
+    stock: [
+      { id: uid(), name: 'Little millet', unit: 'kg',  have: 6,   par: 10,  rate: 90 },
+      { id: uid(), name: 'Urad dal',      unit: 'kg',  have: 5,   par: 5,   rate: 140 },
+      { id: uid(), name: 'Idli rice',     unit: 'kg',  have: 9,   par: 15,  rate: 55 },
+      { id: uid(), name: 'Cooking oil',   unit: 'ltr', have: 2,   par: 5,   rate: 150 },
+      { id: uid(), name: 'Packing boxes', unit: 'pcs', have: 120, par: 200, rate: 6 }
+    ],
+    fired: {}                   // { '2026-09-15': ['warn-<id>', ...] } — alerts already shown
+  };
+}
+
+let db;
+try { db = Object.assign(seed(), JSON.parse(localStorage.getItem(KEY) || '{}')); }
+catch (e) { db = seed(); }
+const save = () => localStorage.setItem(KEY, JSON.stringify(db));
+
+/* the "already alerted today" log is only useful for today — drop older days */
+Object.keys(db.fired).forEach(k => { if (k !== dkey()) delete db.fired[k]; });
+
+/* ---------- lookups ---------- */
+const person   = id => db.team.find(p => p.id === id);
+const roster   = () => db.team.filter(p => p.active).sort((a, b) => toMin(a.time) - toMin(b.time));
+const dayBook  = (k = dkey()) => (db.attend[k] ||= {});
+const statusOf = (id, k = dkey()) => (dayBook(k)[id] || {}).s || 'pending';
+
+/* ---------- WhatsApp ---------- */
+function waNumber(phone) {
+  const d = String(phone || '').replace(/\D/g, '');
+  if (!d) return '';
+  if (d.length === 10) return db.settings.cc + d;
+  if (d.startsWith('0')) return db.settings.cc + d.slice(1);
+  return d;
+}
+function fill(tpl, vars) {
+  return String(tpl).replace(/\{(\w+)\}/g, (m, k) =>
+    vars[k] !== undefined ? vars[k] : (k === 'kitchen' ? db.settings.kitchen : m));
+}
+function waSend(phone, text) {
+  const n = waNumber(phone);
+  if (!n) { toast('Add a phone number first'); return false; }
+  window.open('https://wa.me/' + n + '?text=' + encodeURIComponent(text), '_blank');
+  return true;
+}
+function msgFor(p, kind, extra = {}) {
+  return fill(db.templates[kind], Object.assign({
+    name: p.name, role: p.role, time: fmtTime(p.time),
+    date: fmtDate(), kitchen: db.settings.kitchen
+  }, extra));
+}
+
+/* ---------- alerts: what needs the owner's attention right now ---------- */
+function alerts() {
+  const out = [], m = nowMin(), lead = Number(db.settings.leadMin) || 30;
+  roster().forEach(p => {
+    const s = statusOf(p.id), t = toMin(p.time), book = dayBook()[p.id] || {};
+    if (s === 'off' && !book.by) {
+      out.push({
+        kind: 'red', id: 'cover-' + p.id, ic: '🚨',
+        title: p.name + ' is not coming today',
+        body: 'Duty at ' + fmtTime(p.time) + ' (' + p.role + ') has nobody. Call the alternate person now.',
+        person: p
+      });
+    } else if (s === 'pending' && m >= t - lead && m < t + 90) {
+      out.push({
+        kind: 'amber', id: 'warn-' + p.id, ic: '⏳',
+        title: p.name + ' not confirmed — duty ' + fmtTime(p.time),
+        body: (t - m > 0 ? Math.round(t - m) + ' minutes left. ' : 'Duty time passed. ') +
+              'Ask now, so an alternate can be arranged in time.',
+        person: p
+      });
+    }
+  });
+  return out;
+}
+
+/* ---------- notifications (work while the app is open) ---------- */
+function notify(title, body) {
+  try {
+    if (window.Notification && Notification.permission === 'granted')
+      new Notification(title, { body, tag: title });
+  } catch (e) { /* notifications are a bonus, never a blocker */ }
+}
+function onceToday(id) {
+  const k = dkey(), list = (db.fired[k] ||= []);
+  if (list.includes(id)) return false;
+  list.push(id); save(); return true;
+}
+function tick() {
+  const m = nowMin();
+  alerts().forEach(a => { if (onceToday(a.id)) notify(a.title, a.body); });
+  db.reminders.forEach(r => {
+    const due = r.daily || r.date === dkey();
+    if (due && m >= toMin(r.time) && m < toMin(r.time) + 120 && !r.done[dkey()] && onceToday('rem-' + r.id))
+      notify('⏰ ' + r.title, 'Reminder set for ' + fmtTime(r.time));
+  });
+  db.slots.forEach(s => {
+    if (m >= toMin(s.from) - 15 && m < toMin(s.from) && onceToday('slot-' + s.id))
+      notify('🍽️ ' + s.name + ' starts ' + fmtTime(s.from), s.note || 'Get the team ready.');
+  });
+  if ($('#view').dataset.tab === 'today') render();
+}
+
+/* ---------- bottom sheet ---------- */
+function sheet(title, subtitle, html) {
+  $('#sheetBody').innerHTML =
+    '<h3>' + esc(title) + '</h3>' +
+    (subtitle ? '<p class="sh-sub">' + esc(subtitle) + '</p>' : '') + html;
+  $('#sheet').classList.add('open'); $('#scrim').classList.add('open');
+}
+function closeSheet() { $('#sheet').classList.remove('open'); $('#scrim').classList.remove('open'); }
+$('#scrim').onclick = closeSheet;
+
+/* =========================================================================
+   VIEW 1 — TODAY
+   ========================================================================= */
+function viewToday() {
+  const k = dkey(), m = nowMin(), list = roster(), al = alerts();
+  const inCount  = list.filter(p => statusOf(p.id) === 'in').length;
+  const yesCount = list.filter(p => statusOf(p.id) === 'yes').length;
+  const offCount = list.filter(p => statusOf(p.id) === 'off').length;
+  const pending  = list.filter(p => statusOf(p.id) === 'pending').length;
+  const next     = list.find(p => toMin(p.time) >= m);
+
+  let h = '<section class="card hero">' +
+    '<div class="lbl">' + esc(fmtDate()) + '</div>' +
+    '<div class="big">' + (next
+      ? esc(next.name) + ' at ' + fmtTime(next.time)
+      : (list.length ? 'All duty times done' : 'Add your team first')) + '</div>' +
+    '<div class="sub">' +
+      '<span><b>' + (inCount + yesCount) + '/' + list.length + '</b>coming</span>' +
+      '<span><b>' + offCount + '</b>not coming</span>' +
+      '<span><b>' + pending + '</b>to confirm</span>' +
+    '</div></section>';
+
+  h += '<div class="btn-row">' +
+    '<button class="btn btn-wa" data-act="broadcast" data-kind="duty">💬 Send today\'s plan to all</button>' +
+    '<button class="btn btn-g" data-act="broadcast" data-kind="confirm">Ask who is coming</button>' +
+  '</div>';
+
+  if (al.length) {
+    h += '<section class="sec"><div class="sec-head"><h3>Needs your attention</h3></div>';
+    al.forEach(a => {
+      const p = a.person, bk = person(p.backup);
+      h += '<div class="alert ' + a.kind + '">' +
+        '<span class="a-ic">' + a.ic + '</span><div style="flex:1;min-width:0">' +
+        '<h4>' + esc(a.title) + '</h4><p>' + esc(a.body) + '</p>' +
+        '<div class="acts">' +
+          (a.kind === 'red'
+            ? (bk
+                ? '<button class="btn btn-sm btn-wa" data-act="callbackup" data-id="' + p.id + '">💬 Call in ' + esc(bk.name) + '</button>' +
+                  '<button class="btn btn-sm btn-g" data-act="covered" data-id="' + p.id + '">' + esc(bk.name) + ' is covering</button>'
+                : '<button class="btn btn-sm btn-g" data-act="edit-person" data-id="' + p.id + '">Set an alternate person</button>') +
+              '<button class="btn btn-sm btn-g" data-act="pickcover" data-id="' + p.id + '">Someone else</button>'
+            : '<button class="btn btn-sm btn-wa" data-act="msg" data-id="' + p.id + '" data-kind="confirm">💬 Ask ' + esc(p.name) + '</button>' +
+              '<button class="btn btn-sm btn-ok" data-act="set" data-id="' + p.id + '" data-s="yes">Coming</button>' +
+              '<button class="btn btn-sm btn-off" data-act="set" data-id="' + p.id + '" data-s="off">Not coming</button>') +
+        '</div></div></div>';
+    });
+    h += '</section>';
+  }
+
+  /* --- roster --- */
+  h += '<section class="sec"><div class="sec-head"><h3>Who works today</h3>' +
+       '<button class="link" data-act="tab" data-tab="team">Edit team</button></div>';
+  if (!list.length) {
+    h += '<div class="empty"><span class="e-ic">👥</span>No team members yet.<br>Add the manager, cleaner and batter person in the Team tab.</div>';
+  } else {
+    h += '<div class="list">';
+    list.forEach(p => {
+      const s = statusOf(p.id), bk = person((dayBook()[p.id] || {}).by);
+      const pill = s === 'in'  ? '<span class="pill ok">Arrived</span>'
+                 : s === 'yes' ? '<span class="pill info">Confirmed</span>'
+                 : s === 'off' ? '<span class="pill off">' + (bk ? esc(bk.name) + ' covering' : 'Not coming') + '</span>'
+                 : '<span class="pill wait">To confirm</span>';
+      h += '<div class="row' + (s === 'off' && !bk ? ' flag' : '') + '">' +
+        '<span class="ic">' + roleIcon(p.role) + '</span>' +
+        '<div class="body"><div class="title">' + esc(p.name) + '</div>' +
+        '<div class="meta">' + esc(p.role) + ' · ' + fmtTime(p.time) + ' ' + pill + '</div></div>' +
+        '<button class="mini wa" data-act="msg" data-id="' + p.id + '" data-kind="duty" title="WhatsApp">💬</button>' +
+        '<button class="mini ' + (s === 'in' ? 'ok' : '') + '" data-act="set" data-id="' + p.id + '" data-s="' + (s === 'in' ? 'pending' : 'in') + '" title="Arrived">✓</button>' +
+        '<button class="mini ' + (s === 'off' ? 'off' : '') + '" data-act="set" data-id="' + p.id + '" data-s="' + (s === 'off' ? 'pending' : 'off') + '" title="Not coming">✕</button>' +
+      '</div>';
+    });
+    h += '</div>';
+  }
+  h += '</section>';
+
+  /* --- time slots --- */
+  h += '<section class="sec"><div class="sec-head"><h3>Time slots</h3>' +
+       '<button class="link" data-act="edit-slot">+ Add slot</button></div><div class="list">';
+  db.slots.slice().sort((a, b) => toMin(a.from) - toMin(b.from)).forEach(s => {
+    const live = m >= toMin(s.from) && m < toMin(s.to), past = m >= toMin(s.to);
+    const people = list.filter(p => toMin(p.time) >= toMin(s.from) - 90 && toMin(p.time) < toMin(s.to));
+    h += '<div class="slot' + (live ? ' now' : past ? ' past' : '') + '">' +
+      '<div class="slot-top"><h4>' + esc(s.name) + (live ? ' <span class="pill ok">Now</span>' : '') + '</h4>' +
+      '<span class="time">' + fmtTime(s.from) + ' – ' + fmtTime(s.to) + '</span></div>' +
+      (s.note ? '<p>' + esc(s.note) + '</p>' : '') +
+      (people.length ? '<div class="chips">' + people.map(p =>
+        '<span class="chip">' + roleIcon(p.role) + ' ' + esc(p.name) + '</span>').join('') + '</div>' : '') +
+      '<div class="btn-row">' +
+        '<button class="btn btn-sm btn-wa" data-act="slotmsg" data-id="' + s.id + '">💬 Alert slot team</button>' +
+        '<button class="btn btn-sm btn-g" data-act="edit-slot" data-id="' + s.id + '">Edit</button>' +
+      '</div></div>';
+  });
+  h += '</div></section>';
+
+  /* --- reminders --- */
+  h += '<section class="sec"><div class="sec-head"><h3>Reminders</h3>' +
+       '<button class="link" data-act="edit-rem">+ Add reminder</button></div>';
+  const rems = db.reminders.filter(r => r.daily || !r.date || r.date === k)
+                           .sort((a, b) => toMin(a.time) - toMin(b.time));
+  if (!rems.length) {
+    h += '<div class="empty"><span class="e-ic">⏰</span>No reminders for today.</div>';
+  } else {
+    h += '<div class="list">';
+    rems.forEach(r => {
+      const done = !!r.done[k];
+      h += '<div class="row' + (done ? ' done' : '') + '">' +
+        '<span class="ic">' + (done ? '✅' : '⏰') + '</span>' +
+        '<div class="body"><div class="title">' + esc(r.title) + '</div>' +
+        '<div class="meta">' + fmtTime(r.time) + (r.daily ? ' <span class="pill">Every day</span>' : '') + '</div></div>' +
+        '<button class="mini" data-act="remdone" data-id="' + r.id + '">' + (done ? '↺' : '✓') + '</button>' +
+        '<button class="mini" data-act="edit-rem" data-id="' + r.id + '">✎</button>' +
+      '</div>';
+    });
+    h += '</div>';
+  }
+  h += '</section>';
+  return h;
+}
+
+function roleIcon(role) {
+  const r = String(role || '').toLowerCase();
+  if (r.includes('manag')) return '🧑‍💼';
+  if (r.includes('clean')) return '🧹';
+  if (r.includes('batter') || r.includes('grind')) return '🥣';
+  if (r.includes('cook') || r.includes('chef')) return '👨‍🍳';
+  if (r.includes('deliv') || r.includes('rider')) return '🛵';
+  if (r.includes('pack')) return '📦';
+  return '🙋';
+}
+
+/* =========================================================================
+   VIEW 2 — TEAM
+   ========================================================================= */
+function viewTeam() {
+  let h = '<section class="card hero"><div class="lbl">Team</div>' +
+    '<div class="big">' + db.team.length + ' people</div>' +
+    '<div class="sub"><span>Each person has a duty time, a WhatsApp number and an alternate person to call when they do not come.</span></div></section>';
+
+  h += '<div class="btn-row">' +
+    '<button class="btn btn-p" data-act="edit-person">+ Add person</button>' +
+    '<button class="btn btn-wa" data-act="broadcast" data-kind="duty">💬 Message everyone</button></div>';
+
+  h += '<section class="sec"><div class="sec-head"><h3>Duty times</h3></div><div class="list">';
+  if (!db.team.length) h += '<div class="empty"><span class="e-ic">👥</span>No one added yet.</div>';
+  db.team.slice().sort((a, b) => toMin(a.time) - toMin(b.time)).forEach(p => {
+    const bk = person(p.backup);
+    h += '<div class="row">' +
+      '<span class="ic">' + roleIcon(p.role) + '</span>' +
+      '<div class="body"><div class="title">' + esc(p.name) + (p.active ? '' : ' <span class="pill">Inactive</span>') + '</div>' +
+      '<div class="meta">' + esc(p.role) + ' · ' + fmtTime(p.time) +
+        (p.phone ? ' · ' + esc(p.phone) : ' · <span class="c-off">no number</span>') +
+        (bk ? ' <span class="pill info">Alt: ' + esc(bk.name) + '</span>' : ' <span class="pill wait">No alternate</span>') +
+      '</div></div>' +
+      '<button class="mini wa" data-act="msg" data-id="' + p.id + '" data-kind="duty">💬</button>' +
+      '<button class="mini" data-act="edit-person" data-id="' + p.id + '">✎</button>' +
+    '</div>';
+  });
+  h += '</div></section>';
+
+  /* last 7 days attendance, so patterns are visible */
+  h += '<section class="sec"><div class="sec-head"><h3>Last 7 days</h3></div><div class="list">';
+  const days = [...Array(7)].map((_, i) => dkey(addDays(-i))).reverse();
+  db.team.forEach(p => {
+    const marks = days.map(d => {
+      const s = statusOf(p.id, d);
+      return '<span class="chip" title="' + d + '">' +
+        (s === 'off' ? '❌' : s === 'pending' ? '·' : '✅') + '</span>';
+    }).join('');
+    const offs = days.filter(d => statusOf(p.id, d) === 'off').length;
+    h += '<div class="row"><span class="ic">' + roleIcon(p.role) + '</span>' +
+      '<div class="body"><div class="title">' + esc(p.name) + '</div>' +
+      '<div class="chips">' + marks + '</div></div>' +
+      '<span class="amt ' + (offs ? 'c-off' : 'c-muted') + '">' + offs + ' off</span></div>';
+  });
+  h += '</div></section>';
+  return h;
+}
+
+/* ---------- broadcast queue (browsers only allow one chat per tap) ---------- */
+function broadcast(kind) {
+  const list = roster().filter(p => waNumber(p.phone));
+  const missing = roster().length - list.length;
+  if (!list.length) {
+    sheet('No WhatsApp numbers', 'Add a phone number to each team member first.', '');
+    return;
+  }
+  const rows = list.map(p =>
+    '<div class="row" id="bc-' + p.id + '"><span class="ic">' + roleIcon(p.role) + '</span>' +
+    '<div class="body"><div class="title">' + esc(p.name) + '</div>' +
+    '<div class="meta">' + esc(p.role) + ' · ' + fmtTime(p.time) + '</div></div>' +
+    '<button class="btn btn-sm btn-wa" data-act="bc" data-id="' + p.id + '" data-kind="' + kind + '">Send</button></div>'
+  ).join('');
+  sheet(kind === 'confirm' ? 'Ask who is coming' : "Send today's plan",
+    'Tap Send for each person — WhatsApp opens with the message ready. ' +
+    (missing ? missing + ' person(s) skipped for having no number.' : ''),
+    '<div class="list" style="margin-top:12px">' + rows + '</div>' +
+    '<div class="btn-row"><button class="btn btn-g btn-full" data-act="close">Done</button></div>');
+}
+
+/* =========================================================================
+   VIEW 3 — MONEY
+   ========================================================================= */
+const sumTx = f => db.tx.filter(f).reduce((a, t) => a + Number(t.amount || 0), 0);
+function balance() {
+  return Number(db.settings.openingBalance || 0) +
+         sumTx(t => t.type === 'in') - sumTx(t => t.type === 'out');
+}
+function needTotal(when) {
+  return db.needs.filter(n => n.when === when && !n.done)
+                 .reduce((a, n) => a + Number(n.amount || 0), 0);
+}
+function stockNeedCost() {
+  return db.stock.reduce((a, s) =>
+    a + Math.max(0, Number(s.par || 0) - Number(s.have || 0)) * Number(s.rate || 0), 0);
+}
+
+function viewMoney() {
+  const k = dkey(), bal = balance();
+  const todayOut = sumTx(t => t.type === 'out' && t.date === k);
+  const todayIn  = sumTx(t => t.type === 'in'  && t.date === k);
+  const mk = k.slice(0, 7);
+  const monthOut = sumTx(t => t.type === 'out' && t.date.startsWith(mk));
+  const monthIn  = sumTx(t => t.type === 'in'  && t.date.startsWith(mk));
+  const tmr = needTotal('tomorrow') + stockNeedCost();
+  const wk  = needTotal('week'), mo = needTotal('month');
+
+  let h = '<section class="card hero"><div class="lbl">Balance in hand</div>' +
+    '<div class="big">' + money(bal) + '</div>' +
+    '<div class="sub">' +
+      '<span><b>' + money(todayIn) + '</b>today in</span>' +
+      '<span><b>' + money(todayOut) + '</b>today out</span>' +
+      '<span><b>' + money(monthIn - monthOut) + '</b>this month</span>' +
+    '</div></section>';
+
+  h += '<div class="btn-row">' +
+    '<button class="btn btn-off" data-act="edit-tx" data-type="out">− Expense</button>' +
+    '<button class="btn btn-ok" data-act="edit-tx" data-type="in">+ Money in</button>' +
+    '<button class="btn btn-g" data-act="opening">Opening balance</button></div>';
+
+  h += '<section class="sec"><div class="sec-head"><h3>What money is needed</h3>' +
+       '<button class="link" data-act="edit-need">+ Add need</button></div>' +
+       '<p class="sub-note">Tomorrow includes the material shortfall from the Material tab (' + money(stockNeedCost()) + ').</p>' +
+       '<div class="tiles three">' +
+    '<div class="tile"><div class="t-lbl">Tomorrow</div><div class="t-amt c-off">' + money(tmr) + '</div>' +
+      '<div class="t-sub">' + (bal >= tmr ? 'Enough in hand' : 'Short ' + money(tmr - bal)) + '</div></div>' +
+    '<div class="tile"><div class="t-lbl">This week</div><div class="t-amt c-wait">' + money(wk) + '</div>' +
+      '<div class="t-sub">' + db.needs.filter(n => n.when === 'week' && !n.done).length + ' items</div></div>' +
+    '<div class="tile"><div class="t-lbl">This month</div><div class="t-amt c-info">' + money(mo) + '</div>' +
+      '<div class="t-sub">' + db.needs.filter(n => n.when === 'month' && !n.done).length + ' items</div></div>' +
+  '</div>';
+
+  const open = db.needs.filter(n => !n.done);
+  if (open.length) {
+    h += '<div class="list" style="margin-top:10px">';
+    ['tomorrow', 'week', 'month'].forEach(w => {
+      open.filter(n => n.when === w).forEach(n => {
+        h += '<div class="row"><span class="ic">' +
+          (w === 'tomorrow' ? '📅' : w === 'week' ? '🗓️' : '📆') + '</span>' +
+          '<div class="body"><div class="title">' + esc(n.title) + '</div>' +
+          '<div class="meta">' + (w === 'tomorrow' ? 'Tomorrow' : w === 'week' ? 'This week' : 'This month') + '</div></div>' +
+          '<span class="amt">' + money(n.amount) + '</span>' +
+          '<button class="mini ok" data-act="needpaid" data-id="' + n.id + '" title="Paid — record as expense">✓</button>' +
+          '<button class="mini" data-act="edit-need" data-id="' + n.id + '">✎</button></div>';
+      });
+    });
+    h += '</div>';
+  } else {
+    h += '<div class="empty" style="margin-top:10px"><span class="e-ic">📝</span>Nothing planned yet. Add what you must pay tomorrow, this week or this month.</div>';
+  }
+  h += '</section>';
+
+  /* recent entries */
+  h += '<section class="sec"><div class="sec-head"><h3>Recent entries</h3>' +
+       '<span class="pill">' + db.tx.length + ' total</span></div><div class="list">';
+  const recent = db.tx.slice().sort((a, b) => (b.date + b.id).localeCompare(a.date + a.id)).slice(0, 20);
+  if (!recent.length) h += '<div class="empty"><span class="e-ic">💰</span>No entries yet.</div>';
+  recent.forEach(t => {
+    h += '<div class="row"><span class="ic">' + (t.type === 'in' ? '⬇️' : '⬆️') + '</span>' +
+      '<div class="body"><div class="title">' + esc(t.note || t.cat) + '</div>' +
+      '<div class="meta">' + esc(t.cat) + ' · ' + esc(t.date) + '</div></div>' +
+      '<span class="amt ' + (t.type === 'in' ? 'c-ok' : 'c-off') + '">' +
+        (t.type === 'in' ? '+' : '−') + money(t.amount) + '</span>' +
+      '<button class="mini" data-act="deltx" data-id="' + t.id + '">🗑</button></div>';
+  });
+  h += '</div></section>';
+  return h;
+}
+
+/* =========================================================================
+   VIEW 4 — MATERIAL BALANCE (what is in hand vs what tomorrow needs)
+   ========================================================================= */
+const shortOf = s => Math.max(0, Number(s.par || 0) - Number(s.have || 0));
+
+function viewStock() {
+  const short = db.stock.filter(shortOf);
+  let h = '<section class="card hero"><div class="lbl">Tomorrow\'s material need</div>' +
+    '<div class="big">' + money(stockNeedCost()) + '</div>' +
+    '<div class="sub"><span><b>' + short.length + '</b>items short</span>' +
+      '<span><b>' + (db.stock.length - short.length) + '</b>items enough</span></div></section>';
+
+  h += '<div class="btn-row">' +
+    '<button class="btn btn-p" data-act="edit-item">+ Add item</button>' +
+    '<button class="btn btn-wa" data-act="buylist">💬 Send buying list</button></div>';
+
+  h += '<section class="sec"><div class="sec-head"><h3>Stock in hand</h3>' +
+       '<span class="pill">Need = daily requirement − in hand</span></div>' +
+       '<p class="sub-note">Set the daily requirement once. Update "in hand" after closing each night and the buying list writes itself.</p>' +
+       '<div class="list">';
+  if (!db.stock.length) h += '<div class="empty"><span class="e-ic">🧺</span>No items yet.</div>';
+  db.stock.forEach(s => {
+    const need = shortOf(s);
+    h += '<div class="row' + (need ? ' flag' : '') + '">' +
+      '<button class="mini" data-act="have" data-id="' + s.id + '" data-d="-1">−</button>' +
+      '<div class="body"><div class="title">' + esc(s.name) + '</div>' +
+      '<div class="meta">In hand <b>' + (+s.have || 0) + ' ' + esc(s.unit) + '</b> · need ' + (+s.par || 0) + ' ' + esc(s.unit) +
+        (need ? ' <span class="pill off">Buy ' + need + ' ' + esc(s.unit) + ' · ' + money(need * (s.rate || 0)) + '</span>'
+              : ' <span class="pill ok">Enough</span>') + '</div></div>' +
+      '<button class="mini" data-act="have" data-id="' + s.id + '" data-d="1">+</button>' +
+      '<button class="mini" data-act="edit-item" data-id="' + s.id + '">✎</button></div>';
+  });
+  h += '</div></section>';
+
+  if (short.length) {
+    h += '<section class="sec"><div class="sec-head"><h3>Buying list for tomorrow</h3></div>' +
+      '<div class="card" style="padding:15px">' +
+      short.map(s => '<div style="display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding:5px 0">' +
+        '<span>' + esc(s.name) + ' — ' + shortOf(s) + ' ' + esc(s.unit) + '</span>' +
+        '<b>' + money(shortOf(s) * (s.rate || 0)) + '</b></div>').join('') +
+      '<div style="display:flex;justify-content:space-between;border-top:1px solid var(--line);margin-top:8px;padding-top:9px;font-size:14px">' +
+        '<b>Total</b><b class="c-brand">' + money(stockNeedCost()) + '</b></div>' +
+      '<div class="btn-row"><button class="btn btn-wa btn-full" data-act="buylist">💬 Send to manager on WhatsApp</button>' +
+      '<button class="btn btn-g btn-full" data-act="bought">Mark all bought &amp; record expense</button></div></div></section>';
+  }
+  return h;
+}
+
+/* =========================================================================
+   VIEW 5 — SETTINGS
+   ========================================================================= */
+function viewSettings() {
+  const s = db.settings;
+  const p = (window.Notification && Notification.permission) || 'unsupported';
+  const perm = { granted: 'on', denied: 'blocked in the browser', default: 'off' }[p] || 'not available';
+  let h = '<section class="sec"><div class="sec-head"><h3>Kitchen</h3></div><div class="card" style="padding:15px">' +
+    '<label>Kitchen name</label><input id="setName" value="' + esc(s.kitchen) + '">' +
+    '<div class="grid2"><div><label>Country code</label><input id="setCC" value="' + esc(s.cc) + '" inputmode="numeric"></div>' +
+    '<div><label>Your WhatsApp number</label><input id="setOwner" value="' + esc(s.ownerPhone) + '" inputmode="tel" placeholder="9876543210"></div></div>' +
+    '<label>Warn me this many minutes before a duty time</label>' +
+    '<input id="setLead" type="number" min="5" max="180" step="5" value="' + (+s.leadMin || 30) + '">' +
+    '<div class="btn-row"><button class="btn btn-p" data-act="savesettings">Save</button></div></div></section>';
+
+  h += '<section class="sec"><div class="sec-head"><h3>Alerts</h3></div><div class="card" style="padding:15px">' +
+    '<p style="font-size:12.5px;color:var(--muted);line-height:1.5">Phone alerts: <b class="' +
+      (p === 'granted' ? 'c-ok' : 'c-wait') + '">' + perm + '</b>. ' +
+      'This app has no server, so alerts appear while the app is open on your phone. ' +
+      'Keep it open in a tab, or open it once in the morning — the alert list on the Today tab is always current.</p>' +
+    '<div class="btn-row"><button class="btn btn-g" data-act="askperm">Turn on phone alerts</button>' +
+    '<button class="btn btn-g" data-act="testnote">Test alert</button></div></div></section>';
+
+  h += '<section class="sec"><div class="sec-head"><h3>Message templates</h3></div>' +
+    '<p class="sub-note">Use {name} {role} {time} {date} {slot} {note} {who} {items} {total} {kitchen}.</p>' +
+    '<div class="card" style="padding:15px">' +
+    [['duty', 'Daily duty message'], ['confirm', 'Are you coming?'], ['cover', 'Call the alternate person'],
+     ['slot', 'Time slot alert'], ['buy', 'Buying list']]
+      .map(([k, lbl]) => '<label>' + lbl + '</label><textarea id="tpl-' + k + '">' + esc(db.templates[k]) + '</textarea>').join('') +
+    '<div class="btn-row"><button class="btn btn-p" data-act="savetpl">Save templates</button>' +
+    '<button class="btn btn-g" data-act="resettpl">Reset to default</button></div></div></section>';
+
+  h += '<section class="sec"><div class="sec-head"><h3>Backup</h3></div><div class="card" style="padding:15px">' +
+    '<p style="font-size:12.5px;color:var(--muted);line-height:1.5">Everything is saved on this phone only. Export before changing phones.</p>' +
+    '<div class="btn-row"><button class="btn btn-g" data-act="export">Export file</button>' +
+    '<button class="btn btn-g" data-act="import">Import file</button>' +
+    '<button class="btn btn-off" data-act="wipe">Erase all</button></div></div></section>';
+  return h;
+}
+
+/* =========================================================================
+   FORMS (bottom sheets)
+   ========================================================================= */
+function formPerson(id) {
+  const p = person(id) || { name: '', role: '', phone: '', time: '07:00', backup: '', active: true };
+  const others = db.team.filter(x => x.id !== id);
+  sheet(id ? 'Edit ' + p.name : 'Add a person', 'Duty time drives the reminders and the 30-minute warning.',
+    '<label>Name</label><input id="f-name" value="' + esc(p.name) + '" placeholder="Ravi">' +
+    '<div class="grid2"><div><label>Role</label><input id="f-role" value="' + esc(p.role) + '" placeholder="Manager / Cleaner / Batter"></div>' +
+    '<div><label>Duty time</label><input id="f-time" type="time" value="' + esc(p.time) + '"></div></div>' +
+    '<label>WhatsApp number</label><input id="f-phone" value="' + esc(p.phone) + '" inputmode="tel" placeholder="9876543210">' +
+    '<label>Alternate person (called when this person does not come)</label>' +
+    '<select id="f-backup"><option value="">— none —</option>' +
+      others.map(o => '<option value="' + o.id + '"' + (o.id === p.backup ? ' selected' : '') + '>' + esc(o.name) + '</option>').join('') +
+    '</select>' +
+    '<label>Working</label><select id="f-active"><option value="1"' + (p.active ? ' selected' : '') + '>Yes, on duty</option>' +
+      '<option value="0"' + (!p.active ? ' selected' : '') + '>No, inactive</option></select>' +
+    '<div class="btn-row"><button class="btn btn-p btn-full" data-act="save-person" data-id="' + (id || '') + '">Save</button>' +
+    (id ? '<button class="btn btn-off btn-full" data-act="del-person" data-id="' + id + '">Remove person</button>' : '') + '</div>');
+}
+
+function formSlot(id) {
+  const s = db.slots.find(x => x.id === id) || { name: '', from: '07:00', to: '09:00', note: '' };
+  sheet(id ? 'Edit time slot' : 'Add time slot', 'A slot is a working window — 7 AM to 9 AM, 11 AM to 1 PM, 3 PM to 10 PM.',
+    '<label>Slot name</label><input id="f-name" value="' + esc(s.name) + '" placeholder="Morning service">' +
+    '<div class="grid2"><div><label>From</label><input id="f-from" type="time" value="' + esc(s.from) + '"></div>' +
+    '<div><label>To</label><input id="f-to" type="time" value="' + esc(s.to) + '"></div></div>' +
+    '<label>What happens in this slot</label><textarea id="f-note" placeholder="Batter grinding, packing, delivery run">' + esc(s.note) + '</textarea>' +
+    '<div class="btn-row"><button class="btn btn-p btn-full" data-act="save-slot" data-id="' + (id || '') + '">Save</button>' +
+    (id ? '<button class="btn btn-off btn-full" data-act="del-slot" data-id="' + id + '">Delete slot</button>' : '') + '</div>');
+}
+
+function formRem(id) {
+  const r = db.reminders.find(x => x.id === id) || { title: '', time: '08:00', daily: true, date: '' };
+  sheet(id ? 'Edit reminder' : 'Add reminder', '',
+    '<label>Remind me to</label><input id="f-title" value="' + esc(r.title) + '" placeholder="Soak millets for tomorrow">' +
+    '<div class="grid2"><div><label>Time</label><input id="f-time" type="time" value="' + esc(r.time) + '"></div>' +
+    '<div><label>Repeat</label><select id="f-daily"><option value="1"' + (r.daily ? ' selected' : '') + '>Every day</option>' +
+      '<option value="0"' + (!r.daily ? ' selected' : '') + '>One time</option></select></div></div>' +
+    '<label>Date (only for one-time)</label><input id="f-date" type="date" value="' + esc(r.date || dkey()) + '">' +
+    '<div class="btn-row"><button class="btn btn-p btn-full" data-act="save-rem" data-id="' + (id || '') + '">Save</button>' +
+    (id ? '<button class="btn btn-off btn-full" data-act="del-rem" data-id="' + id + '">Delete</button>' : '') + '</div>');
+}
+
+function formTx(type, preset) {
+  const cats = type === 'out'
+    ? ['Material', 'Salary', 'Gas', 'Rent', 'Delivery', 'Electricity', 'Repairs', 'Other']
+    : ['Subscription', 'Order', 'Cash sale', 'Other'];
+  sheet(type === 'out' ? 'Add expense' : 'Add money in', '',
+    '<label>Amount</label><input id="f-amt" type="number" inputmode="decimal" value="' + (preset && preset.amount || '') + '" placeholder="0">' +
+    '<label>Category</label><select id="f-cat">' + cats.map(c => '<option>' + c + '</option>').join('') + '</select>' +
+    '<label>Note</label><input id="f-note" value="' + esc(preset && preset.note || '') + '" placeholder="Urad dal 5 kg">' +
+    '<label>Date</label><input id="f-date" type="date" value="' + dkey() + '">' +
+    '<div class="btn-row"><button class="btn ' + (type === 'out' ? 'btn-off' : 'btn-ok') + ' btn-full" ' +
+      'data-act="save-tx" data-type="' + type + '">Save</button></div>');
+}
+
+function formNeed(id) {
+  const n = db.needs.find(x => x.id === id) || { title: '', amount: '', when: 'tomorrow' };
+  sheet(id ? 'Edit need' : 'Money needed for', 'Plan what must be paid tomorrow, this week or this month.',
+    '<label>What for</label><input id="f-title" value="' + esc(n.title) + '" placeholder="Gas cylinder refill">' +
+    '<div class="grid2"><div><label>Amount</label><input id="f-amt" type="number" inputmode="decimal" value="' + esc(n.amount) + '"></div>' +
+    '<div><label>When</label><select id="f-when">' +
+      [['tomorrow', 'Tomorrow'], ['week', 'This week'], ['month', 'This month']]
+        .map(([v, l]) => '<option value="' + v + '"' + (n.when === v ? ' selected' : '') + '>' + l + '</option>').join('') +
+    '</select></div></div>' +
+    '<div class="btn-row"><button class="btn btn-p btn-full" data-act="save-need" data-id="' + (id || '') + '">Save</button>' +
+    (id ? '<button class="btn btn-off btn-full" data-act="del-need" data-id="' + id + '">Delete</button>' : '') + '</div>');
+}
+
+function formItem(id) {
+  const s = db.stock.find(x => x.id === id) || { name: '', unit: 'kg', have: 0, par: 0, rate: 0 };
+  sheet(id ? 'Edit item' : 'Add material item', '',
+    '<label>Item</label><input id="f-name" value="' + esc(s.name) + '" placeholder="Urad dal">' +
+    '<div class="grid2"><div><label>Unit</label><input id="f-unit" value="' + esc(s.unit) + '" placeholder="kg"></div>' +
+    '<div><label>Rate per unit</label><input id="f-rate" type="number" inputmode="decimal" value="' + (+s.rate || 0) + '"></div></div>' +
+    '<div class="grid2"><div><label>In hand now</label><input id="f-have" type="number" inputmode="decimal" value="' + (+s.have || 0) + '"></div>' +
+    '<div><label>Needed per day</label><input id="f-par" type="number" inputmode="decimal" value="' + (+s.par || 0) + '"></div></div>' +
+    '<div class="btn-row"><button class="btn btn-p btn-full" data-act="save-item" data-id="' + (id || '') + '">Save</button>' +
+    (id ? '<button class="btn btn-off btn-full" data-act="del-item" data-id="' + id + '">Delete item</button>' : '') + '</div>');
+}
+
+function formCover(id) {
+  const p = person(id);
+  const others = db.team.filter(x => x.id !== id && x.active);
+  sheet('Who will cover for ' + p.name + '?', 'Duty at ' + fmtTime(p.time) + ' — pick a person and send the message.',
+    '<div class="list" style="margin-top:12px">' + (others.length ? others.map(o =>
+      '<div class="row"><span class="ic">' + roleIcon(o.role) + '</span>' +
+      '<div class="body"><div class="title">' + esc(o.name) + '</div><div class="meta">' + esc(o.role) + ' · own duty ' + fmtTime(o.time) + '</div></div>' +
+      '<button class="btn btn-sm btn-wa" data-act="cover" data-id="' + id + '" data-alt="' + o.id + '">Ask</button></div>').join('')
+      : '<div class="empty">Add more team members first.</div>') + '</div>');
+}
+
+/* =========================================================================
+   ACTIONS
+   ========================================================================= */
+const val = (id, d = '') => { const e = $('#' + id); return e ? e.value.trim() : d; };
+const num = id => Number(val(id)) || 0;
+
+function setStatus(id, s) {
+  const b = dayBook();
+  if (s === 'pending') delete b[id]; else b[id] = Object.assign(b[id] || {}, { s });
+  if (s !== 'off' && b[id]) delete b[id].by;
+  save();
+  if (s === 'off') {
+    const p = person(id), bk = person(p.backup);
+    toast(bk ? p.name + ' marked off — message ' + bk.name : p.name + ' marked off — no alternate set');
+  }
+  render();
+}
+
+function sendBuyList() {
+  const short = db.stock.filter(shortOf);
+  if (!short.length) { toast('Nothing short — stock is fine'); return; }
+  const items = short.map(s => '• ' + s.name + ' — ' + shortOf(s) + ' ' + s.unit).join('\n');
+  const text = fill(db.templates.buy, {
+    date: fmtDate(addDays(1)), items, total: money(stockNeedCost()), kitchen: db.settings.kitchen
+  });
+  const mgr = db.team.find(p => /manag/i.test(p.role) && waNumber(p.phone)) ||
+              db.team.find(p => waNumber(p.phone));
+  if (mgr) waSend(mgr.phone, text);
+  else if (db.settings.ownerPhone) waSend(db.settings.ownerPhone, text);
+  else { navigator.clipboard?.writeText(text); toast('No number saved — list copied'); }
+}
+
+function download(name, text) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+  a.download = name; a.click(); URL.revokeObjectURL(a.href);
+}
+
+const ACTIONS = {
+  close: () => closeSheet(),
+  tab: (el, d) => switchTab(d.tab),
+
+  /* --- people & attendance --- */
+  set: (el, d) => setStatus(d.id, d.s),
+  msg: (el, d) => { const p = person(d.id); waSend(p.phone, msgFor(p, d.kind)); },
+  broadcast: (el, d) => broadcast(d.kind),
+  bc: (el, d) => {
+    const p = person(d.id);
+    /* status stays as it is — it changes when the person actually replies */
+    if (waSend(p.phone, msgFor(p, d.kind))) el.outerHTML = '<span class="pill ok">Sent</span>';
+  },
+  callbackup: (el, d) => {
+    const p = person(d.id), bk = person(p.backup);
+    if (!bk) { formCover(d.id); return; }
+    waSend(bk.phone, fill(db.templates.cover, {
+      name: bk.name, who: p.name, role: p.role, time: fmtTime(p.time),
+      date: fmtDate(), kitchen: db.settings.kitchen
+    }));
+  },
+  covered: (el, d) => {
+    const p = person(d.id), b = dayBook();
+    b[d.id] = Object.assign(b[d.id] || { s: 'off' }, { by: p.backup });
+    save(); toast('Marked as covered'); render();
+  },
+  pickcover: (el, d) => formCover(d.id),
+  cover: (el, d) => {
+    const p = person(d.id), alt = person(d.alt), b = dayBook();
+    waSend(alt.phone, fill(db.templates.cover, {
+      name: alt.name, who: p.name, role: p.role, time: fmtTime(p.time),
+      date: fmtDate(), kitchen: db.settings.kitchen
+    }));
+    b[d.id] = Object.assign(b[d.id] || { s: 'off' }, { s: 'off', by: alt.id });
+    save(); closeSheet(); render();
+  },
+  'edit-person': (el, d) => formPerson(d.id),
+  'save-person': (el, d) => {
+    const p = person(d.id);
+    const rec = {
+      id: d.id || uid(), name: val('f-name') || 'Unnamed', role: val('f-role') || 'Helper',
+      phone: val('f-phone'), time: val('f-time', '07:00'), backup: val('f-backup'),
+      active: val('f-active') === '1'
+    };
+    if (p) Object.assign(p, rec); else db.team.push(rec);
+    save(); closeSheet(); toast('Saved'); render();
+  },
+  'del-person': (el, d) => {
+    if (!confirm('Remove this person?')) return;
+    db.team = db.team.filter(p => p.id !== d.id);
+    db.team.forEach(p => { if (p.backup === d.id) p.backup = ''; });
+    save(); closeSheet(); render();
+  },
+
+  /* --- slots --- */
+  'edit-slot': (el, d) => formSlot(d.id),
+  'save-slot': (el, d) => {
+    const s = db.slots.find(x => x.id === d.id);
+    const rec = { id: d.id || uid(), name: val('f-name') || 'Slot', from: val('f-from', '07:00'),
+                  to: val('f-to', '09:00'), note: val('f-note') };
+    if (s) Object.assign(s, rec); else db.slots.push(rec);
+    save(); closeSheet(); render();
+  },
+  'del-slot': (el, d) => { db.slots = db.slots.filter(s => s.id !== d.id); save(); closeSheet(); render(); },
+  slotmsg: (el, d) => {
+    const s = db.slots.find(x => x.id === d.id);
+    const people = roster().filter(p => toMin(p.time) >= toMin(s.from) - 90 && toMin(p.time) < toMin(s.to));
+    const text = fill(db.templates.slot, {
+      slot: s.name, time: fmtTime(s.from) + ' – ' + fmtTime(s.to), note: s.note, date: fmtDate(), kitchen: db.settings.kitchen
+    });
+    if (!people.length) { navigator.clipboard?.writeText(text); toast('Nobody in this slot — message copied'); return; }
+    sheet(s.name, 'Tap Send for each person in this slot.',
+      '<div class="list" style="margin-top:12px">' + people.map(p =>
+        '<div class="row"><span class="ic">' + roleIcon(p.role) + '</span>' +
+        '<div class="body"><div class="title">' + esc(p.name) + '</div><div class="meta">' + fmtTime(p.time) + '</div></div>' +
+        '<button class="btn btn-sm btn-wa" data-act="slotsend" data-id="' + p.id + '" data-slot="' + s.id + '">Send</button></div>'
+      ).join('') + '</div>');
+  },
+  slotsend: (el, d) => {
+    const s = db.slots.find(x => x.id === d.slot), p = person(d.id);
+    const ok = waSend(p.phone, fill(db.templates.slot, {
+      slot: s.name, time: fmtTime(s.from) + ' – ' + fmtTime(s.to), note: s.note,
+      name: p.name, date: fmtDate(), kitchen: db.settings.kitchen
+    }));
+    if (ok) el.outerHTML = '<span class="pill ok">Sent</span>';
+  },
+
+  /* --- reminders --- */
+  'edit-rem': (el, d) => formRem(d.id),
+  'save-rem': (el, d) => {
+    const r = db.reminders.find(x => x.id === d.id);
+    const rec = { id: d.id || uid(), title: val('f-title') || 'Reminder', time: val('f-time', '08:00'),
+                  daily: val('f-daily') === '1', date: val('f-date'), done: r ? r.done : {} };
+    if (r) Object.assign(r, rec); else db.reminders.push(rec);
+    save(); closeSheet(); render();
+  },
+  'del-rem': (el, d) => { db.reminders = db.reminders.filter(r => r.id !== d.id); save(); closeSheet(); render(); },
+  remdone: (el, d) => {
+    const r = db.reminders.find(x => x.id === d.id), k = dkey();
+    if (r.done[k]) delete r.done[k]; else r.done[k] = 1;
+    save(); render();
+  },
+
+  /* --- money --- */
+  'edit-tx': (el, d) => formTx(d.type),
+  'save-tx': (el, d) => {
+    const amt = num('f-amt');
+    if (!amt) { toast('Enter an amount'); return; }
+    db.tx.push({ id: uid(), date: val('f-date', dkey()), type: d.type, amount: amt,
+                 cat: val('f-cat', 'Other'), note: val('f-note') });
+    save(); closeSheet(); toast('Saved'); render();
+  },
+  deltx: (el, d) => { db.tx = db.tx.filter(t => t.id !== d.id); save(); render(); },
+  opening: () => sheet('Opening balance', 'Cash you already had before using this app.',
+    '<label>Amount</label><input id="f-amt" type="number" inputmode="decimal" value="' + (+db.settings.openingBalance || 0) + '">' +
+    '<div class="btn-row"><button class="btn btn-p btn-full" data-act="save-opening">Save</button></div>'),
+  'save-opening': () => { db.settings.openingBalance = num('f-amt'); save(); closeSheet(); render(); },
+  'edit-need': (el, d) => formNeed(d.id),
+  'save-need': (el, d) => {
+    const n = db.needs.find(x => x.id === d.id);
+    const rec = { id: d.id || uid(), title: val('f-title') || 'Need', amount: num('f-amt'),
+                  when: val('f-when', 'tomorrow'), done: false };
+    if (n) Object.assign(n, rec); else db.needs.push(rec);
+    save(); closeSheet(); render();
+  },
+  'del-need': (el, d) => { db.needs = db.needs.filter(n => n.id !== d.id); save(); closeSheet(); render(); },
+  needpaid: (el, d) => {
+    const n = db.needs.find(x => x.id === d.id);
+    n.done = true;
+    db.tx.push({ id: uid(), date: dkey(), type: 'out', amount: n.amount, cat: 'Other', note: n.title });
+    save(); toast('Paid — added to expenses'); render();
+  },
+
+  /* --- material --- */
+  'edit-item': (el, d) => formItem(d.id),
+  'save-item': (el, d) => {
+    const s = db.stock.find(x => x.id === d.id);
+    const rec = { id: d.id || uid(), name: val('f-name') || 'Item', unit: val('f-unit', 'kg'),
+                  have: num('f-have'), par: num('f-par'), rate: num('f-rate') };
+    if (s) Object.assign(s, rec); else db.stock.push(rec);
+    save(); closeSheet(); render();
+  },
+  'del-item': (el, d) => { db.stock = db.stock.filter(s => s.id !== d.id); save(); closeSheet(); render(); },
+  have: (el, d) => {
+    const s = db.stock.find(x => x.id === d.id);
+    s.have = Math.max(0, Number(s.have || 0) + Number(d.d));
+    save(); render();
+  },
+  buylist: () => sendBuyList(),
+  bought: () => {
+    const cost = stockNeedCost();
+    if (!cost && !db.stock.some(shortOf)) { toast('Nothing to buy'); return; }
+    if (!confirm('Mark all short items as received and record ' + money(cost) + ' as an expense?')) return;
+    db.stock.forEach(s => { if (shortOf(s)) s.have = Number(s.par || 0); });
+    if (cost) db.tx.push({ id: uid(), date: dkey(), type: 'out', amount: cost, cat: 'Material', note: 'Daily material purchase' });
+    save(); toast('Stock updated'); render();
+  },
+
+  /* --- settings --- */
+  savesettings: () => {
+    Object.assign(db.settings, {
+      kitchen: val('setName') || 'Ruchitva Kitchen',
+      cc: val('setCC', '91').replace(/\D/g, '') || '91',
+      ownerPhone: val('setOwner'),
+      leadMin: Math.min(180, Math.max(5, num('setLead') || 30))
+    });
+    save(); toast('Saved'); render();
+  },
+  askperm: () => {
+    if (!window.Notification) { toast('This browser has no alerts'); return; }
+    Notification.requestPermission().then(p => { toast('Alerts: ' + p); render(); });
+  },
+  testnote: () => { notify('Ruchitva Kitchen', 'Alerts are working.'); toast('Sent a test alert'); },
+  savetpl: () => {
+    Object.keys(db.templates).forEach(k => { const e = $('#tpl-' + k); if (e) db.templates[k] = e.value; });
+    save(); toast('Templates saved');
+  },
+  resettpl: () => { db.templates = seed().templates; save(); render(); toast('Reset'); },
+  export: () => { download('ruchitva-kitchen-' + dkey() + '.json', JSON.stringify(db, null, 2)); },
+  import: () => {
+    const f = document.createElement('input');
+    f.type = 'file'; f.accept = 'application/json';
+    f.onchange = () => {
+      const r = new FileReader();
+      r.onload = () => {
+        try { db = Object.assign(seed(), JSON.parse(r.result)); save(); toast('Imported'); render(); }
+        catch (e) { toast('That file could not be read'); }
+      };
+      r.readAsText(f.files[0]);
+    };
+    f.click();
+  },
+  wipe: () => {
+    if (!confirm('Erase everything on this phone? Export a backup first.')) return;
+    localStorage.removeItem(KEY); db = seed(); save(); render(); toast('Erased');
+  }
+};
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if (!el) return;
+  const fn = ACTIONS[el.dataset.act];
+  if (fn) { e.preventDefault(); fn(el, el.dataset); }
+});
+
+/* =========================================================================
+   RENDER / BOOT
+   ========================================================================= */
+const VIEWS = { today: viewToday, team: viewTeam, money: viewMoney, stock: viewStock, set: viewSettings };
+function render() {
+  const tab = $('#view').dataset.tab || 'today';
+  $('#view').innerHTML = VIEWS[tab]();
+  $('#todayLine').textContent = fmtDate() + ' · ' + (alerts().length ? alerts().length + ' alert(s)' : 'all clear');
+}
+function switchTab(tab) {
+  $('#view').dataset.tab = tab;
+  $$('.tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
+  closeSheet(); window.scrollTo(0, 0); render();
+}
+$$('.tabs button').forEach(b => b.onclick = () => switchTab(b.dataset.tab));
+$('#bellBtn').onclick = () => ACTIONS.askperm();
+
+$('#view').dataset.tab = 'today';
+render();
+tick();
+setInterval(tick, 30000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) { render(); tick(); } });
+
+if ('serviceWorker' in navigator)
+  navigator.serviceWorker.register('kitchen-sw.js').catch(() => {});
+</script>
+</body>
+</html>
